@@ -1,0 +1,522 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"; /* You can add global styles to this file, and also import other style files */
+
+
+html,body {
+  background: #eeeeee;
+  margin:0;
+  padding:0;
+  height:100%;
+
+}
+#container{
+  min-height: 100%;
+  position:relative;
+
+}
+/*#footer{*/
+/*    position:absolute;*/
+/*    bottom:0;*/
+/*    width:100%;*/
+/*    height:200px;*/
+/*}*/
+
+.form-inline {
+  display: inline-block;
+}
+
+.navbar-header.col {
+  padding: 0 !important;
+}
+
+.navbar {
+  background: #fff;
+  /*padding-left: 16px;*/
+  /*padding-right: 16px;*/
+  border-bottom: 1px solid #d6d6d6;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+}
+
+.navbar .navbar-brand {
+  color: #555;
+  padding-left: 0;
+  padding-right: 50px;
+  font-family: 'Merienda One', sans-serif;
+}
+
+.navbar .navbar-brand i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.navbar .nav-item i {
+  font-size: 18px;
+}
+
+.navbar .dropdown-item i {
+  font-size: 16px;
+  min-width: 22px;
+}
+
+.navbar .nav-item.open > a {
+  background: none !important;
+}
+
+.navbar .dropdown-menu {
+  border-radius: 1px;
+  border-color: #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+.navbar .dropdown-menu a {
+  color: #777;
+  padding: 8px 20px;
+  line-height: normal;
+}
+
+.navbar .dropdown-menu a:hover, .navbar .dropdown-menu a:active {
+  color: #333;
+}
+
+.navbar .dropdown-item .material-icons {
+  font-size: 21px;
+  line-height: 16px;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+
+.navbar .badge {
+  color: #fff;
+  background: #f44336;
+  font-size: 11px;
+  border-radius: 20px;
+  position: absolute;
+  min-width: 10px;
+  padding: 4px 6px 0;
+  min-height: 18px;
+  top: 5px;
+}
+
+.navbar a.notifications, .navbar a.messages {
+  position: relative;
+  margin-right: 10px;
+}
+
+.navbar a.messages {
+  margin-right: 20px;
+}
+
+.navbar a.notifications .badge {
+  margin-left: -8px;
+}
+
+.navbar a.messages .badge {
+  margin-left: -4px;
+}
+
+.navbar .active a, .navbar .active a:hover, .navbar .active a:focus {
+  background: transparent !important;
+}
+
+@media (min-width: 1200px) {
+  .form-inline .input-group {
+    width: 300px;
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .form-inline {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+}
+
+/*sidebar*/
+.accordion .card {
+  color: #424e5d;
+  border: 1px solid #dddddd;
+}
+
+.accordion .card a {
+  color: #424e5d;
+  text-decoration: none;
+}
+
+.accordion .card-header {
+  background: linear-gradient(#fff, #f1f1f1);
+  padding: .75rem 1rem;
+  position: relative;
+}
+
+.accordion .card-header:hover {
+  background: linear-gradient(#f1f1f1, #e8e8e8);
+}
+
+.accordion .card-header h2 {
+  font-size: 1rem;
+}
+
+.accordion .fa {
+  width: 20px;
+  margin-right: .25rem;
+}
+
+.accordion .card-header a {
+  float: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.accordion .toggle {
+  font-size: .8rem;
+  line-height: .8rem;
+  cursor: pointer;
+  opacity: 0.7;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 14px;
+  margin: 0;
+}
+
+.accordion .toggle:hover {
+  opacity: 1;
+}
+
+.accordion .card-body {
+  padding: 0;
+}
+
+.accordion .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 1px 0;
+  padding-left: 30px;
+  background: #d6dbe0;
+  font-weight: 500;
+}
+
+.accordion .list-group-item:hover {
+  background: #007bff;
+}
+
+.accordion .list-group-item:hover a {
+  color: #fff !important;
+}
+
+.accordion .list-group-item:hover .badge {
+  background: #fff;
+  color: #007bff;
+}
+
+.accordion .list-group-item a {
+  color: #61656b;
+  display: block;
+}
+
+.accordion .list-group-item .badge {
+  float: right;
+  min-width: 36px;
+}
+
+.accordion .rotate {
+  transform: rotate(180deg);
+}
+
+/*đăng nhập*/
+.modal-login {
+  color: #636363;
+  width: 350px;
+}
+
+.modal-login .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+}
+
+.modal-login .modal-header {
+  border-bottom: none;
+  position: relative;
+  justify-content: center;
+}
+
+.modal-login h4 {
+  text-align: center;
+  font-size: 26px;
+  margin: 30px 0 -15px;
+}
+
+.modal-login .form-control:focus {
+  border-color: #70c5c0;
+}
+
+.modal-login .form-control, .modal-login .btn {
+  min-height: 40px;
+  border-radius: 3px;
+}
+
+.modal-login .close {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.modal-login .modal-footer {
+  background: #ecf0f1;
+  border-color: #dee4e7;
+  text-align: center;
+  justify-content: center;
+  margin: 0 -20px -20px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.modal-login .modal-footer a {
+  color: #999;
+}
+
+.modal-login .avatar {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -70px;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  z-index: 9;
+  background: #007bff;
+  padding: 15px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.modal-login .avatar img {
+  width: 100%;
+}
+
+.modal-login.modal-dialog {
+  margin-top: 80px;
+}
+
+.modal-login .btn, .modal-login .btn:active {
+  color: #fff;
+  border-radius: 4px;
+  background: #007bff ;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  border: none;
+}
+
+.modal-login .btn:hover, .modal-login .btn:focus {
+  background: #45aba6 !important;
+  outline: none;
+}
+
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
+}
+
+/*footer*/
+
+.footer {
+  background-color: #414141;
+  width: 100%;
+  text-align: left;
+  font-family: sans-serif ;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  position: absolute;
+  height: 200px;
+}
+
+.footer .footer-left,
+.footer .footer-center,
+.footer .footer-right {
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+/* footer left*/
+
+.footer .footer-left {
+  width: 33%;
+  padding-right: 15px;
+}
+
+.footer .about {
+  line-height: 20px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer .about span {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer .icons {
+  margin-top: 25px;
+}
+
+.footer .icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+
+/* footer center*/
+
+.footer .footer-center {
+  width: 30%;
+}
+
+.footer .footer-center i {
+  background-color: #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer .footer-center i.fa-envelop e {
+  font-size: 17px;
+  line-height: 38px;
+}
+
+.footer .footer-center p {
+  display: inline-block;
+  color: #ffffff;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer .footer-center p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer .footer-center p a {
+  color: #0099ff;
+  text-decoration: none;
+}
+
+
+/* footer right*/
+
+.footer .footer-right {
+  width: 35%;
+}
+
+.footer h2 {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer h2 span {
+  color: #0099ff;
+}
+
+.footer .menu {
+  color: #ffffff;
+  margin: 20px 0 12px;
+  padding: 0;
+}
+
+.footer .menu a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer .menu a:hover {
+  color: #0099ff;
+}
+
+.footer .name {
+  color: #0099ff;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    font-size: 14px;
+  }
+
+  .footer .footer-left,
+  .footer .footer-center,
+  .footer .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .footer .footer-center i {
+    margin-left: 0;
+  }
+}
+/*thay đổi thông tin*/
+#huy{
+  background-color: #424e5d;
+  width: 150px;
+  margin-left: 20px;
+}
+#luu{
+  width: 150px;
+  margin-left: 50px;
+}
+#luuDoi{
+  width: 150px;
+  margin-left: 50px;
+}
+#huyBo{
+  background-color: #424e5d;
+  width: 150px;
+  margin-left: 20px;
+}
+/*đăng file*/
+#huytai{
+  width: 100px;
+  height: 40%;
+}
+#upload{
+  width: 100px;
+  height: 40%;
+}
