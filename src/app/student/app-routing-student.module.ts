@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import { ListStudentComponent } from './list-student/list-student.component';
 
-
 export const routes: Routes = [
   {
     path: 'student',
