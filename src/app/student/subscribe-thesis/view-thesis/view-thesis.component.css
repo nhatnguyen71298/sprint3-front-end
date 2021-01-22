@@ -1,0 +1,60 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  color: blue;
+}
+
+h5 {
+  font-weight: bold;
+}
+
+form {
+  margin: 2.5% 0 0 0;
+  padding: 0 0 0 0;
+  width: 95%;
+}
+
+hr {
+  margin: 0 0 0 0;
+}
+
+.back {
+  margin: 2% 0 0 43.1%;
+  background-color: #0397d6;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 7%;
+}
+
+.back:hover {
+  background-color: blue;
+}
+
+.matInputMaterial {
+  width: 99%;
+  margin: -5% 0 0 0;
+  padding: 0 0 0 0;
+}
+
+.hrBottom {
+  margin: 1.2% 0 0 0;
+}
+
+.input {
+  height: 21px;
+}
+
+textarea {
+  height: 50px;
+}
+
+.description {
+  width: 99%;
+  height: auto;
+  margin: -3.9% 0 0 0;
+  padding: 0 0 0 0;
+}

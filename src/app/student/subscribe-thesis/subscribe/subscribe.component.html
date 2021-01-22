@@ -1,0 +1,150 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-4">
+          <input type="button" class="signUp" value="Hủy đăng ký">
+          <input type="button" class="signUp" value="Đăng ký" (click)="subscribeThesis()">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h3>Đề tài đăng ký</h3>
+                </div>
+              </div>
+            </div>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>Tên đề tài</th>
+                <th class="amount">Số lượng SVTH</th>
+                <th class="statusTitle">Trạng thái</th>
+                <th class="work">Thao tác</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let registeredThesis of registeredThesisList">
+                <td class="topicName">{{registeredThesis.statement}}</td>
+                <td>{{registeredThesis.amount}}</td>
+                <td class="status">Chưa đăng ký</td>
+                <td class="deleteIcon">
+                  <a class="viewSubscribe" title="View Detail" data-toggle="tooltip" (click)="openDialogView(registeredThesis.id)"><i
+                    class="material-icons">visibility</i></a>
+                  <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteThesis()"><i
+                    class="material-icons">&#xE872;</i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h3>Danh sách đề tài của giáo viên</h3>
+                </div>
+              </div>
+            </div>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th class="icon">STT</th>
+                <th>Tên đề tài</th>
+                <th class="amountTeacher">Số lượng SVTH</th>
+                <th class="icon">Xem</th>
+                <th class="icon" *ngIf="check == true">Chọn</th>
+              </tr>
+              </thead>
+              <tbody>
+
+
+              <tr *ngFor="let thesis of thesisListExists |paginate: { itemsPerPage: 5, currentPage: p}
+                                                          let i = index">
+                <td class="number">{{i + 1 + 5 * (p - 1)}}</td>
+                <td class="topicName">{{thesis.statement}}</td>
+                <td>{{thesis.amount}}</td>
+                <td class="deleteIcon">
+                  <a class="view" title="View Detail" data-toggle="tooltip" (click)="openDialogView(thesis.id)"><i
+                    class="material-icons">visibility</i></a>
+                </td>
+                <td class="deleteIcon" *ngIf="check == true">
+                  <a class="choose" title="Choose" data-toggle="tooltip"><i
+                    class="material-icons" (click)="choose(thesis.id)">done</i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 paginationItem">
+          <pagination-controls
+            (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau" responsive="true">
+          </pagination-controls>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h3>Đề tài sinh viên yêu cầu</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form>
+        <div class="row">
+          <div class="col-sm-3">
+            <label for="nameTopic" class="first">Nhập tên đề tài <sup class="text-danger">*</sup></label>
+          </div>
+          <div class="col-sm-9">
+            <input id="nameTopic" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label for="amount" class="second">Số sinh viên thực hiện <sup class="text-danger">*</sup></label>
+          </div>
+          <div class="col-sm-9">
+            <input id="amount" class="form-control secondInput"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label for="description" class="second">Mô tả <sup class="text-danger">*</sup></label>
+          </div>
+          <div class="col-sm-9">
+            <textarea id="description" class="form-control thirdInput"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10"></div>
+          <div class="col-sm-2">
+            <input type="button" class="submit" value="Chọn">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+</div>

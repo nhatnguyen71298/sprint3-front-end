@@ -1,20 +1,35 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import {SubscribeThesisComponent} from './subscribe-thesis/subscribe/subscribe-thesis.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {ViewThesisComponent} from './subscribe-thesis/view-thesis/view-thesis.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { NotificationComponent } from './subscribe-thesis/notification/notification.component';
 
 export const routes: Routes = [
   {
     path: 'student',
     children: [
       // {path: 'test', component: TestStudentComponent},
+      {path: 'subscribe', component: SubscribeThesisComponent},
     ]
   },
 ];
+
 @NgModule({
-  declarations: [],
+  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationComponent],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
-  ]
+    CommonModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
+  ],
+  entryComponents: [ViewThesisComponent, NotificationComponent]
 })
-export class AppRoutingStudentModule { }
+export class AppRoutingStudentModule {
+}
