@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import { ListStudentComponent } from './list-student/list-student.component';
 
 
 export const routes: Routes = [
   {
     path: 'student',
     children: [
-      // {path: 'test', component: TestStudentComponent},
+      {path: 'student-list', component: ListStudentComponent},
     ]
   },
 ];
 @NgModule({
-  declarations: [],
+  declarations: [ListStudentComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule
