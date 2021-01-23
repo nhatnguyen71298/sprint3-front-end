@@ -5,11 +5,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Collection of nav links, forms, and other content for toggling -->
-    <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-      <div class="navbar-nav mx-3 justify-content-center">
-        <a href="#" class="nav-item nav-link active mr-5" >Trang Chủ</a>
-        <a href="#" class="nav-item nav-link mr-5">Tin Tức</a>
-        <div class="navbar-nav ml-auto">
+    <div id="navbarCollapse" class="collapse navbar-collapse justify-content-center">
+      <div class="navbar-nav  justify-content-center" id="contenNavabar">
+        <a href="#" class="nav-item nav-link active" id="trangchu">Trang Chủ</a>
+        <div class="navbar-nav ml-5">
           <div class="nav-item dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action mr-5"> Giáo Viên<b
               class="caret"></b></a>
@@ -51,8 +50,6 @@
         <a href="#" class="nav-item nav-link">Liên Hệ</a>
       </div>
       <div class="navbar-nav" id="taikhoan">
-        <a href="#" class="nav-item nav-link notifications"><i class="fa fa-bell-o"></i><span
-          class="badge">1</span></a>
         <div class="nav-item dropdown" *ngIf="currentUser">
           <a href="#" data-toggle="dropdown"  class="nav-link dropdown-toggle user-action" id="ten">{{currentUser.fullName}}
             <b class="caret"></b></a>
@@ -70,8 +67,10 @@
             <a href="#" class="dropdown-item" (click)="logout()"><i class="material-icons">&#xE8AC;</i> Đăng Xuất</a>
           </div>
         </div>
+        <a href="#" class="nav-item nav-link notifications ml-5 mt-1" *ngIf="currentUser"><i class="fa fa-bell-o"></i><span
+          class="badge">1</span></a>
 
-        <p *ngIf="!currentUser" class="mt-1 mb-0"><a href="#" (click)="openDialog()" data-toggle="modal"><i
+        <p *ngIf="!currentUser" class="mt-1 mb-0 ml-5"><a href="#" (click)="openDialog()" data-toggle="modal"><i
           class="fa fa-sign-in"
           aria-hidden="true"></i> Đăng
           nhập</a></p>
@@ -79,7 +78,7 @@
       </div>
     </div>
   </nav>
-  <div class="row container-fluid d-flex justify-content-center" *ngIf="currentUser" >
+  <div class="row container-fluid d-flex justify-content-center" id="admin" *ngIf="currentUser" >
     <nav class="navbar navbar-expand-xl navbar-light " id="navar2" *ngIf="currentUser.role==='Admin'">
       <!-- Collection of nav links, forms, and other content for toggling -->
       <div id="navbarCollapse2" class="collapse navbar-collapse justify-content-center">
