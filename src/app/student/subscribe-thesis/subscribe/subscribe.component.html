@@ -2,21 +2,32 @@
   <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-10">
+      <div class="row mt-3" *ngIf="hiddenTable == true">
+        <div class="col-sm-12">
+          <h1>Chào <span class="text-primary">Nhóm trưởng</span> ! Nhóm của bạn hiện tại chưa đăng ký đề tài nào .
+            Bạn có thể chọn 1 đề tài trong danh sách đề tài của Giáo Viên đưa ra
+            hoặc tự đề xuất 1 đề tài theo cấu trúc bên dưới cho nhóm của mình</h1>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-8"></div>
         <div class="col-sm-4">
-          <input type="button" class="signUp" value="Hủy đăng ký">
-          <input type="button" class="signUp" value="Đăng ký" (click)="subscribeThesis()">
+          <div *ngIf="approved == false">
+            <input type="button" class="signUp" value="Hủy đăng ký"
+                   *ngIf="approved == false && hiddenTable == false" (click)="unsubscribeThesis()">
+            <input type="button" class="signUp" value="Đăng ký" (click)="subscribeThesis()"
+                   *ngIf="subscribedThesisOfStudentCurrent.length == 0 && newSubscribeThesis.length != 0">
+          </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="hiddenTable == false">
         <div class="table-responsive">
           <div class="table-wrapper">
             <div class="table-title">
               <div class="row">
                 <div class="col-sm-12">
-                  <h3>Đề tài đăng ký</h3>
+                  <h1>Đề tài đăng ký</h1>
                 </div>
               </div>
             </div>
@@ -29,16 +40,66 @@
                 <th class="work">Thao tác</th>
               </tr>
               </thead>
-              <tbody>
-              <tr *ngFor="let registeredThesis of registeredThesisList">
-                <td class="topicName">{{registeredThesis.statement}}</td>
-                <td>{{registeredThesis.amount}}</td>
+              <tbody *ngIf="subscribedThesisOfStudentCurrent.length != 0">
+              <tr *ngFor="let subscribedThesis of subscribedThesisOfStudentCurrent">
+                <td class="topicName">{{subscribedThesis.thesis.statement}}</td>
+                <td>{{subscribedThesis.thesis.amount}}</td>
+                <td class="status" *ngIf="subscribedThesis.status == true">Đã kiểm duyệt</td>
+                <td class="status" *ngIf="subscribedThesis.status == false">Đã đăng ký</td>
+                <td class="deleteIcon">
+                  <a class="viewSubscribe" title="View Detail" data-toggle="tooltip"
+                     (click)="openDialogView(subscribedThesis.id)"><i
+                    class="material-icons">visibility</i></a>
+                </td>
+              </tr>
+              </tbody>
+              <tbody *ngIf="subscribedThesisOfStudentCurrent.length == 0">
+              <tr *ngFor="let subscribeThesis of newSubscribeThesis">
+                <td class="topicName">{{subscribeThesis.statement}}</td>
+                <td>{{subscribeThesis.amount}}</td>
                 <td class="status">Chưa đăng ký</td>
                 <td class="deleteIcon">
-                  <a class="viewSubscribe" title="View Detail" data-toggle="tooltip" (click)="openDialogView(registeredThesis.id)"><i
+                  <a class="viewSubscribe" title="View Detail" data-toggle="tooltip"
+                     (click)="openDialogView(subscribeThesis.id)"><i
                     class="material-icons">visibility</i></a>
                   <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteThesis()"><i
                     class="material-icons">&#xE872;</i></a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="thesisListSubscribedByOtherGroup.length != 0">
+        <div class="table-responsive">
+          <div class="table-wrapper">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h1>Đề tài đã đăng ký bởi nhóm khác</h1>
+                </div>
+              </div>
+            </div>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>Tên đề tài</th>
+                <th class="amount">Số lượng SVTH</th>
+                <th class="statusTitle">Tên nhóm</th>
+                <th class="work">Thao tác</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let thesisOfOtherGroup of thesisListSubscribedByOtherGroup">
+                <td class="topicName">{{thesisOfOtherGroup.thesis.statement}}</td>
+                <td>{{thesisOfOtherGroup.thesis.amount}}</td>
+                <td class="status">{{thesisOfOtherGroup.studentGroup.groupName}}</td>
+                <td class="deleteIcon">
+                  <a class="viewSubscribe" title="View Detail" data-toggle="tooltip"
+                     (click)="openDialogView(thesisOfOtherGroup.id)"><i
+                    class="material-icons">visibility</i></a>
                 </td>
               </tr>
               </tbody>
@@ -53,7 +114,7 @@
             <div class="table-title">
               <div class="row">
                 <div class="col-sm-12">
-                  <h3>Danh sách đề tài của giáo viên</h3>
+                  <h1>Danh sách đề tài của giáo viên</h1>
                 </div>
               </div>
             </div>
@@ -64,13 +125,13 @@
                 <th>Tên đề tài</th>
                 <th class="amountTeacher">Số lượng SVTH</th>
                 <th class="icon">Xem</th>
-                <th class="icon" *ngIf="check == true">Chọn</th>
+                <th class="icon" *ngIf="checkChoose == true">Chọn</th>
               </tr>
               </thead>
               <tbody>
 
 
-              <tr *ngFor="let thesis of thesisListExists |paginate: { itemsPerPage: 5, currentPage: p}
+              <tr *ngFor="let thesis of thesisListUnsubscribed |paginate: { itemsPerPage: 5, currentPage: p}
                                                           let i = index">
                 <td class="number">{{i + 1 + 5 * (p - 1)}}</td>
                 <td class="topicName">{{thesis.statement}}</td>
@@ -79,9 +140,9 @@
                   <a class="view" title="View Detail" data-toggle="tooltip" (click)="openDialogView(thesis.id)"><i
                     class="material-icons">visibility</i></a>
                 </td>
-                <td class="deleteIcon" *ngIf="check == true">
+                <td class="deleteIcon" *ngIf="checkChoose == true">
                   <a class="choose" title="Choose" data-toggle="tooltip"><i
-                    class="material-icons" (click)="choose(thesis.id)">done</i></a>
+                    class="material-icons" (click)="chooseThesisOfTeacher(thesis.id)">done</i></a>
                 </td>
               </tr>
               </tbody>
@@ -98,13 +159,13 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="subscribedThesisOfStudentCurrent.length == 0 && newSubscribeThesis.length == 0">
         <div class="table-responsive">
           <div class="table-wrapper">
             <div class="table-title">
               <div class="row">
                 <div class="col-sm-12">
-                  <h3>Đề tài sinh viên yêu cầu</h3>
+                  <h1>Đề tài sinh viên yêu cầu</h1>
                 </div>
               </div>
             </div>
@@ -112,7 +173,7 @@
         </div>
       </div>
 
-      <form>
+      <form *ngIf="subscribedThesisOfStudentCurrent.length == 0 && newSubscribeThesis.length == 0">
         <div class="row">
           <div class="col-sm-3">
             <label for="nameTopic" class="first">Nhập tên đề tài <sup class="text-danger">*</sup></label>

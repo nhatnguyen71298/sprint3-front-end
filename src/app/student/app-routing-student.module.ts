@@ -14,7 +14,7 @@ export const routes: Routes = [
     path: 'student',
     children: [
       // {path: 'test', component: TestStudentComponent},
-      {path: 'subscribe', component: SubscribeThesisComponent},
+      {path: 'subscribe/:idStudent', component: SubscribeThesisComponent},
     ]
   },
 ];

@@ -17,12 +17,28 @@ export class SubscribeThesisService {
    * Chau start
    */
 
-  getListThesisService(idFind): Observable<any> {
-    return this.http.get(this.API + '/list-thesis/' + idFind);
+  findStudentCurrentlyLoggingById(idFind): Observable<any> {
+    return this.http.get(this.API + '/student-currently-logging/' + idFind);
+  }
+
+  getListThesisUnsubscribeService(idFind): Observable<any> {
+    return this.http.get(this.API + '/list-thesis-unsubscribed/' + idFind);
+  }
+
+  getListThesisSubscribeService(idFind): Observable<any> {
+    return this.http.get(this.API + '/list-thesis-subscribed/' + idFind);
   }
 
   findThesisById(idFind): Observable<any> {
     return this.http.get(this.API + '/thesis-detail/' + idFind);
+  }
+
+  subscribeThesisOfTeacher(idThesis, idStudent): Observable<any> {
+    return this.http.get(this.API + '/subscribe-thesis-teacher/' + idThesis + '/' + idStudent);
+  }
+
+  unsubscribeThesis(idCheckThesis): Observable<any> {
+    return this.http.get(this.API + '/unsubscribe/' + idCheckThesis);
   }
 
   /**
