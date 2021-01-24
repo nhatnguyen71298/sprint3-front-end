@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ViewThesisComponent} from '../view-thesis/view-thesis.component';
 import {NotificationComponent} from '../notification/notification.component';
 import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-subscribe',
@@ -24,11 +25,14 @@ export class SubscribeThesisComponent implements OnInit {
   protected p = 1;
   protected idStudent;
   protected student;
+  protected position;
+  protected formCreate: FormGroup;
 
   constructor(
     private subscribeThesisService: SubscribeThesisService,
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
+    protected formBuilder: FormBuilder,
   ) {
   }
 
@@ -39,6 +43,25 @@ export class SubscribeThesisComponent implements OnInit {
     this.getStudentCurrentlyLoggingById();
     this.filterThesisSubscribed();
     this.getListThesisUnsubscribed();
+    // create new Thesis :
+    this.formCreate = this.formBuilder.group({
+      id: [''],
+      passengerName: ['',
+        [Validators.required, Validators.maxLength(150),
+          Validators.pattern('^([a-zA-Z]([ ]?[a-zA-Z])*)([,]([a-zA-Z]([ ]?[a-zA-Z])*)*)*$')]],
+      adults: ['', [Validators.required, Validators.pattern('^([0-9]+)$'),
+        Validators.min(1), Validators.maxLength(2)]],
+      babies: ['', [Validators.required,
+        Validators.pattern('^([0-9]+)$'),
+        Validators.maxLength(2)]],
+      priceDeparture: ['', [Validators.required, Validators.pattern('^([0-9]+([.][0-9]+)?)$')]],
+      priceArrival: [0, [Validators.required, Validators.pattern('^([0-9]+([.][0-9]+)?)$')]],
+      statusCheckin: [''],
+      ticketCode: [''],
+      flightInformation: [''],
+      invoice: [''],
+      statusPayment: [''],
+    });
   }
 
   getStudentCurrentlyLoggingById() {
@@ -50,6 +73,7 @@ export class SubscribeThesisComponent implements OnInit {
         this.message = 'error';
       },
       () => {
+        this.position = this.student.position;
       });
   }
 

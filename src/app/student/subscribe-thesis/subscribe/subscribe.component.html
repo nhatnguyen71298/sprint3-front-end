@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-10">
-      <div class="row mt-3" *ngIf="hiddenTable == true">
+      <div class="row mt-3" *ngIf="hiddenTable == true  && position == true">
         <div class="col-sm-12">
           <h1>Chào <span class="text-primary">Nhóm trưởng</span> ! Nhóm của bạn hiện tại chưa đăng ký đề tài nào .
             Bạn có thể chọn 1 đề tài trong danh sách đề tài của Giáo Viên đưa ra
@@ -48,7 +48,7 @@
                 <td class="status" *ngIf="subscribedThesis.status == false">Đã đăng ký</td>
                 <td class="deleteIcon">
                   <a class="viewSubscribe" title="View Detail" data-toggle="tooltip"
-                     (click)="openDialogView(subscribedThesis.id)"><i
+                     (click)="openDialogView(subscribedThesis.thesis.id)"><i
                     class="material-icons">visibility</i></a>
                 </td>
               </tr>
@@ -98,7 +98,7 @@
                 <td class="status">{{thesisOfOtherGroup.studentGroup.groupName}}</td>
                 <td class="deleteIcon">
                   <a class="viewSubscribe" title="View Detail" data-toggle="tooltip"
-                     (click)="openDialogView(thesisOfOtherGroup.id)"><i
+                     (click)="openDialogView(thesisOfOtherGroup.thesis.id)"><i
                     class="material-icons">visibility</i></a>
                 </td>
               </tr>
@@ -125,7 +125,7 @@
                 <th>Tên đề tài</th>
                 <th class="amountTeacher">Số lượng SVTH</th>
                 <th class="icon">Xem</th>
-                <th class="icon" *ngIf="checkChoose == true">Chọn</th>
+                <th class="icon" *ngIf="checkChoose == true && position == true">Chọn</th>
               </tr>
               </thead>
               <tbody>
@@ -140,7 +140,7 @@
                   <a class="view" title="View Detail" data-toggle="tooltip" (click)="openDialogView(thesis.id)"><i
                     class="material-icons">visibility</i></a>
                 </td>
-                <td class="deleteIcon" *ngIf="checkChoose == true">
+                <td class="deleteIcon" *ngIf="checkChoose == true && position == true">
                   <a class="choose" title="Choose" data-toggle="tooltip"><i
                     class="material-icons" (click)="chooseThesisOfTeacher(thesis.id)">done</i></a>
                 </td>
@@ -159,7 +159,8 @@
         </div>
       </div>
 
-      <div class="row" *ngIf="subscribedThesisOfStudentCurrent.length == 0 && newSubscribeThesis.length == 0">
+      <div class="row" *ngIf="subscribedThesisOfStudentCurrent.length == 0
+                              && newSubscribeThesis.length == 0  && position == true">
         <div class="table-responsive">
           <div class="table-wrapper">
             <div class="table-title">
@@ -173,7 +174,8 @@
         </div>
       </div>
 
-      <form *ngIf="subscribedThesisOfStudentCurrent.length == 0 && newSubscribeThesis.length == 0">
+      <form *ngIf="subscribedThesisOfStudentCurrent.length == 0
+                   && newSubscribeThesis.length == 0  && position == true">
         <div class="row">
           <div class="col-sm-3">
             <label for="nameTopic" class="first">Nhập tên đề tài <sup class="text-danger">*</sup></label>
