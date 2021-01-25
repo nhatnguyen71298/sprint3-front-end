@@ -8,15 +8,17 @@ import {StatisticsService} from '../../../service/statistics.service';
 })
 export class StatisticsTeacherComponent implements OnInit {
   selection = 'teacher';
-  studentList: Array<any>;
-  teacherList: Array<any>;
-  teacherAmount: number;
+  studentList;
+  teacherList = [];
+  thesisList = [];
+  duplicateThesisList = [];
+  checkedThesisList = [];
 
   constructor(private statisticsService: StatisticsService) {
   }
 
   ngOnInit(): void {
-    this.statisticsService.thesisStatistics().subscribe(next => {
+    this.statisticsService.studentStatistics().subscribe(next => {
       this.studentList = next;
     })
     this.statisticsService.teacherStatistics().subscribe(next => {
@@ -24,7 +26,15 @@ export class StatisticsTeacherComponent implements OnInit {
       for (const teacher of this.teacherList) {
         teacher.studentNumber = teacher.studentGroupList.map(x => x.studentList.length);
       }
-      console.log(this.teacherList);
+    })
+    this.statisticsService.thesisStatistics().subscribe(next => {
+      this.thesisList = next;
+      this.duplicateThesisList = this.thesisList.map(x => x.amount);
+      this.duplicateThesisList = this.duplicateThesisList.filter(x => x > 1);
+    })
+    this.statisticsService.checkedThesisStatistics().subscribe(next => {
+      this.checkedThesisList = next;
+      console.log(this.checkedThesisList);
     })
   }
 
