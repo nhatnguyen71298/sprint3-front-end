@@ -1,5 +1,10 @@
 <div>
-  <h3>Danh sách</h3>
+  <span style="font-size: 30px">Danh sách</span>
+  <select style="margin-left: 40px" [(ngModel)]="defaultValue" (change)="getSemester($event.target.value)">
+    <option style="width: 100px" *ngFor="let periodTime of periodList" value="{{periodTime.id}}">
+      {{periodTime.periodName}}
+    </option>
+  </select>
 </div>
 <div class="table instruction__table-list">
   <table class="instruction__list-table">
@@ -13,7 +18,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let instruction of instructionList" class="instruction__list-content" align="center">
+    <tr *ngFor="let instruction of instructionList | paginate: {itemsPerPage: 5, currentPage: p}"
+        class="instruction__list-content" align="center">
       <th class="instruction__list-td">{{instruction.id}}</th>
       <td class="instruction__list-td">{{instruction.fileName}}</td>
       <td class="instruction__list-td">{{instruction.description}}</td>
@@ -21,12 +27,13 @@
         <a href="{{instruction.fileUrl}}"> <i class="btn-download fa fa-download" aria-hidden="true"></i></a>
       </td>
       <td class="instruction__list-td">
-        <button style="border: none" (click)="openDialogDelete(instruction)">
-          <i class="btn-delete fa fa-trash" aria-hidden="true"></i></button>
+        <button class="btn-delete"  style="border: none" (click)="openDialogDelete(instruction)">
+          <i class="icon-delete fa fa-trash" aria-hidden="true"></i></button>
       </td>
     </tr>
     </tbody>
   </table>
+  <pagination-controls style="float: right;margin-top: 5px" (pageChange)="p = $event"></pagination-controls>
 </div>
 
 <div class="instruction__upload">
@@ -36,7 +43,7 @@
       <div class="instruction__upload-file-name">
         <label>Tên tài liệu</label>
         <input class="instruction__upload-input" type="text" disabled>
-        <button class="instruction__choose-file btn-primary">Chọn file</button>
+        <input type="button" class="instruction__choose-file btn-primary" value="Chọn file">
         <input type="file" id="get-file" (change)="onDrop($event.target.files)" formControlName="fileName">
       </div>
       <div class="instruction__upload-description">

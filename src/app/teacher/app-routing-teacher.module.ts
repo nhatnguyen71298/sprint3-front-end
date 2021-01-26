@@ -5,9 +5,9 @@ import {FeedBackComponent} from './feed-back/feed-back.component';
 import {InstructionDocumentComponent} from './instruction-document/instruction-document.component';
 import {DropzoneDirective} from './instruction-document/dropzone.directive';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { InstructionDeleteComponent } from './instruction-document/instruction-delete/instruction-delete.component';
-import { InstructionMessageComponent } from './instruction-document/instruction-message/instruction-message.component';
+import {InstructionDeleteComponent} from './instruction-document/instruction-delete/instruction-delete.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 export const routes: Routes = [
   {
@@ -18,14 +18,17 @@ export const routes: Routes = [
     ]
   },
 ];
+
 @NgModule({
-  declarations: [FeedBackComponent, InstructionDocumentComponent, DropzoneDirective, InstructionDeleteComponent, InstructionMessageComponent],
-    imports: [
-        RouterModule.forChild(routes),
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatDialogModule
-    ],
+  declarations: [FeedBackComponent, InstructionDocumentComponent, DropzoneDirective, InstructionDeleteComponent],
+  imports: [
+    RouterModule.forChild(routes),
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    NgxPaginationModule
+  ],
 })
-export class AppRoutingTeacherModule { }
+export class AppRoutingTeacherModule {
+}

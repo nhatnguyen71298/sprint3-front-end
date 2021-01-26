@@ -1,0 +1,27 @@
+<div class="progress-report">
+  <form (ngSubmit)="uploadFile()" [formGroup]="formUpload">
+    <div>
+      <label>File báo cáo</label>
+      <input class="progress__file-name" style="" type="text" disabled>
+      <input type="button" class="progress__choose-file-btn btn btn-primary" value="Chọn file">
+      <input id="get-file" type="file" (change)="dropFile($event.target.files)" formControlName="progressFile">
+    </div>
+    <div>
+      <div class="progress__label-content">
+        <span>Nội dung</span>
+      </div>
+      <div>
+        <textarea class="progress__content" formControlName="description"></textarea>
+      </div>
+    </div>
+    <div class="progress__btn-submit">
+      <button type="submit" class="btn btn-primary">Gửi báo cáo</button>
+    </div>
+  </form>
+</div>
+<div id="progress-box" class="instruction__progress-box">
+  <div class="instruction__progress-box-header"></div>
+  <meter style="font-size: 50px" [value]=percentage min="0" max="100"></meter>
+  <input id="progress-upload" class="instruction__progress-percent" [value]=displayPercent disabled>
+  <i id="upload-done" class="fa fa-check-circle instruction__progress-done" aria-hidden="true"></i>
+</div>

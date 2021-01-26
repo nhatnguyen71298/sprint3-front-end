@@ -8,6 +8,7 @@
   margin-left: 3vh;
   border: black solid 2px;
   width: 95%;
+  border-collapse: collapse;
 }
 
 .instruction__list-header {
@@ -59,7 +60,13 @@
 
 
 .instruction__list-content {
+
   background-color: rgba(229, 225, 225, 0.4);
+}
+
+.instruction__list-content:hover {
+  background-color: rgba(97, 101, 107, 0.54);
+
 }
 
 .instruction__list-th {
@@ -86,6 +93,7 @@
   position: absolute;
   margin-top: 20px;
   right: 5%;
+  margin-bottom: 10px;
 }
 
 .btn-download {
@@ -97,20 +105,25 @@
   cursor: pointer;
 }
 
-.btn-delete {
+.icon-delete {
   font-size: 20px;
   color: black;
 }
 
-.btn-delete:hover {
-  cursor: pointer;
+.btn-delete{
+  border-radius: 100px;
 }
+
+.btn-delete:hover{
+  background-color: rgba(97, 101, 107, 0.54);
+}
+
 
 @media only screen and (min-width: 3501px) {
   .instruction__upload-input {
     border: black solid 2px;
     margin-left: 20px;
-    width: 93%;
+    width: 88%;
   }
 
   .instruction__choose-file {
@@ -145,6 +158,7 @@
     float: right;
     margin-right: 60px;
     margin-left: 30px;
+    border-radius: 5px;
   }
 }
 
@@ -152,7 +166,7 @@
   .instruction__upload-input {
     border: black solid 2px;
     margin-left: 20px;
-    width: 80%;
+    width: 78%;
   }
 
   .instruction__choose-file {
@@ -180,7 +194,7 @@
   .instruction__upload-input {
     border: black solid 2px;
     margin-left: 20px;
-    width: 77%;
+    width: 70%;
   }
 
   .instruction__choose-file {
@@ -309,4 +323,8 @@
   font-size: 28px;
   bottom: 20px;
   margin-left: 10px
+}
+
+.instruction__table-list {
+  margin-top: 10px;
 }

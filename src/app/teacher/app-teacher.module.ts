@@ -8,6 +8,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {InstructionDocumentService} from '../service/instruction-document.service';
 import {MatDialogModule} from '@angular/material/dialog';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -23,4 +24,5 @@ import {MatDialogModule} from '@angular/material/dialog';
   ],
   providers: [InstructionDocumentService]
 })
-export class AppTeacherModule { }
+export class AppTeacherModule {
+}

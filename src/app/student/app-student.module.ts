@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {AppRoutingTeacherModule} from '../teacher/app-routing-teacher.module';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {AppRoutingStudentModule} from './app-routing-student.module';
-
+import {ThesisDetailService} from '../service/thesis-detail.service';
 
 
 @NgModule({
@@ -10,6 +9,8 @@ import {AppRoutingStudentModule} from './app-routing-student.module';
   imports: [
     AppRoutingStudentModule,
     CommonModule
-  ]
+  ],
+  providers: [ThesisDetailService]
 })
-export class AppStudentModule { }
+export class AppStudentModule {
+}
