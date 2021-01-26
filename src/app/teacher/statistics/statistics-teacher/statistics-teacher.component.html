@@ -21,7 +21,7 @@
     <!--    table-->
     <div class="row">
       <div class="col-12">
-        <table class="table">
+        <table class="table" id="teacher">
           <thead>
           <tr>
             <th scope="col">STT</th>
@@ -32,7 +32,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let teacher of teacherList; let i = index">
+          <tr *ngFor="let teacher of teacherList | paginate: { itemsPerPage: 2, currentPage: p }; let i = index">
             <th scope="row">{{i+1}}</th>
             <td>{{teacher.teacherCode}}</td>
             <td>{{teacher.fullName}}</td>
@@ -41,6 +41,7 @@
           </tr>
           </tbody>
         </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
     <!--    table end -->
@@ -64,7 +65,7 @@
       <div class="col-lg-2 col-md-6">
       </div>
       <div class="col-lg-2 col-md-6">
-        <button class="btn btn-primary">In báo cáo</button>
+        <button class="btn btn-primary" (click)="export('teacher', 'Thống kê giáo viên')">In báo cáo</button>
       </div>
     </div>
   </div>
@@ -74,7 +75,7 @@
     <!--    table-->
     <div class="row">
       <div class="col-12">
-        <table class="table">
+        <table class="table" id="thesis">
           <thead>
           <tr>
             <th scope="col">STT</th>
@@ -87,17 +88,18 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let student of studentList; let i = index">
+          <tr *ngFor="let student of studentList | paginate: { itemsPerPage: 3, currentPage: p2 }; let i = index">
             <th scope="row">{{i+1}}</th>
             <td>{{student.studentGroup.checkThesis.thesis.thesisCode}}</td>
             <td>{{student.studentGroup.checkThesis.thesis.statement}}</td>
             <td>{{student.studentGroup.teacher.fullName}}</td>
             <td>{{student.fullName}}</td>
             <td>{{student.studentGroup.quantity}}</td>
-            <td><input type="checkbox" checked></td>
+            <td>Đã kiểm duyệt</td>
           </tr>
           </tbody>
         </table>
+        <pagination-controls (pageChange)="p2 = $event"></pagination-controls>
       </div>
     </div>
     <!--    table end -->
@@ -129,7 +131,7 @@
       <div class="col-lg-2 col-md-6">
       </div>
       <div class="col-lg-2 col-md-6">
-        <button class="btn btn-primary">In báo cáo</button>
+        <button class="btn btn-primary" (click)="export('thesis', 'Thống kê đề tài')">In báo cáo</button>
       </div>
     </div>
   </div>

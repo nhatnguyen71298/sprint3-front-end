@@ -5,6 +5,7 @@ import { StatisticsTeacherComponent } from './statistics/statistics-teacher/stat
 import { StatisticsThesisComponent } from './statistics/statistics-thesis/statistics-thesis.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -14,7 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
     CommonModule,
     AppRoutingTeacherModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ]
 })
 export class AppTeacherModule { }

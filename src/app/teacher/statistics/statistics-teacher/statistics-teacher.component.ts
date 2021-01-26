@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StatisticsService} from '../../../service/statistics.service';
+import {ExportService} from '../../../service/export.service';
 
 @Component({
   selector: 'app-statistics-teacher',
@@ -14,7 +15,9 @@ export class StatisticsTeacherComponent implements OnInit {
   duplicateThesisList = [];
   checkedThesisList = [];
 
-  constructor(private statisticsService: StatisticsService) {
+  constructor(private statisticsService: StatisticsService,
+              private exportService: ExportService
+  ) {
   }
 
   ngOnInit(): void {
@@ -38,4 +41,7 @@ export class StatisticsTeacherComponent implements OnInit {
     })
   }
 
+  export(list, name) {
+    this.exportService.exportTableToExcel(list, name);
+  }
 }
