@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {SubscribeThesisService} from '../service/subscribe-thesis.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewThesisComponent} from '../view-thesis/view-thesis.component';
@@ -19,6 +19,8 @@ export class SubscribeThesisComponent implements OnInit {
   protected newSubscribeThesis = [];
   protected message = 'nothing';
   protected checkChoose = true;
+  protected checkGroup = true;
+  protected checkTeacher = true;
   protected hiddenTable = true;
   protected approved = false;
   protected thesisType = 'unknown';
@@ -33,6 +35,7 @@ export class SubscribeThesisComponent implements OnInit {
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
     protected formBuilder: FormBuilder,
+    private el: ElementRef
   ) {
   }
 
@@ -41,27 +44,6 @@ export class SubscribeThesisComponent implements OnInit {
       this.idStudent = data.idStudent;
     });
     this.getStudentCurrentlyLoggingById();
-    this.filterThesisSubscribed();
-    this.getListThesisUnsubscribed();
-    // create new Thesis :
-    this.formCreate = this.formBuilder.group({
-      id: [''],
-      passengerName: ['',
-        [Validators.required, Validators.maxLength(150),
-          Validators.pattern('^([a-zA-Z]([ ]?[a-zA-Z])*)([,]([a-zA-Z]([ ]?[a-zA-Z])*)*)*$')]],
-      adults: ['', [Validators.required, Validators.pattern('^([0-9]+)$'),
-        Validators.min(1), Validators.maxLength(2)]],
-      babies: ['', [Validators.required,
-        Validators.pattern('^([0-9]+)$'),
-        Validators.maxLength(2)]],
-      priceDeparture: ['', [Validators.required, Validators.pattern('^([0-9]+([.][0-9]+)?)$')]],
-      priceArrival: [0, [Validators.required, Validators.pattern('^([0-9]+([.][0-9]+)?)$')]],
-      statusCheckin: [''],
-      ticketCode: [''],
-      flightInformation: [''],
-      invoice: [''],
-      statusPayment: [''],
-    });
   }
 
   getStudentCurrentlyLoggingById() {
@@ -73,7 +55,23 @@ export class SubscribeThesisComponent implements OnInit {
         this.message = 'error';
       },
       () => {
-        this.position = this.student.position;
+        if (this.student.studentGroup != null) {
+          if (this.student.studentGroup.teacher != null) {
+            this.position = this.student.position;
+            this.filterThesisSubscribed();
+            this.getListThesisUnsubscribed();
+            // create new Thesis :
+            this.formCreate = this.formBuilder.group({
+              statement: ['', [Validators.required, Validators.maxLength(50)]],
+              amount: ['', [Validators.required, Validators.pattern('^(([1-9])|([1][0-5]))$')]],
+              description: ['', [Validators.required, Validators.maxLength(50)]],
+            });
+          } else {
+            this.checkTeacher = false;
+          }
+        } else {
+          this.checkGroup = false;
+        }
       });
   }
 
@@ -179,6 +177,7 @@ export class SubscribeThesisComponent implements OnInit {
     this.checkChoose = true;
     if (this.newSubscribeThesis.length !== 0) {
       this.thesisListUnsubscribed.unshift(this.newSubscribeThesis.shift());
+      this.ngOnInit();
     }
     if (this.subscribedThesisOfStudentCurrent.length !== 0) {
       const checkThesis = this.subscribedThesisOfStudentCurrent.pop();
@@ -193,6 +192,37 @@ export class SubscribeThesisComponent implements OnInit {
           () => {
             this.ngOnInit();
           });
+      }
+    }
+  }
+
+  keyDownFunction(event) {
+    if (event.keyCode === 13) {
+      // this.saveAndPrint();
+    }
+  }
+
+  createThesis() {
+    this.formCreate.markAllAsTouched();
+    if (this.formCreate.valid) {
+      this.formCreate.value.statement = this.formCreate.value.statement.trim();
+      this.formCreate.value.description = this.formCreate.value.description.trim();
+      this.subscribeThesisService.createThesis(this.idStudent, this.formCreate.value).subscribe(
+        (data) => {
+        },
+        () => {
+          this.message = 'error';
+        },
+        () => {
+          this.ngOnInit();
+        });
+    } else {
+      for (const KEY of Object.keys(this.formCreate.controls)) {
+        if (this.formCreate.controls[KEY].invalid) {
+          const INVALID_CONTROL = this.el.nativeElement.querySelector('[formControlName="' + KEY + '"]');
+          INVALID_CONTROL.focus();
+          break;
+        }
       }
     }
   }

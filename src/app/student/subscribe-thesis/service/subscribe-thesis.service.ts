@@ -41,6 +41,10 @@ export class SubscribeThesisService {
     return this.http.get(this.API + '/unsubscribe/' + idCheckThesis);
   }
 
+  createThesis(idStudent, thesis): Observable<any> {
+    return this.http.post(this.API + '/create/' + idStudent, thesis);
+  }
+
   /**
    * Chau end
    */
