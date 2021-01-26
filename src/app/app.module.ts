@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppTeacherModule} from './teacher/app-teacher.module';
 import {AppStudentModule} from './student/app-student.module';
 import {MaterialModule} from './material.module';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {MaterialModule} from './material.module';
     BrowserAnimationsModule,
     AppTeacherModule,
     AppStudentModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

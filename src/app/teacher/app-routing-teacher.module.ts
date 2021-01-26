@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {root} from 'rxjs/internal-compatibility';
 import { FeedBackComponent } from './feed-back/feed-back.component';
+import {MaterialModule} from "../material.module";
+import { FeedBackDialogComponent } from './feed-back-dialog/feed-back-dialog.component';
 
 export const routes: Routes = [
   {
@@ -13,10 +15,12 @@ export const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [FeedBackComponent],
+  declarations: [FeedBackComponent, FeedBackDialogComponent],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
+  providers: [DatePipe],
 })
 export class AppRoutingTeacherModule { }
