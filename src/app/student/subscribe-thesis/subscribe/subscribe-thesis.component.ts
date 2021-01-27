@@ -14,13 +14,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class SubscribeThesisComponent implements OnInit {
   protected thesisListUnsubscribed = [];
   protected thesisListSubscribed = [];
-  protected thesisListSubscribedByOtherGroup = [];
-  protected subscribedThesisOfStudentCurrent = [];
+  protected thesisOfOtherGroup = [];
+  protected thesisOfStudentCurrent = [];
   protected newSubscribeThesis = [];
   protected message = 'nothing';
   protected checkChoose = true;
   protected checkGroup = true;
   protected checkTeacher = true;
+  protected checkStatement = true;
   protected hiddenTable = true;
   protected approved = false;
   protected thesisType = 'unknown';
@@ -43,11 +44,11 @@ export class SubscribeThesisComponent implements OnInit {
     this.activatedRoute.params.subscribe(data => {
       this.idStudent = data.idStudent;
     });
-    this.getStudentCurrentlyLoggingById();
+    this.getStudent();
   }
 
-  getStudentCurrentlyLoggingById() {
-    this.subscribeThesisService.findStudentCurrentlyLoggingById(this.idStudent).subscribe(
+  getStudent() {
+    this.subscribeThesisService.findStudent(this.idStudent).subscribe(
       (data) => {
         this.student = data;
       },
@@ -76,7 +77,7 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   getListThesisUnsubscribed() {
-    this.subscribeThesisService.getListThesisUnsubscribeService(this.idStudent).subscribe(
+    this.subscribeThesisService.findThesisUnsubscribe(this.idStudent).subscribe(
       (data) => {
         this.thesisListUnsubscribed = data;
       },
@@ -88,7 +89,7 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   filterThesisSubscribed() {
-    this.subscribeThesisService.getListThesisSubscribeService(this.idStudent).subscribe(
+    this.subscribeThesisService.findThesisSubscribe(this.idStudent).subscribe(
       (data) => {
         this.thesisListSubscribed = data;
       },
@@ -101,7 +102,7 @@ export class SubscribeThesisComponent implements OnInit {
             if (this.thesisListSubscribed[i].studentGroup.id === this.student.studentGroup.id) {
               this.checkChoose = false;
               this.hiddenTable = false;
-              this.subscribedThesisOfStudentCurrent.push(this.thesisListSubscribed[i]);
+              this.thesisOfStudentCurrent.push(this.thesisListSubscribed[i]);
               if (this.thesisListSubscribed[i].status === true) {
                 this.approved = true;
               }
@@ -110,7 +111,7 @@ export class SubscribeThesisComponent implements OnInit {
             }
           }
         }
-        this.thesisListSubscribedByOtherGroup = this.thesisListSubscribed;
+        this.thesisOfOtherGroup = this.thesisListSubscribed;
       });
   }
 
@@ -164,12 +165,15 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   openNotification(message): void {
-    this.dialog.open(NotificationComponent, {
+    const dialogRef = this.dialog.open(NotificationComponent, {
       width: '555px',
       height: '190px',
       data: {notification: message},
       disableClose: true
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
+    })
   }
 
   unsubscribeThesis() {
@@ -179,8 +183,8 @@ export class SubscribeThesisComponent implements OnInit {
       this.thesisListUnsubscribed.unshift(this.newSubscribeThesis.shift());
       this.ngOnInit();
     }
-    if (this.subscribedThesisOfStudentCurrent.length !== 0) {
-      const checkThesis = this.subscribedThesisOfStudentCurrent.pop();
+    if (this.thesisOfStudentCurrent.length !== 0) {
+      const checkThesis = this.thesisOfStudentCurrent.pop();
       if (checkThesis.status === false) {
         const idCheckThesis = checkThesis.id;
         this.subscribeThesisService.unsubscribeThesis(idCheckThesis).subscribe(
@@ -207,15 +211,35 @@ export class SubscribeThesisComponent implements OnInit {
     if (this.formCreate.valid) {
       this.formCreate.value.statement = this.formCreate.value.statement.trim();
       this.formCreate.value.description = this.formCreate.value.description.trim();
-      this.subscribeThesisService.createThesis(this.idStudent, this.formCreate.value).subscribe(
-        (data) => {
-        },
-        () => {
-          this.message = 'error';
-        },
-        () => {
-          this.ngOnInit();
-        });
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.thesisOfOtherGroup.length; i++) {
+        if (this.thesisOfOtherGroup[i].thesis.statement === this.formCreate.value.statement) {
+          this.checkStatement = false;
+          break;
+        }
+      }
+      if (this.checkStatement) {
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < this.thesisListUnsubscribed.length; i++) {
+          if (this.thesisListUnsubscribed[i].statement === this.formCreate.value.statement) {
+            this.checkStatement = false;
+            break;
+          }
+        }
+      }
+      if (this.checkStatement) {
+        this.subscribeThesisService.createThesis(this.idStudent, this.formCreate.value).subscribe(
+          (data) => {
+          },
+          () => {
+            this.message = 'error';
+          },
+          () => {
+            this.ngOnInit();
+          });
+      } else {
+        this.openNotification('duplicate statement');
+      }
     } else {
       for (const KEY of Object.keys(this.formCreate.controls)) {
         if (this.formCreate.controls[KEY].invalid) {

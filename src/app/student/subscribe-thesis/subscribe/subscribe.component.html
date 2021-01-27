@@ -11,7 +11,7 @@
       <div class="col-sm-10">
         <div class="row mt-3" *ngIf="hiddenTable == true  && position == true">
           <div class="col-sm-12">
-            <h1>Chào <span class="text-primary">Nhóm trưởng</span> ! Nhóm của bạn hiện tại chưa đăng ký đề tài nào .
+            <h1>Nhóm của bạn hiện tại chưa đăng ký đề tài nào .
               Bạn có thể chọn 1 đề tài trong danh sách đề tài của Giáo Viên đưa ra
               hoặc tự đề xuất 1 đề tài theo cấu trúc bên dưới cho nhóm của mình</h1>
           </div>
@@ -23,7 +23,7 @@
               <input type="button" class="signUp" value="Hủy đăng ký"
                      *ngIf="approved == false && hiddenTable == false" (click)="unsubscribeThesis()">
               <input type="button" class="signUp" value="Đăng ký" (click)="subscribeThesis()"
-                     *ngIf="subscribedThesisOfStudentCurrent.length == 0 && newSubscribeThesis.length != 0">
+                     *ngIf="thesisOfStudentCurrent.length == 0 && newSubscribeThesis.length != 0">
             </div>
           </div>
         </div>
@@ -47,8 +47,8 @@
                   <th class="work">Thao tác</th>
                 </tr>
                 </thead>
-                <tbody *ngIf="subscribedThesisOfStudentCurrent.length != 0">
-                <tr *ngFor="let subscribedThesis of subscribedThesisOfStudentCurrent">
+                <tbody *ngIf="thesisOfStudentCurrent.length != 0">
+                <tr *ngFor="let subscribedThesis of thesisOfStudentCurrent">
                   <td class="topicName">{{subscribedThesis.thesis.statement}}</td>
                   <td>{{subscribedThesis.thesis.amount}}</td>
                   <td class="status" *ngIf="subscribedThesis.status == true">Đã kiểm duyệt</td>
@@ -60,7 +60,7 @@
                   </td>
                 </tr>
                 </tbody>
-                <tbody *ngIf="subscribedThesisOfStudentCurrent.length == 0">
+                <tbody *ngIf="thesisOfStudentCurrent.length == 0">
                 <tr *ngFor="let subscribeThesis of newSubscribeThesis">
                   <td class="topicName">{{subscribeThesis.statement}}</td>
                   <td>{{subscribeThesis.amount}}</td>
@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <div class="row" *ngIf="thesisListSubscribedByOtherGroup.length != 0">
+        <div class="row" *ngIf="thesisOfOtherGroup.length != 0">
           <div class="table-responsive">
             <div class="table-wrapper">
               <div class="table-title">
@@ -99,7 +99,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let thesisOfOtherGroup of thesisListSubscribedByOtherGroup">
+                <tr *ngFor="let thesisOfOtherGroup of thesisOfOtherGroup">
                   <td class="topicName">{{thesisOfOtherGroup.thesis.statement}}</td>
                   <td>{{thesisOfOtherGroup.thesis.amount}}</td>
                   <td class="status">{{thesisOfOtherGroup.studentGroup.groupName}}</td>
@@ -160,13 +160,13 @@
 
         <div class="row">
           <div class="col-sm-12 paginationItem">
-            <pagination-controls
-              (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau" responsive="true">
+            <pagination-controls *ngIf="thesisListUnsubscribed.length > 5"
+                                 (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau" responsive="true">
             </pagination-controls>
           </div>
         </div>
 
-        <div class="row" *ngIf="subscribedThesisOfStudentCurrent.length == 0
+        <div class="row" *ngIf="thesisOfStudentCurrent.length == 0
                               && newSubscribeThesis.length == 0  && position == true">
           <div class="table-responsive">
             <div class="table-wrapper">
@@ -181,7 +181,7 @@
           </div>
         </div>
 
-        <form *ngIf="subscribedThesisOfStudentCurrent.length == 0
+        <form *ngIf="thesisOfStudentCurrent.length == 0
                    && newSubscribeThesis.length == 0  && position == true"
               [formGroup]="formCreate" (keydown)="keyDownFunction($event)">
           <div class="row">

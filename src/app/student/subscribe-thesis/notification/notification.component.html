@@ -2,6 +2,10 @@
   <h1>Bạn chưa chọn đề tài nào.</h1>
   <h1>Vui lòng chọn đề tài trước khi đăng ký!</h1>
 </div>
+<div *ngIf="message == 'duplicate statement'">
+  <h1>Đề tài này đã tồn tại.</h1>
+  <h1>Vui lòng đăng ký đề tài khác hoặc chọn trong danh sách đề tài của Giáo viên!</h1>
+</div>
 <br>
 <div class="row d-flex justify-content-end">
   <button mat-dialog-close class="btn btn-primary mr-3">OK</button>

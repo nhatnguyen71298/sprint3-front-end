@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class SubscribeThesisService {
-  protected readonly API: string = 'http://localhost:8080/subscribe';
+  protected readonly API: string = 'http://localhost:8080/subscribe-thesis';
 
   constructor(
     protected http: HttpClient,
@@ -17,16 +17,16 @@ export class SubscribeThesisService {
    * Chau start
    */
 
-  findStudentCurrentlyLoggingById(idFind): Observable<any> {
-    return this.http.get(this.API + '/student-currently-logging/' + idFind);
+  findStudent(idFind): Observable<any> {
+    return this.http.get(this.API + '/student/' + idFind);
   }
 
-  getListThesisUnsubscribeService(idFind): Observable<any> {
-    return this.http.get(this.API + '/list-thesis-unsubscribed/' + idFind);
+  findThesisUnsubscribe(idFind): Observable<any> {
+    return this.http.get(this.API + '/thesis-unsubscribed/' + idFind);
   }
 
-  getListThesisSubscribeService(idFind): Observable<any> {
-    return this.http.get(this.API + '/list-thesis-subscribed/' + idFind);
+  findThesisSubscribe(idFind): Observable<any> {
+    return this.http.get(this.API + '/thesis-subscribed/' + idFind);
   }
 
   findThesisById(idFind): Observable<any> {
@@ -34,11 +34,11 @@ export class SubscribeThesisService {
   }
 
   subscribeThesisOfTeacher(idThesis, idStudent): Observable<any> {
-    return this.http.get(this.API + '/subscribe-thesis-teacher/' + idThesis + '/' + idStudent);
+    return this.http.get(this.API + '/thesis-teacher/' + idThesis + '/' + idStudent);
   }
 
   unsubscribeThesis(idCheckThesis): Observable<any> {
-    return this.http.get(this.API + '/unsubscribe/' + idCheckThesis);
+    return this.http.get(this.API + '/unsubscribe-thesis/' + idCheckThesis);
   }
 
   createThesis(idStudent, thesis): Observable<any> {
