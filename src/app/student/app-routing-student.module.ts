@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import { SignUpInstructorComponent } from './mai-htq/sign-up-instructor/sign-up-instructor.component';
+import {ListInstructorComponent} from './mai-htq/list-instructor/list-instructor.component';
 import { DetailTeacherComponent } from './mai-htq/detail-teacher/detail-teacher.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { NotificationComponent } from './mai-htq/notification/notification.component';
 
 
 export const routes: Routes = [
@@ -13,18 +14,19 @@ export const routes: Routes = [
     path: 'student',
     children: [
       // {path: 'test', component: TestStudentComponent},
-      {path: 'sign-up-instructor', component: SignUpInstructorComponent},
+      {path: 'list-instructor/:idStudent', component: ListInstructorComponent},
     ]
   },
 ];
 @NgModule({
-  declarations: [SignUpInstructorComponent, DetailTeacherComponent],
+  declarations: [ListInstructorComponent, DetailTeacherComponent, NotificationComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     FormsModule,
     MatDialogModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ]
 })
 export class AppRoutingStudentModule { }

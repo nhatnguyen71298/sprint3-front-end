@@ -139,4 +139,16 @@ table.table .avatar {
   margin-right: 32%;
 }
 
+h2{
+  font-size: 30px;
+}
 
+#status {
+  width: 25%;
+  text-align: center;
+}
+
+#statusNew {
+  width: 25%;
+  text-align: center;
+}

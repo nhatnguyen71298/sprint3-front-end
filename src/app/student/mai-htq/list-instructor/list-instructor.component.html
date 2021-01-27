@@ -19,11 +19,15 @@
       <div class="row m-0">
         <div class="col-8"></div>
         <div class="col-4">
-          <button class="btn btn-success ml-2" style="float: right">Đăng ký</button>
-          <button class="btn btn-secondary" style="float: right">Hủy đăng ký</button>
+          <button class="btn btn-success ml-2" style="float: right" (click)="signUpTeacher()"
+                  *ngIf="position && selected == false && hiddenTable == false">Đăng ký
+          </button>
+          <button class="btn btn-secondary" style="float: right" (click)="cancelTeacher()"
+                  *ngIf="hiddenTable == false">Hủy đăng ký
+          </button>
         </div>
       </div>
-      <div class="table-title mt-2">
+      <div class="table-title mt-2" *ngIf="hiddenTable == false">
         <div class="row m-0">
           <div class="col-5 m-0 p-0">
             <h2><b>Giáo viên hướng dẫn</b></h2>
@@ -32,24 +36,49 @@
         </div>
       </div>
 
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover" *ngIf="hiddenTable == false && selected == true">
         <thead>
         <tr>
-          <th>STT</th>
           <th>Tên giáo viên</th>
-          <th>Tình trạng đăng ký</th>
-          <th>Xóa đăng ký</th>
+          <th>Email</th>
+          <th style="text-align: center">Số điện thoại</th>
+          <th id="status">Tình trạng đăng ký</th>
         </tr>
         </thead>
         <tbody>
+        <tr *ngFor="let teacher of selectedTeacher">
+          <td>{{teacher.fullName}}</td>
+          <td>{{teacher.email}}</td>
+          <td style="text-align: center">{{teacher.phone}}</td>
+          <td style="text-align: center" *ngIf="teacher.totalStudentRegister == null">
+            0 / {{teacher.limitStudentRegister}}
+          </td>
+          <td style="text-align: center" *ngIf="teacher.totalStudentRegister != null">
+            {{teacher.totalStudentRegister}} / {{teacher.limitStudentRegister}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-striped table-hover" *ngIf="hiddenTable == false && selected == false">
+        <thead>
         <tr>
-          <td>1</td>
-          <td>Đoàn Phước Trung</td>
-          <td style="padding-left: 8%">9/10</td>
-          <td align="center">
-            <button class="btn text-danger" type="submit" name="action">
-              <i class="material-icons right">&#xE872;</i>
-            </button>
+          <th>Tên giáo viên</th>
+          <th>Email</th>
+          <th style="text-align: center; width: 20%">Số điện thoại</th>
+          <th id="statusNew">Tình trạng đăng ký</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let signUp of signUpTeacherList let i = index">
+          <td>{{signUp.fullName}}</td>
+          <td>{{signUp.email}}</td>
+          <td style="text-align: center">{{signUp.phone}}</td>
+          <td style="text-align: center" *ngIf="signUp.totalStudentRegister == null">
+            0 / {{signUp.limitStudentRegister}}
+          </td>
+          <td style="text-align: center" *ngIf="signUp.totalStudentRegister != null">
+            {{signUp.totalStudentRegister}} / {{signUp.limitStudentRegister}}
           </td>
         </tr>
         </tbody>
@@ -71,29 +100,36 @@
           <th>Tên giáo viên</th>
           <th>Tình trạng đăng ký</th>
           <th>Xem</th>
-          <th>Chọn</th>
+          <th *ngIf="checkChoose == true && position && signUpTeacherList.length == 0">Chọn</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let teacher of list |paginate: { itemsPerPage: 5, currentPage: p}">
-          <td>{{teacher.id}}</td>
+        <tr *ngFor="let teacher of listQuantityStudent
+        |paginate: { itemsPerPage: 5, currentPage: p} let i = index">
+          <td>{{i + 1 + 5 * (p - 1)}}</td>
           <td>{{teacher.fullName}}</td>
-          <td align="center" style="padding-right: 8%">8/10</td>
+          <td style="text-align: center" *ngIf="teacher.totalStudentRegister == null">
+            0 / {{teacher.limitStudentRegister}}
+          </td>
+          <td style="text-align: center" *ngIf="teacher.totalStudentRegister != null">
+            {{teacher.totalStudentRegister}} / {{teacher.limitStudentRegister}}
+          </td>
           <td>
             <button class="btn text-info" type="submit" name="action">
               <i class="material-icons right" (click)="openDialogView(teacher.id)">remove_red_eye</i>
             </button>
           </td>
-          <td>
+          <td *ngIf="checkChoose == true && position && signUpTeacherList.length == 0">
             <button class="btn text-success" type="submit" name="action">
-              <i class="material-icons right">done_outline</i>
+              <i class="material-icons right" (click)="chooseInstructor(teacher.id)">done_outline</i>
             </button>
           </td>
         </tr>
         </tbody>
       </table>
       <div align="center">
-        <pagination-controls (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau"
+        <pagination-controls *ngIf="listQuantityStudent.length > 5" (pageChange)="p = $event" previousLabel="Trước"
+                             nextLabel="Sau"
                              responsive="true"></pagination-controls>
       </div>
     </div>
