@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FeedBackService} from "../../service/feed-back.service";
-import {NgxPaginationModule} from "ngx-pagination";
-import {FeedBackDialogComponent} from "../feed-back-dialog/feed-back-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import {Component, OnChanges, OnInit} from '@angular/core';
+import {FeedBackService} from '../../service/feed-back.service';
+import {FeedBackDialogComponent} from '../feed-back-dialog/feed-back-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-feed-back',
@@ -18,8 +17,14 @@ export class FeedBackComponent implements OnInit {
   infor = {
     nameStudent: '',
     title: '',
+    content: '',
+    interactonId: 0
+  };
+  record = {
+    name: '',
     content: ''
   };
+  records: any;
 
   constructor(
     private feedbackService: FeedBackService,
@@ -39,7 +44,19 @@ export class FeedBackComponent implements OnInit {
       this.infor.nameStudent = data.studentName;
       this.infor.title = data.title;
       this.infor.content = data.content;
+      this.infor.interactonId = data.interactonId;
       this.infoQuestion = this.infor;
+      this.feedbackService.getAllInteraction(data.interactonId.toString()).subscribe(data1 => {
+        // console.log(data.slice(0, 3).map(e => console.log(e.payload.doc.data())));
+        this.records = data1.slice(data1.length - 6, data1.length).map(e => {
+          return {
+            // @ts-ignore
+            name: e.payload.doc.data().name,
+            // @ts-ignore
+            content: e.payload.doc.data().content,
+          }
+        })
+      })
     });
   }
 
@@ -57,5 +74,20 @@ export class FeedBackComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
     });
+  }
+
+  sentFireBase(feedback: any) {
+    this.feedbackService.getTeacherByAppAcount(this.idAccount).subscribe(inForTeacher => {
+      // @ts-ignore
+      this.record.name = inForTeacher.fullName;
+      this.record.content = feedback.value;
+      this.feedbackService.createInteraction(this.infor.interactonId.toString(), this.record).then(res => {
+        this.record.name = '';
+        this.record.content = '';
+        // @ts-ignore
+        document.getElementById('feedback').value = '';
+        // this.ngOnInit();
+      }).catch(error => console.log('lỗi'));
+    })
   }
 }
