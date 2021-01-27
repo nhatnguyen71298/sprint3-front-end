@@ -2,7 +2,8 @@ import {Component, ElementRef, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Student} from '../list-student/model/Student';
 import {StudentService} from '../../service/student.service';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MessageStudentComponent} from '../message-student/message-student.component';
 
 @Component({
   selector: 'app-add-student',
@@ -13,41 +14,45 @@ export class AddStudentComponent implements OnInit {
   public formAddNew: FormGroup;
   public student: Student;
   public list1;
+  public list2;
+  public idMessage = 1;
   constructor(
     private studentService: StudentService,
     protected formBuilder: FormBuilder,
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<AddStudentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private el: ElementRef
   ) { }
 
   ngOnInit(): void {
+    this.studentService.getAllThesisService().subscribe(data => {
+      this.list2 = data;
+    });
     this.studentService.getAllTeacherService().subscribe(data => {
       this.list1 = data;
-      // console.log(this.list1);
     });
     this.formAddNew = this.formBuilder.group({
-      studentCode: ['', [Validators.required]],
-      fullName: ['',
-        [Validators.required]],
+      studentCode: ['', [Validators.required,Validators.pattern('^SV-\\d{4}$'), this.studentService.validateWhiteSpace]],
+      fullName: ['', [Validators.required, this.studentService.validateWhiteSpace,
+        this.studentService.validateSpecialCharacter, Validators.maxLength(50), Validators.minLength(5)]],
       topic: ['', [Validators.required]],
       teacher: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      phone: ['', [Validators.required, this.studentService.validPhoneNumber]],
     });
   }
   createEmployee(): void {
-    // if (this.formAddNew.invalid) {
-    //   const tempControl = this.el.nativeElement.querySelector('form');
-    //   tempControl.querySelector('.ng-invalid').focus();
-    // }
+    if (this.formAddNew.invalid) {
+      const tempControl = this.el.nativeElement.querySelector('form');
+      tempControl.querySelector('.ng-invalid').focus();
+    }
     this.formAddNew.markAllAsTouched();
     if (this.formAddNew.valid) {
       this.studentService.addNewStudentService(this.formAddNew.value).subscribe(data2 => {
-        // console.log(data2);
         if (data2 == null) {
-          // console.log(data2);
           this.dialogRef.close();
+          this.openDialogMessage();
         }
       }, error => {
         console.log(error);
@@ -56,6 +61,20 @@ export class AddStudentComponent implements OnInit {
       console.log('loi');
       console.log(this.formAddNew.value);
     }
+  }
+  openDialogMessage() {
+    const timeout = 1500;
+    const dialogRef = this.dialog.open(MessageStudentComponent, {
+      width: '500px',
+      height: '300px',
+      data: {dataMessage: this.idMessage},
+      disableClose: true
+    });
+    dialogRef.afterOpened().subscribe(_ => {
+      setTimeout(() => {
+        dialogRef.close();
+      }, timeout);
+    });
   }
 
 }

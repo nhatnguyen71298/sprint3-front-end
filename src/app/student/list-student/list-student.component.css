@@ -57,13 +57,18 @@
 
 .table-responsive table.table tr th, table.table tr td {
   border-color: #e9e9e9;
-  padding: 12px 15px;
+  padding: 10px 5px;
   vertical-align: middle;
+
+
+
 }
+
 
 .table-responsive table.table tr th {
   text-align: center !important;
   width: 80px;
+
 }
 
 /*.table-responsive table.table tr th:first-child {*/

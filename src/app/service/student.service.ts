@@ -10,10 +10,15 @@ import {AbstractControl, FormControl, ValidationErrors, ValidatorFn} from '@angu
 export class StudentService {
   public readonly API: string = 'http://localhost:8080/student';
   public readonly API1: string = 'http://localhost:8080/teacher';
+  public readonly API2: string = 'http://localhost:8080/thesis';
 
   constructor(
     public http: HttpClient
   ) {
+  }
+
+  getAllThesisService(): Observable<any> {
+    return this.http.get(this.API2 + '/list2');
   }
 
   getAllTeacherService(): Observable<any> {
