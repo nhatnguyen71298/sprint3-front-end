@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {AppRoutingTeacherModule} from './app-routing-teacher.module';
-
 
 
 @NgModule({
@@ -11,4 +10,5 @@ import {AppRoutingTeacherModule} from './app-routing-teacher.module';
     AppRoutingTeacherModule
   ]
 })
-export class AppTeacherModule { }
+export class AppTeacherModule {
+}
