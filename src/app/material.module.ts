@@ -14,8 +14,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {NgxPaginationModule} from "ngx-pagination";
-
-
+import {PickerModule} from "@ctrl/ngx-emoji-mart";
 
 @NgModule({
   declarations: [],
@@ -35,7 +34,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     MatSortModule,
     MatSnackBarModule,
     MatSidenavModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    PickerModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -53,7 +53,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     MatSortModule,
     MatSnackBarModule,
     MatSidenavModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    PickerModule
   ],
 })
 export class MaterialModule { }

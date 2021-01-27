@@ -1,7 +1,8 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnChanges, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {FeedBackService} from '../../service/feed-back.service';
 import {FeedBackDialogComponent} from '../feed-back-dialog/feed-back-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {Emoji} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 
 @Component({
   selector: 'app-feed-back',
@@ -10,10 +11,12 @@ import {MatDialog} from '@angular/material/dialog';
 })
 
 export class FeedBackComponent implements OnInit {
+  @ViewChild('emoji') emojiRef: ElementRef;
   idAccount = 2;
   feedBackList;
   p: any;
   infoQuestion: any;
+  message;
   infor = {
     nameStudent: '',
     title: '',
@@ -25,10 +28,12 @@ export class FeedBackComponent implements OnInit {
     content: ''
   };
   records: any;
-
+  emoji = false;
   constructor(
     private feedbackService: FeedBackService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private renderer: Renderer2
+  ) {
   }
 
   ngOnInit(): void {
@@ -62,6 +67,7 @@ export class FeedBackComponent implements OnInit {
 
   close() {
     this.infoQuestion = '';
+    this.emoji = false;
   }
 
   deteteQuestion(interactonId: any) {
@@ -95,5 +101,28 @@ export class FeedBackComponent implements OnInit {
         }).catch(error => console.log('lỗi'));
       })
     }
+  }
+
+
+  addEmoji($event: any) {
+    // @ts-ignore
+    document.getElementById('feedback').value += $event.emoji.native;
+  }
+
+  showEmoji($event: any) {
+    this.emoji = !this.emoji;
+    }
+  // showEmoji($event: MouseEvent) {
+  //   this.emoji = !this.emoji;
+  //     if (this.emoji) {
+  //       // tslint:disable-next-line:only-arrow-functions
+  //       if(this.eRef.nativeElement.contains(event.target)) {
+  //         this.emoji = false;
+  //       }
+  //     }
+  // }
+
+  closeEmoji() {
+    this.emoji = false;
   }
 }

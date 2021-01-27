@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<div class="row">
+<div class="row" (click)="closeEmoji()">
   <div class="table-wrapper">
     <div class="table-title">
       <div class="row m-0">
@@ -41,7 +41,6 @@
       </tbody>
     </table>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
   </div>
 </div>
 
@@ -92,7 +91,7 @@
         </div>
       </div>
     </div>
-    <div class="row m-0" style="border-style: groove" style="height: 200px">
+    <div class="row m-0" style="border-style: groove;height: 200px">
       <div class="col-lg-12">
         <p *ngFor="let row of records; let i=index">
             {{row.name}}: {{row.content}}
@@ -108,13 +107,16 @@
         </div>
       </div>
     </div>
-    <div class="row m-0" style="border-style: groove">
-      <textarea id="feedback" style="resize: none" cols="3" #feedback style="width: 100%;"
-                placeholder="Nội dung trả lời."></textarea>
+    <div class="row m-0" style="height: 50px">
+      <textarea id="feedback" style="resize: none;width: 100%;" cols="3" rows="3" #feedback
+            ></textarea>
     </div>
     <div class="row m-0">
       <div class="col-9"></div>
       <div class="col-3 p-0">
+        <div (click)="showEmoji($event)">
+          <i style="font-size: 30px;position: relative; bottom: 17px;left: 205px" class="fa fa-smile-o" aria-hidden="true"></i>
+        </div>
         <button (click)="sentFireBase(feedback)" class="btn btn-success" style="margin-top: 10px;margin-left: 85px">
           Gửi
         </button>
@@ -124,4 +126,7 @@
   </div>
 </div>
 
+<div #emoji style="width: 250px; position: relative;left: 60%; bottom: 27%;" *ngIf="emoji">
+  <emoji-mart (emojiSelect)="addEmoji($event)"></emoji-mart>
+</div>
 

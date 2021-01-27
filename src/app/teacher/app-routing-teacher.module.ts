@@ -5,6 +5,7 @@ import {root} from 'rxjs/internal-compatibility';
 import { FeedBackComponent } from './feed-back/feed-back.component';
 import {MaterialModule} from "../material.module";
 import { FeedBackDialogComponent } from './feed-back-dialog/feed-back-dialog.component';
+import {FormsModule} from "@angular/forms";
 
 export const routes: Routes = [
   {
@@ -19,7 +20,8 @@ export const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [DatePipe],
 })
