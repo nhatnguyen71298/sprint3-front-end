@@ -1,0 +1,23 @@
+
+<h2 style="font-family: sans-serif; color: cornflowerblue" >Đổi mật khẩu</h2>
+<hr>
+<form>
+  <mat-form-field>
+    <mat-label>Mật khẩu cũ</mat-label>
+    <input matInput formControlName="passwordOld">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Mật khẩu mới</mat-label>
+    <input matInput formControlName="passwordNew" type="password">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Xác nhận mật khẩu</mat-label>
+    <input matInput formControlName="passwordConfirm" type="password">
+  </mat-form-field>
+  <hr>
+  <div class="d-flex justify-content-center">
+    <button class="btn  btn-primary mr-3" type="submit">Đăng nhập</button>
+    <button class="btn  btn-secondary" mat-dialog-close>Hủy</button>
+  </div>
+</form>
+
