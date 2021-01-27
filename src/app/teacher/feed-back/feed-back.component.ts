@@ -80,17 +80,20 @@ export class FeedBackComponent implements OnInit {
   }
 
   sentFireBase(feedback: any) {
-    this.feedbackService.getTeacherByAppAcount(this.idAccount).subscribe(inForTeacher => {
-      // @ts-ignore
-      this.record.name = inForTeacher.fullName;
-      this.record.content = feedback.value;
-      this.feedbackService.createInteraction(this.infor.interactonId.toString(), this.record).then(res => {
-        this.record.name = '';
-        this.record.content = '';
+    // @ts-ignore
+    if (document.getElementById('feedback').value !== '' && document.getElementById('feedback').value !== null) {
+      this.feedbackService.getTeacherByAppAcount(this.idAccount).subscribe(inForTeacher => {
         // @ts-ignore
-        document.getElementById('feedback').value = '';
-        // this.ngOnInit();
-      }).catch(error => console.log('lỗi'));
-    })
+        this.record.name = inForTeacher.fullName;
+        this.record.content = feedback.value;
+        this.feedbackService.createInteraction(this.infor.interactonId.toString(), this.record).then(res => {
+          this.record.name = '';
+          this.record.content = '';
+          // @ts-ignore
+          document.getElementById('feedback').value = '';
+          // this.ngOnInit();
+        }).catch(error => console.log('lỗi'));
+      })
+    }
   }
 }
