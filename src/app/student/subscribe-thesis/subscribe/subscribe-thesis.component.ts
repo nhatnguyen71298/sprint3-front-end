@@ -17,14 +17,14 @@ export class SubscribeThesisComponent implements OnInit {
   protected thesisOfOtherGroup = [];
   protected thesisOfStudentCurrent = [];
   protected newSubscribeThesis = [];
-  protected message = 'nothing';
+  protected message = 'Nothing';
   protected checkChoose = true;
   protected checkGroup = true;
   protected checkTeacher = true;
   protected checkStatement = true;
   protected hiddenTable = true;
   protected approved = false;
-  protected thesisType = 'unknown';
+  protected thesisType = 'Unknown';
   protected p = 1;
   protected idStudent;
   protected student;
@@ -53,7 +53,7 @@ export class SubscribeThesisComponent implements OnInit {
         this.student = data;
       },
       () => {
-        this.message = 'error';
+        this.message = 'Error';
       },
       () => {
         if (this.student.studentGroup != null) {
@@ -82,7 +82,7 @@ export class SubscribeThesisComponent implements OnInit {
         this.thesisListUnsubscribed = data;
       },
       () => {
-        this.message = 'error';
+        this.message = 'Error';
       },
       () => {
       });
@@ -94,7 +94,7 @@ export class SubscribeThesisComponent implements OnInit {
         this.thesisListSubscribed = data;
       },
       () => {
-        this.message = 'error';
+        this.message = 'Error';
       },
       () => {
         for (let i = 0; i < this.thesisListSubscribed.length; i++) {
@@ -116,7 +116,7 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   chooseThesisOfTeacher(id) {
-    this.thesisType = 'teacher';
+    this.thesisType = 'Teacher';
     this.hiddenTable = false;
     for (let i = 0; i < this.thesisListUnsubscribed.length; i++) {
       if (this.thesisListUnsubscribed[i].id === id) {
@@ -126,6 +126,7 @@ export class SubscribeThesisComponent implements OnInit {
       }
     }
     this.checkChoose = false;
+    this.p = 1;
   }
 
   deleteThesis() {
@@ -136,15 +137,15 @@ export class SubscribeThesisComponent implements OnInit {
 
   subscribeThesis() {
     if (this.checkChoose) {
-      this.openNotification('no choose');
+      this.openNotification('No Choose');
     } else {
-      if (this.thesisType === 'teacher') {
+      if (this.thesisType === 'Teacher') {
         const idThesis = this.newSubscribeThesis.shift().id;
         this.subscribeThesisService.subscribeThesisOfTeacher(idThesis, this.idStudent).subscribe(
           (data) => {
           },
           () => {
-            this.message = 'error';
+            this.message = 'Error';
           },
           () => {
             this.ngOnInit();
@@ -172,7 +173,7 @@ export class SubscribeThesisComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.ngOnInit()
+      this.ngOnInit();
     })
   }
 
@@ -189,9 +190,18 @@ export class SubscribeThesisComponent implements OnInit {
         const idCheckThesis = checkThesis.id;
         this.subscribeThesisService.unsubscribeThesis(idCheckThesis).subscribe(
           (data) => {
+            this.message = data.message;
+            switch (this.message) {
+              case 'Complete':
+                this.openNotification('Unsubscribe Complete');
+                break;
+              case 'Cannot cancel because this thesis has been approved':
+                this.openNotification('Cannot Cancel');
+                break;
+            }
           },
           () => {
-            this.message = 'error';
+            this.message = 'Error';
           },
           () => {
             this.ngOnInit();
@@ -232,13 +242,13 @@ export class SubscribeThesisComponent implements OnInit {
           (data) => {
           },
           () => {
-            this.message = 'error';
+            this.message = 'Error';
           },
           () => {
             this.ngOnInit();
           });
       } else {
-        this.openNotification('duplicate statement');
+        this.openNotification('Duplicate Statement');
       }
     } else {
       for (const KEY of Object.keys(this.formCreate.controls)) {

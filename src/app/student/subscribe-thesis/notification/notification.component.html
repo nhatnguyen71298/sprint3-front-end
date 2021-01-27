@@ -1,10 +1,18 @@
-<div *ngIf="message == 'no choose'">
+<div *ngIf="message == 'No Choose'">
   <h1>Bạn chưa chọn đề tài nào.</h1>
   <h1>Vui lòng chọn đề tài trước khi đăng ký!</h1>
 </div>
-<div *ngIf="message == 'duplicate statement'">
+<div *ngIf="message == 'Duplicate Statement'">
   <h1>Đề tài này đã tồn tại.</h1>
   <h1>Vui lòng đăng ký đề tài khác hoặc chọn trong danh sách đề tài của Giáo viên!</h1>
+</div>
+<div *ngIf="message == 'Unsubscribe Complete'">
+  <h1>Hủy đăng ký đề tài thành công.</h1>
+  <h1>Bạn có thể đăng ký đề tài khác để Giáo viên duyệt lại.</h1>
+</div>
+<div *ngIf="message == 'Cannot Cancel'">
+  <h1>Yêu cầu hủy không thể thực hiện.</h1>
+  <h1>Đề tài này đã được Giáo viên phê duyệt nên bạn không thể hủy.</h1>
 </div>
 <br>
 <div class="row d-flex justify-content-end">
