@@ -14,15 +14,22 @@ export class FeedBackDialogComponent implements OnInit {
     public feedBackService: FeedBackService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     console.log(this.data);
   }
 
   deleteQuestion() {
-    this.feedBackService.deleteQuestion(this.data).subscribe( dataDel =>{
-      this.dialogRef.close()
-    });
+    // @ts-ignore
+    this.feedBackService.deleteQuestion(this.data).subscribe(dataDel => {
+      this.feedBackService.getAllInteraction(this.data.toString()).subscribe(dataFirebase => {
+        dataFirebase.map(e => {
+          this.feedBackService.deleteInteraction(this.data.toString(), e.payload.doc.id);
+        });
+        this.dialogRef.close()
+      });
+    })
   }
 }

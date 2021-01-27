@@ -72,6 +72,9 @@ export class FeedBackComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (this.infor.interactonId === interactonId){
+        this.infoQuestion= '';
+      }
       this.ngOnInit();
     });
   }
