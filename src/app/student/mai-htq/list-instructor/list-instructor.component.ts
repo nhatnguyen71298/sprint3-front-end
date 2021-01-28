@@ -102,20 +102,25 @@ export class ListInstructorComponent implements OnInit {
       this.signUpTeacherList.pop();
       this.getStudent();
     } else {
-      const idStudentGroup = this.student.studentGroup.id;
-      this.teacherService.cancelTeacher(idStudentGroup).subscribe(
-        (data) => {
-          this.openNotification('cancel');
-        },
-        () => {
-          this.openNotification('error');
-        },
-        () => {
-          this.selectedTeacher.pop();
-          this.hiddenTable = true;
-          this.checkChoose = true;
-          this.ngOnInit();
-        });
+      const checkSubscribed = this.student.studentGroup.checkThesis;
+      if (checkSubscribed !=  null) {
+        this.openNotification('can not cancel');
+      } else {
+        const idStudentGroup = this.student.studentGroup.id;
+        this.teacherService.cancelTeacher(idStudentGroup).subscribe(
+          (data) => {
+            this.openNotification('cancel');
+          },
+          () => {
+            this.openNotification('error');
+          },
+          () => {
+            this.selectedTeacher.pop();
+            this.hiddenTable = true;
+            this.checkChoose = true;
+            this.ngOnInit();
+          });
+      }
     }
   }
 

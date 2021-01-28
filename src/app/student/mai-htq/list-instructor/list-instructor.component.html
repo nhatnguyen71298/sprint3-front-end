@@ -1,4 +1,3 @@
-<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -116,22 +115,21 @@
             {{teacher.totalStudentRegister}} / {{teacher.limitStudentRegister}}
           </td>
           <td>
-            <button class="btn text-info" type="submit" name="action">
-              <i class="material-icons right" (click)="openDialogView(teacher.id)">remove_red_eye</i>
+            <button class="material-icons right btn text-info" type="submit" name="action"
+                    (click)="openDialogView(teacher.id)">remove_red_eye
             </button>
           </td>
           <td *ngIf="checkChoose == true && position && signUpTeacherList.length == 0">
-            <button class="btn text-success" type="submit" name="action">
-              <i class="material-icons right" (click)="chooseInstructor(teacher.id)">done_outline</i>
+            <button class="material-icons right btn text-success" type="submit" name="action"
+                    (click)="chooseInstructor(teacher.id)">done_outline
             </button>
           </td>
         </tr>
         </tbody>
       </table>
       <div align="center">
-        <pagination-controls *ngIf="listQuantityStudent.length > 5" (pageChange)="p = $event" previousLabel="Trước"
-                             nextLabel="Sau"
-                             responsive="true"></pagination-controls>
+        <pagination-controls *ngIf="listQuantityStudent.length > 5" (pageChange)="p = $event"
+                             previousLabel="Trước" nextLabel="Sau" responsive="true"></pagination-controls>
       </div>
     </div>
   </div>
