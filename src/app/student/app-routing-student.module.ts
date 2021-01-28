@@ -8,7 +8,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NotificationComponent } from './mai-htq/notification/notification.component';
 
-
 export const routes: Routes = [
   {
     path: 'student',

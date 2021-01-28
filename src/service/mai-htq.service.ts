@@ -29,8 +29,8 @@ export class MaiHtqService {
     return this.http.get(this.API + '/save-instructor/' + idTeacher + '/' + idStudent);
   }
 
- cancelTeacher(idTeacher): Observable<any> {
-    return this.http.get(this.API + '/cancel/' + idTeacher);
+ cancelTeacher(idStudentGroup): Observable<any> {
+    return this.http.get(this.API + '/cancel/' + idStudentGroup);
   }
 }
 

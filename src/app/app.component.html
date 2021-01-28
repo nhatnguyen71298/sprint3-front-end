@@ -36,6 +36,9 @@
           <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Sinh Viên <b
             class="caret"></b></a>
           <div class="dropdown-menu">
+            <a [routerLink]="['/student/list-instructor/1']" class="dropdown-item"><i class="fa fa-users"
+                                                                                      aria-hidden="true"></i>
+              Đăng ký giáo viên hướng dẫn</a>
             <a href="#" class="dropdown-item"><i class="fa fa-file" aria-hidden="true"></i>Nộp luận
               văn</a>
             <a href="#" class="dropdown-item"><i class="fa fa-key" aria-hidden="true"></i>Đổi mật
@@ -74,7 +77,7 @@
 </nav>
 <div class="container-fluid my-0 " id="container">
   <div class="row p-1">
-<!--    Side-bar-->
+    <!--    Side-bar-->
     <div class="col-lg-9">
       <router-outlet></router-outlet>
     </div>
@@ -102,13 +105,14 @@
             </div>
           </div>
         </div>
+
         <div class="card">
           <div class="card-header" id="headingTwo">
             <h2 class="mb-0">
               <a data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                  aria-controls="collapseTwo">
                 <span><i class="fa fa-graduation-cap" aria-hidden="true"></i> Quản lý sinh viên</span>
-                <i class="fa fa-chevron-down toggle rotate"></i>
+                <i class="fa fa-chevron-down toggle"></i>
               </a>
             </h2>
           </div>
@@ -117,21 +121,18 @@
             <div class="card-body">
               <ul class="list-group">
                 <li class="list-group-item"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>
-                  Danh sách sinh viên
-                </a></li>
-                <li class="list-group-item"><a href="#"><i class="fa fa-address-card"
-                                                           aria-hidden="true"></i> Thêm thông tin
-                  sinh viên</a></li>
+                  Danh sách sinh viên</a></li>
+                <li class="list-group-item"><a href="#"><i class="fa fa-address-card" aria-hidden="true">
+                </i> Thêm thông tin sinh viên</a></li>
                 <li class="list-group-item"><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i>
-                  Sửa thông tin
-                  sinh viên </a></li>
-                <li class="list-group-item"><a href="#"><i class="fa fa-trash" aria-hidden="true"></i>Xóa
-                  thông tin sinh
-                  viên</a></li>
+                  Sửa thông tin sinh viên </a></li>
+                <li class="list-group-item"><a href="#"><i class="fa fa-trash" aria-hidden="true"></i>
+                  Xóa thông tin sinh viên</a></li>
               </ul>
             </div>
           </div>
         </div>
+
         <div class="card">
           <div class="card-header" id="headingThree">
             <h2 class="mb-0">
@@ -169,7 +170,8 @@
             <div class="card-body">
               <ul class="list-group">
                 <li class="list-group-item"><a href="#"><i class="fa fa-font"></i> Typography</a></li>
-                <li class="list-group-item"><a href="#"><i class="fa fa-bell"></i> Notifications</a>
+                <li class="list-group-item"><a [routerLink]="['/student/list-instructor/1']">
+                  <i class="fa fa-users" aria-hidden="true"></i> Đăng ký giáo viên hướng dẫn</a>
                 </li>
                 <li class="list-group-item"><a href="#"><i class="fa fa-map"></i> Maps</a></li>
               </ul>
@@ -192,9 +194,9 @@
         </div>
       </div>
     </div>
-<!--    End side bar-->
-    </div>
+    <!--    End side bar-->
   </div>
+</div>
 
 
 

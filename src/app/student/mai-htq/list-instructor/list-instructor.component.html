@@ -23,10 +23,11 @@
                   *ngIf="position && selected == false && hiddenTable == false">Đăng ký
           </button>
           <button class="btn btn-secondary" style="float: right" (click)="cancelTeacher()"
-                  *ngIf="hiddenTable == false">Hủy đăng ký
+                  *ngIf="hiddenTable == false && position == true">Hủy đăng ký
           </button>
         </div>
       </div>
+
       <div class="table-title mt-2" *ngIf="hiddenTable == false">
         <div class="row m-0">
           <div class="col-5 m-0 p-0">
