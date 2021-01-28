@@ -6,6 +6,7 @@ import { FeedBackComponent } from './feed-back/feed-back.component';
 import {MaterialModule} from "../material.module";
 import { FeedBackDialogComponent } from './feed-back-dialog/feed-back-dialog.component';
 import {FormsModule} from "@angular/forms";
+import { OutsideDirective } from './outside.directive';
 
 export const routes: Routes = [
   {
@@ -16,7 +17,7 @@ export const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [FeedBackComponent, FeedBackDialogComponent],
+  declarations: [FeedBackComponent, FeedBackDialogComponent, OutsideDirective],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

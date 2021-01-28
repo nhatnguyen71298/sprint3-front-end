@@ -114,7 +114,7 @@
     <div class="row m-0">
       <div class="col-9"></div>
       <div class="col-3 p-0">
-        <div (click)="showEmoji($event)">
+        <div (click)="showEmoji()" class="control-emoji">
           <i style="font-size: 30px;position: relative; bottom: 17px;left: 205px" class="fa fa-smile-o" aria-hidden="true"></i>
         </div>
         <button (click)="sentFireBase(feedback)" class="btn btn-success" style="margin-top: 10px;margin-left: 85px">
@@ -126,7 +126,6 @@
   </div>
 </div>
 
-<div #emoji style="width: 250px; position: relative;left: 60%; bottom: 27%;" *ngIf="emoji">
-  <emoji-mart (emojiSelect)="addEmoji($event)"></emoji-mart>
-</div>
+
+<emoji-mart #emoji id="emoji" appOutside style="display:none;width: 250px; position: relative;left: 60%; bottom: 27%;" (emojiSelect)="addEmoji($event)"></emoji-mart>
 

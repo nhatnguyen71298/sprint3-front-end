@@ -11,7 +11,9 @@ import {Emoji} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 })
 
 export class FeedBackComponent implements OnInit {
-  @ViewChild('emoji') emojiRef: ElementRef;
+  @ViewChild('emoji')
+  emojiRef:ElementRef;
+
   idAccount = 2;
   feedBackList;
   p: any;
@@ -31,8 +33,7 @@ export class FeedBackComponent implements OnInit {
   emoji = false;
   constructor(
     private feedbackService: FeedBackService,
-    public dialog: MatDialog,
-    private renderer: Renderer2
+    public dialog: MatDialog
   ) {
   }
 
@@ -109,20 +110,7 @@ export class FeedBackComponent implements OnInit {
     document.getElementById('feedback').value += $event.emoji.native;
   }
 
-  showEmoji($event: any) {
-    this.emoji = !this.emoji;
-    }
-  // showEmoji($event: MouseEvent) {
-  //   this.emoji = !this.emoji;
-  //     if (this.emoji) {
-  //       // tslint:disable-next-line:only-arrow-functions
-  //       if(this.eRef.nativeElement.contains(event.target)) {
-  //         this.emoji = false;
-  //       }
-  //     }
-  // }
-
-  closeEmoji() {
-    this.emoji = false;
+  showEmoji() {
+      document.getElementById('emoji').style.display = 'block';
   }
 }
