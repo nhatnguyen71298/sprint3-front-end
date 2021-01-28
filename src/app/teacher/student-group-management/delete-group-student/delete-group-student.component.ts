@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {GroupStudentService} from '../../../service/group-student.service';
+import {MessageGroupStudentComponent} from "../message-group-student/message-group-student.component";
 
 
 @Component({
@@ -11,6 +12,7 @@ import {GroupStudentService} from '../../../service/group-student.service';
 export class DeleteGroupStudentComponent implements OnInit {
   public groupStudent;
   public deleteId;
+  public idMessage = 3;
 
   constructor(public dialogRef: MatDialogRef<DeleteGroupStudentComponent>,
               public groupStudentService: GroupStudentService,
@@ -27,15 +29,24 @@ export class DeleteGroupStudentComponent implements OnInit {
     this.groupStudentService.deleteGroupStudent(this.deleteId).subscribe(data => {
       if (data == null) {
         this.dialogRef.close();
+        this.openDialogMessage();
       }
     })
-    // this.groupStudentService.setNullStudent(this.deleteId).subscribe(() => {
-    // });
-    // this.groupStudentService.deleteGroupStudent(this.deleteId).subscribe(data => {
-    //   console.log(data);
-    //   this.dialogRef.close();
-    //   // this.openDialogMessage();
-    // });
+  }
+
+  private openDialogMessage() {
+    const timeout = 1500;
+    const dialogRef = this.dialog.open(MessageGroupStudentComponent, {
+      width: '500px',
+      height: '300px',
+      data: {groupMess: this.idMessage},
+      disableClose: true
+    });
+    dialogRef.afterOpened().subscribe(_ => {
+      setTimeout(() => {
+        dialogRef.close();
+      }, timeout);
+    });
   }
 
 }

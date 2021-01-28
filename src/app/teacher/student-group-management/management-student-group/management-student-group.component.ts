@@ -15,6 +15,7 @@ import {QuantityStudentGroupComponent} from '../quantity-student-group/quantity-
 })
 export class ManagementStudentGroupComponent implements OnInit {
   groupList: any;
+  p: number;
 
   constructor(private groupStudentService: GroupStudentService,
               private httpClient: HttpClient,

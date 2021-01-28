@@ -19,10 +19,6 @@ export class GroupStudentService {
     return this.http.delete(this.API_GROUP + '/delete/' + id);
   }
 
-  setNullStudent(id: any): Observable<any> {
-    return this.http.get(this.API_GROUP + '/setNull/' + id);
-  }
-
   getFindById(id): Observable<any> {
     return this.http.get(this.API_GROUP + '/findBy/' + id);
   }

@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../material.module';
 import {MatButtonModule} from '@angular/material/button';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { MessageGroupStudentComponent } from './student-group-management/message-group-student/message-group-student.component';
 
 export const routes: Routes = [
   {
@@ -37,7 +38,8 @@ export const routes: Routes = [
     DeleteThesisComponent, CreateThesisComponent, ManagementStudentGroupComponent, DeleteGroupStudentComponent,
     QuantityStudentGroupComponent,
     MessageThesisComponent,
-    NotificationThesisComponent],
+    NotificationThesisComponent,
+    MessageGroupStudentComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
