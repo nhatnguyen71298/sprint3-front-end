@@ -43,12 +43,14 @@
             <td>{{i + 1}}</td>
             <td>{{student.studentCode}}</td>
             <td style="margin-left: 100px">{{student.fullName}}</td>
-            <td *ngIf="student.studentGroup != null">
-              {{student.studentGroup.checkThesis.thesis.statement}}</td>
-            <td *ngIf="student.studentGroup == null">
-              {{student.topic}}</td>
-            <td *ngIf="student.studentGroup != null">{{student.studentGroup.teacher.fullName}}</td>
-            <td *ngIf="student.studentGroup == null">{{student.teacher}}</td>
+            <td style="margin-left: 100px">{{student.topic}}</td>
+            <td style="margin-left: 100px">{{student.teacher}}</td>
+<!--            <td *ngIf="student.studentGroup != null">-->
+<!--              {{student.studentGroup.checkThesis.thesis.statement}}</td>-->
+<!--            <td *ngIf="student.studentGroup == null">-->
+<!--              {{student.topic}}</td>-->
+<!--            <td *ngIf="student.studentGroup != null">{{student.studentGroup.teacher.fullName}}</td>-->
+<!--            <td *ngIf="student.studentGroup == null">{{student.teacher}}</td>-->
             <td>{{student.email}}</td>
             <td>{{student.phone}}</td>
             <td>
