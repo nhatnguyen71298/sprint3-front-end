@@ -15,8 +15,11 @@
             class="caret"></b></a>
           <div class="dropdown-menu">
             <a href="#" class="dropdown-item"><i class="fa fa-bell-o" aria-hidden="true"></i> Đăng thông báo</a>
-            <a href="#" class="dropdown-item"><i class="fa fa-list-alt" aria-hidden="true"></i>Danh sách đề
+            <a [routerLink]="['/teacher/thesis-list']" class="dropdown-item"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh
+              sách đề
               tài</a>
+            <a [routerLink]="['/teacher/student-group-list']" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Quản lý nhóm sinh viên
+            </a>
             <a href="#" class="dropdown-item"><i class="fa fa-check-square-o" aria-hidden="true"></i> Kiểm
               duyệt đề tài</a>
             <a href="#" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Danh

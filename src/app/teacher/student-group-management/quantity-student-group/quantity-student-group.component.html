@@ -1,0 +1,20 @@
+<table class="table table-hover">
+  <thead class="table-hover">
+  <tr>
+    <th>STT</th>
+    <th>Email</th>
+    <th>Tên SV</th>
+    <th>Số Điện Thoại</th>
+    <th>Mã SV</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let list of listStudentGroup">
+    <td>{{list.id}}</td>
+    <td>{{list.email}}</td>
+    <td>{{list.fullName}}</td>
+    <td>{{list.phone}}</td>
+    <td>{{list.studentCode}}</td>
+  </tr>
+  </tbody>
+</table>
