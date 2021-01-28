@@ -54,9 +54,10 @@
                   <td class="status" *ngIf="subscribedThesis.status == true">Đã kiểm duyệt</td>
                   <td class="status" *ngIf="subscribedThesis.status == false">Đã đăng ký</td>
                   <td class="deleteIcon">
-                    <a class="viewSubscribe" title="View Detail" data-toggle="tooltip"
-                       (click)="openDialogView(subscribedThesis.thesis.id)"><i
-                      class="material-icons">visibility</i></a>
+                    <button class="material-icons text-primary"
+                       (click)="openDialogView(subscribedThesis.thesis.id)">
+                      visibility
+                    </button>
                   </td>
                 </tr>
                 </tbody>
@@ -66,11 +67,9 @@
                   <td>{{subscribeThesis.amount}}</td>
                   <td class="status">Chưa đăng ký</td>
                   <td class="deleteIcon">
-                    <a class="viewSubscribe" title="View Detail" data-toggle="tooltip"
-                       (click)="openDialogView(subscribeThesis.id)"><i
-                      class="material-icons">visibility</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip" (click)="deleteThesis()"><i
-                      class="material-icons">&#xE872;</i></a>
+                    <button class="material-icons text-primary"
+                       (click)="openDialogView(subscribeThesis.id)">visibility</button>
+                    <button class="material-icons text-danger" (click)="deleteThesis()">&#xE872;</button>
                   </td>
                 </tr>
                 </tbody>
@@ -104,9 +103,10 @@
                   <td>{{thesisOfOtherGroup.thesis.amount}}</td>
                   <td class="status">{{thesisOfOtherGroup.studentGroup.groupName}}</td>
                   <td class="deleteIcon">
-                    <a class="viewSubscribe" title="View Detail" data-toggle="tooltip"
-                       (click)="openDialogView(thesisOfOtherGroup.thesis.id)"><i
-                      class="material-icons">visibility</i></a>
+                    <button class="material-icons text-primary"
+                       (click)="openDialogView(thesisOfOtherGroup.thesis.id)">
+                      visibility
+                    </button>
                   </td>
                 </tr>
                 </tbody>
@@ -144,12 +144,12 @@
                   <td class="topicName">{{thesis.statement}}</td>
                   <td>{{thesis.amount}}</td>
                   <td class="deleteIcon">
-                    <a class="view" title="View Detail" data-toggle="tooltip" (click)="openDialogView(thesis.id)"><i
-                      class="material-icons">visibility</i></a>
+                    <button class="material-icons text-primary" (click)="openDialogView(thesis.id)">visibility</button>
                   </td>
                   <td class="deleteIcon" *ngIf="checkChoose == true && position == true">
-                    <a class="choose" title="Choose" data-toggle="tooltip"><i
-                      class="material-icons" (click)="chooseThesisOfTeacher(thesis.id)">done</i></a>
+                    <button class="material-icons text-success" (click)="chooseThesisOfTeacher(thesis.id)">
+                      done_outline
+                    </button>
                   </td>
                 </tr>
                 </tbody>

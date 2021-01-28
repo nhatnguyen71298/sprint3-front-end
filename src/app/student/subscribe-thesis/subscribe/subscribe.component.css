@@ -23,8 +23,9 @@ table.table td a.view {
   margin: 0 10% 0 0;
 }
 
-table.table td a.viewSubscribe {
-  color: rgba(0, 0, 255, 0.55);
+.material-icons {
+  background: none;
+  border: none;
 }
 
 table.table td a.choose {
