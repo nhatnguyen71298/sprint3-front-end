@@ -16,7 +16,7 @@
               hoặc tự đề xuất 1 đề tài theo cấu trúc bên dưới cho nhóm của mình</h1>
           </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="position == true">
           <div class="col-sm-8"></div>
           <div class="col-sm-4">
             <div *ngIf="approved == false">
