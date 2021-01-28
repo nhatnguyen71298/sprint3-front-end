@@ -10,7 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 import {NotificationComponent} from './subscribe-thesis/notification/notification.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ListInstructorComponent} from './mai-htq/list-instructor/list-instructor.component';
-import { DetailTeacherComponent } from './mai-htq/detail-teacher/detail-teacher.component';
+import {DetailTeacherComponent} from './mai-htq/detail-teacher/detail-teacher.component';
+import {NotificationTeacherComponent} from './mai-htq/notification/notification-teacher.component';
 
 export const routes: Routes = [
   {
@@ -24,7 +25,8 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationComponent, ListInstructorComponent, DetailTeacherComponent],
+  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationComponent,
+    ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

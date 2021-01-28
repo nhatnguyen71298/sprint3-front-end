@@ -3,7 +3,7 @@ import {MaiHtqService} from '../../../../service/mai-htq.service';
 import {DetailTeacherComponent} from '../detail-teacher/detail-teacher.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NotificationComponent} from '../notification/notification.component';
+import {NotificationTeacherComponent} from '../notification/notification-teacher.component';
 
 @Component({
   selector: 'app-sign-up-instructor',
@@ -161,7 +161,7 @@ export class ListInstructorComponent implements OnInit {
   }
 
   openNotification(message): void {
-    this.dialog.open(NotificationComponent, {
+    this.dialog.open(NotificationTeacherComponent, {
       width: '550px',
       height: '210px',
       data: {notification: message},
