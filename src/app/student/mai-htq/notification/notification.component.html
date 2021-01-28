@@ -1,0 +1,34 @@
+<div *ngIf="message == 'no choose'">
+  <i class="material-icons">error_outline</i>
+  <h1>Bạn đã đăng ký giáo viên hướng dẫn.</h1>
+</div>
+
+<div *ngIf="message == 'success'">
+  <i class="material-icons" style="color: forestgreen">check_circle</i>
+  <h1>Đăng ký giáo viên hướng dẫn thành công.</h1>
+</div>
+
+<div *ngIf="message == 'outOf'">
+  <i class="material-icons">error_outline</i>
+  <h1>Đã hết chỗ đăng ký.</h1>
+</div>
+
+<div *ngIf="message == 'cancel'">
+  <i class="material-icons" style="color: forestgreen">check_circle</i>
+  <h1>Hủy đăng ký giáo viên thành công.</h1>
+</div>
+
+<div *ngIf="message == 'error'">
+  <i class="material-icons">error_outline</i>
+  <h1>Vui lòng kiểm tra kết nối.</h1>
+</div>
+
+<div *ngIf="message == 'can not cancel'">
+  <i class="material-icons">error_outline</i>
+  <h1>Hủy thất bại. Nhóm đã đăng ký đề tài.</h1>
+</div>
+<br><br>
+
+<div class="row d-flex justify-content-end">
+  <button mat-dialog-close class="btn btn-secondary mr-3">Đóng</button>
+</div>
