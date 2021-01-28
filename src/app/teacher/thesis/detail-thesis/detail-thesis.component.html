@@ -1,0 +1,25 @@
+<mat-dialog class="mat-typography">
+  <h1 class="modal-dialog-centered" id="exampleModalLabel1">Chi tiết đề tài</h1>
+
+  <div class="form-group">
+    <label>Tên đề tài</label>
+    <span type="email" class="form-control">{{detail.statement}}</span>
+  </div>
+  <div class="form-group">
+    <label>Số SVTH</label>
+    <span type="email" class="form-control">{{detail.amount}}</span>
+  </div>
+  <div class="form-group">
+    <label>Ngày tạo đề tài</label>
+    <span type="email" class="form-control">{{detail.createDate | date: 'dd-MM-yyyy'}}</span>
+  </div>
+  <div class="form-group">
+    <label>Nội dung</label>
+    <textarea class="form-control" rows="3"style="resize: none" readonly>{{detail.description}}</textarea>
+  </div>
+
+</mat-dialog>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Cancel</button>
+</mat-dialog-actions>
+

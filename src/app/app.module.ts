@@ -8,6 +8,7 @@ import {AppTeacherModule} from './teacher/app-teacher.module';
 import {AppStudentModule} from './student/app-student.module';
 import {MaterialModule} from './material.module';
 import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,12 @@ import {HttpClientModule} from '@angular/common/http';
     AppStudentModule,
     MaterialModule,
     HttpClientModule,
+    MaterialModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
