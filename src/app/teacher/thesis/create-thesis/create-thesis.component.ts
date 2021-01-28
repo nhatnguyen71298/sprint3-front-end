@@ -1,7 +1,7 @@
 import {Component, ElementRef, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Thesis} from '../../../shared/thesis';
-import {ThesisService} from '../../../service/thesis.service';
+import {Thesis} from '../../shared/thesis';
+import {ThesisService} from '../../service/thesis.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';

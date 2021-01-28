@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ThesisService} from '../../../service/thesis.service';
+import {ThesisService} from '../../service/thesis.service';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Thesis} from '../../../shared/thesis';
+import {Thesis} from '../../shared/thesis';
 import {Observable} from 'rxjs';
-import {SearchThesis} from '../../../shared/searchThesis';
+import {SearchThesis} from '../../shared/searchThesis';
 import {map, tap} from 'rxjs/operators';
 import {DetailThesisComponent} from '../detail-thesis/detail-thesis.component';
 import {EditThesisComponent} from '../edit-thesis/edit-thesis.component';

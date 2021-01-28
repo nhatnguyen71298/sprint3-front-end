@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {FormBuilder} from '@angular/forms';
-import {GroupStudentService} from '../../../service/group-student.service';
+import {GroupStudentService} from '../../service/group-student.service';
 import {DeleteGroupStudentComponent} from '../delete-group-student/delete-group-student.component';
 import {QuantityStudentGroupComponent} from '../quantity-student-group/quantity-student-group.component';
 

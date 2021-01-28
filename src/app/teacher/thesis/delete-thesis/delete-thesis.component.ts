@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {ThesisService} from '../../../service/thesis.service';
+import {ThesisService} from '../../service/thesis.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {MessageThesisComponent} from '../message-thesis/message-thesis.component';
 import {Router} from '@angular/router';

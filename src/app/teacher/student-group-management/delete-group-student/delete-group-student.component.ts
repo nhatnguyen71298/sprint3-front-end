@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {GroupStudentService} from '../../../service/group-student.service';
+import {GroupStudentService} from '../../service/group-student.service';
 import {MessageGroupStudentComponent} from "../message-group-student/message-group-student.component";
 
 
