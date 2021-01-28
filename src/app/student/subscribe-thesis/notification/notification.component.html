@@ -1,20 +1,39 @@
 <div *ngIf="message == 'No Choose'">
-  <h1>Bạn chưa chọn đề tài nào.</h1>
+  <i class="material-icons">error_outline</i>
   <h1>Vui lòng chọn đề tài trước khi đăng ký!</h1>
 </div>
 <div *ngIf="message == 'Duplicate Statement'">
-  <h1>Đề tài này đã tồn tại.</h1>
-  <h1>Vui lòng đăng ký đề tài khác hoặc chọn trong danh sách đề tài của Giáo viên!</h1>
+  <i class="material-icons">error_outline</i>
+  <h1>Đề tài đã tồn tại. Vui lòng đăng ký đề tài khác!</h1>
 </div>
 <div *ngIf="message == 'Unsubscribe Complete'">
+  <i class="material-icons" style="color: forestgreen">check_circle</i>
   <h1>Hủy đăng ký đề tài thành công.</h1>
-  <h1>Bạn có thể đăng ký đề tài khác để Giáo viên duyệt lại.</h1>
 </div>
 <div *ngIf="message == 'Cannot Cancel'">
-  <h1>Yêu cầu hủy không thể thực hiện.</h1>
-  <h1>Đề tài này đã được Giáo viên phê duyệt nên bạn không thể hủy.</h1>
+  <i class="material-icons">error_outline</i>
+  <h1>Đề tài đã được phê duyệt nên không thể hủy.</h1>
 </div>
-<br>
-<div class="row d-flex justify-content-end">
-  <button mat-dialog-close class="btn btn-primary mr-3">OK</button>
+<div *ngIf="message == 'Error'">
+  <i class="material-icons">error_outline</i>
+  <h1>Lỗi hệ thống. Vui lòng thử lại sau!</h1>
+</div>
+<div *ngIf="message == 'Not found'">
+  <i class="material-icons">error_outline</i>
+  <h1>Không tìm thấy dữ liệu phù hợp.</h1>
+</div>
+<div *ngIf="message == 'Subscribe Complete'">
+  <i class="material-icons" style="color: forestgreen">check_circle</i>
+  <h1>Đăng ký đề tài thành công.</h1>
+</div>
+<div *ngIf="message == 'Duplicate'">
+  <i class="material-icons">error_outline</i>
+  <h1>Nhóm của bạn đã đăng ký đề tài.</h1>
+</div>
+<div *ngIf="message == 'Subscribed'">
+  <i class="material-icons">error_outline</i>
+  <h1>Đề tài này đã được nhóm khác đăng ký.</h1>
+</div>
+<div class="row justify-content-end">
+  <button mat-dialog-close class="btn btn-primary">OK</button>
 </div>

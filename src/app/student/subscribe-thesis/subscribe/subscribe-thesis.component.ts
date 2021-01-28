@@ -12,23 +12,23 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./subscribe.component.css']
 })
 export class SubscribeThesisComponent implements OnInit {
+  protected thesisOfStudentCurrent = [];
   protected thesisListUnsubscribed = [];
   protected thesisListSubscribed = [];
   protected thesisOfOtherGroup = [];
-  protected thesisOfStudentCurrent = [];
   protected newSubscribeThesis = [];
-  protected message = 'Nothing';
+  protected checkStatement = true;
+  protected checkTeacher = true;
+  protected hiddenTable = true;
   protected checkChoose = true;
   protected checkGroup = true;
-  protected checkTeacher = true;
-  protected checkStatement = true;
-  protected hiddenTable = true;
   protected approved = false;
-  protected thesisType = 'Unknown';
   protected p = 1;
-  protected idStudent;
   protected student;
   protected position;
+  protected idStudent;
+  protected type = 'Unknown';
+  protected message = 'Nothing';
   protected formCreate: FormGroup;
 
   constructor(
@@ -53,7 +53,7 @@ export class SubscribeThesisComponent implements OnInit {
         this.student = data;
       },
       () => {
-        this.message = 'Error';
+        this.openNotification('Error');
       },
       () => {
         if (this.student.studentGroup != null) {
@@ -82,7 +82,7 @@ export class SubscribeThesisComponent implements OnInit {
         this.thesisListUnsubscribed = data;
       },
       () => {
-        this.message = 'Error';
+        this.openNotification('Error');
       },
       () => {
       });
@@ -94,7 +94,7 @@ export class SubscribeThesisComponent implements OnInit {
         this.thesisListSubscribed = data;
       },
       () => {
-        this.message = 'Error';
+        this.openNotification('Error');
       },
       () => {
         for (let i = 0; i < this.thesisListSubscribed.length; i++) {
@@ -116,7 +116,7 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   chooseThesisOfTeacher(id) {
-    this.thesisType = 'Teacher';
+    this.type = 'Teacher';
     this.hiddenTable = false;
     for (let i = 0; i < this.thesisListUnsubscribed.length; i++) {
       if (this.thesisListUnsubscribed[i].id === id) {
@@ -139,13 +139,30 @@ export class SubscribeThesisComponent implements OnInit {
     if (this.checkChoose) {
       this.openNotification('No Choose');
     } else {
-      if (this.thesisType === 'Teacher') {
+      if (this.type === 'Teacher') {
         const idThesis = this.newSubscribeThesis.shift().id;
         this.subscribeThesisService.subscribeThesisOfTeacher(idThesis, this.idStudent).subscribe(
           (data) => {
+            this.message = data.message;
+            switch (this.message) {
+              case 'Complete':
+                this.openNotification('Subscribe Complete');
+                break;
+              case 'Subscribed':
+                this.openNotification('Subscribed');
+                break;
+              case 'Duplicate':
+                this.openNotification('Duplicate');
+                break;
+              case 'Not found':
+                this.openNotification('Not found');
+                break;
+              default:
+                this.openNotification('Error');
+            }
           },
           () => {
-            this.message = 'Error';
+            this.openNotification('Error');
           },
           () => {
             this.ngOnInit();
@@ -168,12 +185,16 @@ export class SubscribeThesisComponent implements OnInit {
   openNotification(message): void {
     const dialogRef = this.dialog.open(NotificationComponent, {
       width: '555px',
-      height: '190px',
+      height: '175px',
       data: {notification: message},
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.ngOnInit();
+      this.checkStatement = true;
+      if (this.message === 'Subscribed') {
+        this.hiddenTable = true;
+        this.checkChoose = true;
+      }
     })
   }
 
@@ -195,13 +216,18 @@ export class SubscribeThesisComponent implements OnInit {
               case 'Complete':
                 this.openNotification('Unsubscribe Complete');
                 break;
-              case 'Cannot cancel because this thesis has been approved':
+              case 'Approved':
                 this.openNotification('Cannot Cancel');
                 break;
+              case 'Not found':
+                this.openNotification('Not found');
+                break;
+              default:
+                this.openNotification('Error');
             }
           },
           () => {
-            this.message = 'Error';
+            this.openNotification('Error');
           },
           () => {
             this.ngOnInit();
@@ -212,7 +238,7 @@ export class SubscribeThesisComponent implements OnInit {
 
   keyDownFunction(event) {
     if (event.keyCode === 13) {
-      // this.saveAndPrint();
+      this.createThesis();
     }
   }
 
@@ -240,9 +266,26 @@ export class SubscribeThesisComponent implements OnInit {
       if (this.checkStatement) {
         this.subscribeThesisService.createThesis(this.idStudent, this.formCreate.value).subscribe(
           (data) => {
+            this.message = data.message;
+            switch (this.message) {
+              case 'Complete':
+                this.openNotification('Subscribe Complete');
+                break;
+              case 'Subscribed':
+                this.openNotification('Subscribed');
+                break;
+              case 'Duplicate':
+                this.openNotification('Duplicate');
+                break;
+              case 'Not found':
+                this.openNotification('Not found');
+                break;
+              default:
+                this.openNotification('Error');
+            }
           },
           () => {
-            this.message = 'Error';
+            this.openNotification('Error');
           },
           () => {
             this.ngOnInit();
