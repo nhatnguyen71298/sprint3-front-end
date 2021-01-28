@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 p-0">
+    <form [ngModel]="formView" [ngModelOptions]="{standalone: true}">
+      <div class="text-center mb-4">
+        <h1 class="modal-title w-100 dark-grey-text font-weight-bold my-2" style="color: #435d7d;"
+            id="add">
+          <strong>Thông tin chi tiết giáo viên</strong></h1>
+      </div>
+      <div class="modal-body">
+        <div class="row form-group">
+          <div class="col-5">
+            <label>Teacher Code :</label>
+          </div>
+          <div class="col-7 p-0">
+            <p>{{formView.teacherCode}}</p>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-5">
+            <label>Full Name :</label>
+          </div>
+          <div class="col-7 p-0">
+            <p>{{formView.fullName}}</p>
+          </div>
+
+        </div>
+
+        <div class="row form-group">
+          <div class="col-5">
+            <label>Email : </label>
+          </div>
+            <div class="col-7 p-0">
+              <p>{{formView.email}}</p>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-5">
+              <label>Identity Number : </label>
+            </div>
+            <div class="col-7 p-0">
+              <p>{{formView.identityNumber}}</p>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-5">
+              <label>Phone : </label>
+            </div>
+            <div class="col-7 p-0">
+              <p>{{formView.phone}}</p>
+            </div>
+          </div>
+        </div>
+    </form>
+
+    <div class="row justify-content-center">
+      <button mat-dialog-close class="btn btn-secondary mr-3" style="width: 100px" (click)="closeDialog()">Đóng</button>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>

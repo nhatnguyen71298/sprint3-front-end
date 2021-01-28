@@ -9,6 +9,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {NotificationComponent} from './subscribe-thesis/notification/notification.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ListInstructorComponent} from './mai-htq/list-instructor/list-instructor.component';
+import { DetailTeacherComponent } from './mai-htq/detail-teacher/detail-teacher.component';
 
 export const routes: Routes = [
   {
@@ -16,12 +18,13 @@ export const routes: Routes = [
     children: [
       // {path: 'test', component: TestStudentComponent},
       {path: 'subscribe/:idStudent', component: SubscribeThesisComponent},
+      {path: 'list-instructor/:idStudent', component: ListInstructorComponent},
     ]
   },
 ];
 
 @NgModule({
-  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationComponent],
+  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationComponent, ListInstructorComponent, DetailTeacherComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
