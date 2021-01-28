@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TeacherService} from '../../services/teacher.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DetailContentThesisComponent} from '../detail-content-thesis/detail-content-thesis.component';
-import {Router} from '@angular/router';
+import {DetailContentThesisApprovedComponent} from '../detail-content-thesis-approved/detail-content-thesis-approved.component';
 
 
 @Component({
@@ -12,7 +12,9 @@ import {Router} from '@angular/router';
 })
 export class CheckThesisComponent implements OnInit {
   checkThesis = [];
+  checkThesisApproved = [];
   listCheckThesis = [];
+  loadListDeleteCheckThesis = [];
 
 
   constructor(public teacherService: TeacherService,
@@ -20,35 +22,13 @@ export class CheckThesisComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*load list check thesis unapproved*/
     this.teacherService.getAllCheckThesis().subscribe(data => {
       this.checkThesis = data;
-      console.log(this.checkThesis);
     });
-  }
-
-  saveCheckThesis() {
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.listCheckThesis.length; i++) {
-      this.teacherService.getSaveCheckThesis(this.listCheckThesis[i].idCheckThesis).subscribe(dataSaveCheckThesis => {
-        this.ngOnInit();
-      });
-    }
-  }
-
-  changeCheckbox(checkThesis, i) {
-    if (checkThesis) {
-      checkThesis.checked = !checkThesis.checked;
-      // this.checkThesis[i].checked = !this.checkThesis[i].checked;
-    }
-  }
-
-  openDialog(i: number) {
-    this.dialog.open(DetailContentThesisComponent, {
-      position: {top: '85px'},
-      width: '900px',
-      height: '400px',
-      data: {dataThesis: this.checkThesis[i]},
-      disableClose: true
+    /*load list check thesis approved*/
+    this.teacherService.getAllCheckThesisApproved().subscribe(dataApproved => {
+      this.checkThesisApproved = dataApproved;
     });
   }
 
@@ -64,4 +44,56 @@ export class CheckThesisComponent implements OnInit {
       }
     }, 1);
   }
+
+  saveCheckThesis() {
+    /*save check thesis*/
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.listCheckThesis.length; i++) {
+      this.teacherService.getSaveCheckThesis(this.listCheckThesis[i].idCheckThesis)
+        .subscribe(dataSaveCheckThesis => {
+          /*load list check thesis delete*/
+          this.teacherService.loadListCheckThesis().subscribe(dataLoadListDelete => {
+            this.loadListDeleteCheckThesis = dataLoadListDelete;
+            /*save update check thesis*/
+            // tslint:disable-next-line:prefer-for-of
+            for (let h = 0; h < this.loadListDeleteCheckThesis.length; h++) {
+              this.teacherService.saveUpdateCheckThesis(this.loadListDeleteCheckThesis[h].id).subscribe(dataUpdate => {
+              });
+              /*delete check thesis*/
+              this.teacherService.deleteCheckThesis(this.loadListDeleteCheckThesis[h].id).subscribe(dataDelete => {
+              });
+            }
+            this.ngOnInit();
+          });
+        });
+    }
+  }
+
+  changeCheckbox(checkThesis, i) {
+    if (checkThesis) {
+      checkThesis.checked = !checkThesis.checked;
+      /*this.checkThesis[i].checked = !this.checkThesis[i].checked;*/
+    }
+  }
+
+  openDialog(i: number) {
+    this.dialog.open(DetailContentThesisComponent, {
+      position: {top: '85px'},
+      width: '900px',
+      height: '400px',
+      data: {dataThesis: this.checkThesis[i]},
+      disableClose: true
+    });
+  }
+
+  openDialogApproved(i: number) {
+    this.dialog.open(DetailContentThesisApprovedComponent, {
+      position: {top: '85px'},
+      width: '900px',
+      height: '400px',
+      data: {dataThesisApproved: this.checkThesisApproved[i]},
+      disableClose: true
+    });
+  }
+
 }

@@ -1,4 +1,4 @@
-<div *ngIf="detailContent" class="content-thesis">
+<div *ngIf="detailContentApproved" class="content-thesis">
   <div class="content-header">
     <h5>CHI TIẾT ĐỀ TÀI</h5>
     <hr>
@@ -7,17 +7,17 @@
   <div class="content-body">
     <div class="detail">
       <h6>Tên Nhóm: </h6>
-      <h6>{{detailContent.groupName}}</h6>
+      <h6>{{detailContentApproved.groupName}}</h6>
     </div>
     <hr>
     <div class="detail">
       <h6>Tên Đề Tài: </h6>
-      <h6>{{detailContent.statement}}</h6>
+      <h6>{{detailContentApproved.statement}}</h6>
     </div>
     <hr>
     <div class="detail">
       <h6>Nội Dung: </h6>
-      <h6>{{detailContent.description}}</h6>
+      <h6>{{detailContentApproved.description}}</h6>
     </div>
     <hr>
   </div>

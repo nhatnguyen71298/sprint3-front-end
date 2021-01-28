@@ -1,0 +1,37 @@
+.content-header h5 {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
+  color: #eea819;
+}
+
+
+.content-body h6 {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  color: #424e5d;
+
+}
+
+.detail {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.detail h6 {
+  font-weight: bolder;
+  margin-left: 25px;
+}
+
+.detail-button {
+  border: none !important;
+  background-color: orange;
+  width: 90px;
+  height: 40px;
+  color: white;
+  font-size: 17px;
+  margin-left: 700px;
+  margin-top: 10px;
+}
+
+

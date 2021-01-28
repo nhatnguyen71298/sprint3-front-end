@@ -14,6 +14,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
+import { DetailContentThesisApprovedComponent } from './detail-content-thesis-approved/detail-content-thesis-approved.component';
 
 export const routes: Routes = [
   {
@@ -27,7 +28,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [FeedBackComponent, ListStudentComponent, CheckThesisComponent, DetailContentThesisComponent],
+  declarations: [FeedBackComponent, ListStudentComponent, CheckThesisComponent, DetailContentThesisComponent, DetailContentThesisApprovedComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
