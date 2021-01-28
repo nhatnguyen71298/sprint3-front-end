@@ -52,8 +52,10 @@
             <td>{{student.email}}</td>
             <td>{{student.phone}}</td>
             <td>
-              <a class="text-warning"><i class="material-icons" data-toggle="tooltip" title="Sửa">edit</i></a>
-              <a class="text-danger"><i class="material-icons" data-toggle="tooltip" title="Xoá">delete</i></a>
+              <a class="text-warning"><i class="material-icons" data-toggle="tooltip" title="Sửa"
+                                         (click)="openDialogEdit(student.id)">edit</i></a>
+              <a class="text-danger"><i class="material-icons" data-toggle="tooltip" title="Xoá"
+                                        (click)="openDialogDelete(student.id)">delete</i></a>
             </td>
           </tr>
           </tbody>

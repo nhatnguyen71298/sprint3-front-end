@@ -1,9 +1,7 @@
 <div class="container-fluid ">
-
-  <form [formGroup]="formAddNew" (ngSubmit)="createEmployee()">
+  <form [formGroup]="formEditStudent" (ngSubmit)="editStudent()">
     <h3 class="row d-flex justify-content-center">Thêm sinh viên</h3>
     <hr>
-
     <div class="form-group row ">
       <label class="col-sm-3 col-form-label">Mã SV <sup class="text-danger">*</sup> </label>
       <div class="col-sm-8">
@@ -19,9 +17,8 @@
     <div class="form-group row ">
       <label class="col-sm-3 col-form-label">GV hướng dẫn:<sup class="text-danger">*</sup> </label>
       <div class="col-sm-8" *ngIf="list1">
-        <select class="form-control d-flex justify-content-start" formControlName="teacher" required>
-          <option value="" selected="selected">Vui lòng chọn giáo viên hướng dẫn</option>
-          <option *ngFor="let teacher of list1" value="{{teacher.fullName}}">{{teacher.fullName}}</option>
+        <select class="form-control d-flex justify-content-start"  required>
+          <option *ngFor="let teacher of list1">{{teacher.fullName}}</option>
         </select>
       </div>
     </div>
@@ -46,15 +43,11 @@
         <input type="text"  class="form-control form-control-sm" formControlName="phone" required>
       </div>
     </div>
-
-
     <div class="row d-flex justify-content-center ml-4">
       <div>
         <button class="btn btn-secondary btn btn-sm" style="width: 80px" [mat-dialog-close]="">Hủy</button>
-        <button type="submit" class="btn btn-success btn btn-sm mx-4" style="width: 90px">Thêm mới</button>
+        <button [disabled]="formEditStudent.invalid" style="width: 80px" class="btn btn-warning btn btn-sm mx-4" (click)="editStudent()">Sửa</button>
       </div>
     </div>
   </form>
-  <!--  </div>-->
 </div>
-

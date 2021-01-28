@@ -6,6 +6,9 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { StudentDeleteComponent } from './student-delete/student-delete.component';
+import { StudentEditComponent } from './student-edit/student-edit.component';
+import { StudentMessageComponent } from './student-message/student-message.component';
 
 
 export const routes: Routes = [
@@ -17,7 +20,7 @@ export const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [ListStudentComponent, AddStudentComponent],
+  declarations: [ListStudentComponent, AddStudentComponent, StudentDeleteComponent, StudentEditComponent, StudentMessageComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

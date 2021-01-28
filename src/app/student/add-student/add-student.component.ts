@@ -13,6 +13,7 @@ export class AddStudentComponent implements OnInit {
   public formAddNew: FormGroup;
   public student: Student;
   public list1;
+  public list2;
   constructor(
     private studentService: StudentService,
     protected formBuilder: FormBuilder,
@@ -24,7 +25,9 @@ export class AddStudentComponent implements OnInit {
   ngOnInit(): void {
     this.studentService.getAllTeacherService().subscribe(data => {
       this.list1 = data;
-      // console.log(this.list1);
+    });
+    this.studentService.getAllThesisService().subscribe(data => {
+      this.list2 = data;
     });
     this.formAddNew = this.formBuilder.group({
       studentCode: ['', [Validators.required]],
