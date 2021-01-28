@@ -1,7 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage';
-import {Observable} from 'rxjs';
 
 declare var $: any;
 
@@ -13,6 +12,7 @@ declare var $: any;
 export class ThesisDetailSendComponent implements OnInit {
 
   studentId = 1;
+  tempCheckReport;
   files: File[] = [];
   formUpload: FormGroup;
   task: AngularFireUploadTask;
@@ -39,6 +39,14 @@ export class ThesisDetailSendComponent implements OnInit {
         fileName = srcFile[1];
         $('.progress__file-name').val(fileName);
       });
+      $('#check-report-1').click(() => {
+        $('#check-report').val(1);
+        this.tempCheckReport = $('#check-report').val();
+      });
+      $('#check-report-2').click(() => {
+        $('#check-report').val(2);
+        this.tempCheckReport = $('#check-report').val();
+      })
     });
   }
 
@@ -47,6 +55,9 @@ export class ThesisDetailSendComponent implements OnInit {
   }
 
   dropFile(files: FileList) {
+    if ($('#get-file').val() !== '') {
+      $('#error-choose-file').hide();
+    }
     this.files = [];
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i));
@@ -55,26 +66,24 @@ export class ThesisDetailSendComponent implements OnInit {
 
   setFormUpload() {
     this.formUpload = this.formBuilder.group({
-      progressFile: ['', Validators.required],
+      progressFile: '',
       fileUrl: '',
-      description: ['', Validators.required],
+      description: '',
       percent: '',
+      checkReport: ''
     })
   }
 
   uploadFile() {
-    if ($('#get-file').val() === '') {
-      $('.progress__choose-file-btn').focus();
-    }
-    if ($('.progress__content').val() === '') {
-      $('.progress__content').focus();
-    }
+    this.formUpload.value.checkReport = this.tempCheckReport;
     if (this.formUpload.invalid) {
+      console.log(this.formUpload.value.progressFile.valid);
       const tempControl = this.el.nativeElement.querySelector('form');
       tempControl.querySelector('.ng-invalid').focus();
     }
     this.formUpload.markAllAsTouched();
-    if (this.formUpload.valid && $('#get-file').val() !== '' && $('.progress__content').val() !== '') {
+    const isValid = $('#get-file').val() !== '' && $('.progress__content').val() !== '' && $('#check-report').val() !== '';
+    if (this.formUpload.valid && isValid) {
       this.count = 0;
       this.percentage = 0;
       for (const file of this.files) {
@@ -102,6 +111,7 @@ export class ThesisDetailSendComponent implements OnInit {
               $('#progress-box').hide();
             }, 2000);
           } else {
+            $('#progress-upload').show();
             $('#upload-done').hide();
           }
         });
@@ -122,6 +132,7 @@ export class ThesisDetailSendComponent implements OnInit {
       $('#get-file').val('');
       $('.progress__file-name').val('');
       $('.progress__content').val('');
+      console.log(this.formUpload.value);
     })
   }
 }
