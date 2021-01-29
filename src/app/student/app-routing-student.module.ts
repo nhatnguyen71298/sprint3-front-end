@@ -6,7 +6,7 @@ import { DetailTeacherComponent } from './mai-htq/detail-teacher/detail-teacher.
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { NotificationComponent } from './mai-htq/notification/notification.component';
+import {NotificationTeacherComponent} from './mai-htq/notification/notification-teacher.component';
 
 export const routes: Routes = [
   {
@@ -18,7 +18,7 @@ export const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [ListInstructorComponent, DetailTeacherComponent, NotificationComponent],
+  declarations: [ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
