@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {LoginComponent} from "../../login/login/login.component";
-import {LoginService} from "../../services/login.service";
-import {ChangePassswordComponent} from "../../Admin/change-passsword/change-passsword.component";
+import {LoginComponent} from '../../login/login/login.component';
+import {LoginService} from '../../services/login.service';
+import {ChangePassswordComponent} from '../../Admin/change-passsword/change-passsword.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -35,7 +35,9 @@ export class NavBarComponent implements OnInit {
 
   openDialogChangePassword() {
     const dialogB = this.dialog.open(ChangePassswordComponent,{
-      width:'400px'
-    })
+      width:'400px',
+      height:'400px',
+      disableClose: true
+    });
   }
 }

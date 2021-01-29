@@ -8,16 +8,18 @@ import {Observable} from 'rxjs';
 export class ChangePasswordService {
   public API_PASSWORD = 'http://localhost:8080/account/change-password-user/';
   public API_CONFIRM = 'http://localhost:8080/account/check-passsword-user/';
-  public API_TEST = 'http://localhost:8080/student/find-all/';
+  public API_FIND_ACCOUNT ='http://localhost:8080/account/find-account/';
+
   constructor(private http : HttpClient) { }
 
   confirmPassword(idUser, passwordOld): Observable<any>{
-    return  this.http.put(this.API_CONFIRM, idUser,passwordOld);
+    return  this.http.put(this.API_CONFIRM + idUser,passwordOld);
   }
   savePassword(idUser, passwordNew): Observable<any>{
-    return this.http.put(this.API_PASSWORD, idUser,passwordNew);
+    return this.http.put(this.API_PASSWORD +idUser,passwordNew);
   }
-  findAllStuden(id): Observable<any>{
-    return this.http.get(this.API_TEST + id);
+  findAccount(id):Observable<any>{
+    return this.http.get(this.API_FIND_ACCOUNT + id)
   }
+
 }
