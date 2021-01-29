@@ -87,8 +87,7 @@ export class ListInstructorComponent implements OnInit {
               }
             });
         }
-      })
-    ;
+      });
   }
 
   chooseInstructor(idTeacher) {
