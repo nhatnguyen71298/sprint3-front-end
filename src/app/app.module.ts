@@ -9,6 +9,7 @@ import {AppStudentModule} from './student/app-student.module';
 import {MaterialModule} from './material.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './services/AuthInterceptor';
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,11 @@ import {AuthInterceptor} from './services/AuthInterceptor';
     AppTeacherModule,
     AppStudentModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    } )
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -1,0 +1,16 @@
+h1 {
+  font-family: sans-serif; color: cornflowerblue;
+  text-align: center;
+}
+#passwordOld{
+  width: 250px;
+}
+#passwordNew{
+  width: 250px;
+}
+#passwordConfirm{
+  width: 250px;
+}
+button,#cancel{
+  width: 117px;
+}

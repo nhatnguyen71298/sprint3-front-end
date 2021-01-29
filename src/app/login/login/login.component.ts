@@ -1,9 +1,8 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Router} from '@angular/router';
-import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',

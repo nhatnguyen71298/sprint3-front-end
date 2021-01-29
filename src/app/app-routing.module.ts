@@ -10,16 +10,15 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {CommonModule} from '@angular/common';
 import {SideBarComponent} from './side-bar/side-bar/side-bar.component';
 import {ChangePassswordComponent} from './Admin/change-passsword/change-passsword.component';
-import { AaaComponent } from './Admin/aaa/aaa.component';
 
 
-const routes: Routes = [{path:'bb',component: AaaComponent}];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule,
     ReactiveFormsModule, MatDialogModule, CommonModule],
   exports: [RouterModule, NavBarComponent, SideBarComponent],
-  declarations: [NavBarComponent, LoginComponent, SideBarComponent, ChangePassswordComponent, AaaComponent]
+  declarations: [NavBarComponent, LoginComponent, SideBarComponent, ChangePassswordComponent]
 })
 export class AppRoutingModule {
 }
