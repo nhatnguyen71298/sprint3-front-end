@@ -185,7 +185,7 @@ export class ListInstructorComponent implements OnInit {
     this.teacherService.findByID(id).subscribe(varialble => {
       const dialogRefEdit = this.dialog.open(DetailTeacherComponent, {
         width: '650px',
-        height: '450px',
+        height: '341px',
         data: {dataNeed: varialble},
         disableClose: true,
       });
