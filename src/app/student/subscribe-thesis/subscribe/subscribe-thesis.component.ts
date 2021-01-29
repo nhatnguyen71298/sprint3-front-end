@@ -23,6 +23,7 @@ export class SubscribeThesisComponent implements OnInit {
   protected checkChoose = true;
   protected checkGroup = true;
   protected approved = false;
+  protected exists = false;
   protected p = 1;
   protected student;
   protected position;
@@ -56,22 +57,25 @@ export class SubscribeThesisComponent implements OnInit {
         this.openNotification('Error');
       },
       () => {
-        if (this.student.studentGroup != null) {
-          if (this.student.studentGroup.teacher != null) {
-            this.position = this.student.position;
-            this.filterThesisSubscribed();
-            this.getListThesisUnsubscribed();
-            // create new Thesis :
-            this.formCreate = this.formBuilder.group({
-              statement: ['', [Validators.required, Validators.maxLength(50)]],
-              amount: ['', [Validators.required, Validators.pattern('^(([1-9])|([1][0-5]))$')]],
-              description: ['', [Validators.required, Validators.maxLength(50)]],
-            });
+        if (this.student != null) {
+          this.exists = true;
+          if (this.student.studentGroup != null) {
+            if (this.student.studentGroup.teacher != null) {
+              this.position = this.student.position;
+              this.filterThesisSubscribed();
+              this.getListThesisUnsubscribed();
+              // create new Thesis :
+              this.formCreate = this.formBuilder.group({
+                statement: ['', [Validators.required, Validators.maxLength(50)]],
+                amount: ['', [Validators.required, Validators.pattern('^(([1-9])|([1][0-5]))$')]],
+                description: ['', [Validators.required, Validators.maxLength(50)]],
+              });
+            } else {
+              this.checkTeacher = false;
+            }
           } else {
-            this.checkTeacher = false;
+            this.checkGroup = false;
           }
-        } else {
-          this.checkGroup = false;
         }
       });
   }
@@ -116,17 +120,21 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   chooseThesisOfTeacher(id) {
-    this.type = 'Teacher';
-    this.hiddenTable = false;
     for (let i = 0; i < this.thesisListUnsubscribed.length; i++) {
       if (this.thesisListUnsubscribed[i].id === id) {
-        this.newSubscribeThesis.push(this.thesisListUnsubscribed[i]);
-        this.thesisListUnsubscribed.splice(i, 1);
+        if (this.thesisListUnsubscribed[i].amount.toString() !== this.student.studentGroup.quantity) {
+          this.openNotification('Exceed');
+        } else {
+          this.type = 'Teacher';
+          this.hiddenTable = false;
+          this.newSubscribeThesis.push(this.thesisListUnsubscribed[i]);
+          this.thesisListUnsubscribed.splice(i, 1);
+          this.checkChoose = false;
+          this.p = 1;
+        }
         break;
       }
     }
-    this.checkChoose = false;
-    this.p = 1;
   }
 
   deleteThesis() {
@@ -136,38 +144,42 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   subscribeThesis() {
-    if (this.checkChoose) {
-      this.openNotification('No Choose');
-    } else {
-      if (this.type === 'Teacher') {
-        const idThesis = this.newSubscribeThesis.shift().id;
-        this.subscribeThesisService.subscribeThesisOfTeacher(idThesis, this.idStudent).subscribe(
-          (data) => {
-            this.message = data.message;
-            switch (this.message) {
-              case 'Complete':
-                this.openNotification('Subscribe Complete');
-                break;
-              case 'Subscribed':
-                this.openNotification('Subscribed');
-                break;
-              case 'Duplicate':
-                this.openNotification('Duplicate');
-                break;
-              case 'Not found':
-                this.openNotification('Not found');
-                break;
-              default:
-                this.openNotification('Error');
-            }
-          },
-          () => {
-            this.openNotification('Error');
-          },
-          () => {
-            this.ngOnInit();
-          });
+    if (this.student.position === true) {
+      if (this.checkChoose) {
+        this.openNotification('No Choose');
+      } else {
+        if (this.type === 'Teacher') {
+          const idThesis = this.newSubscribeThesis.shift().id;
+          this.subscribeThesisService.subscribeThesisOfTeacher(idThesis, this.idStudent).subscribe(
+            (data) => {
+              this.message = data.message;
+              switch (this.message) {
+                case 'Complete':
+                  this.openNotification('Subscribe Complete');
+                  break;
+                case 'Subscribed':
+                  this.openNotification('Subscribed');
+                  break;
+                case 'Duplicate':
+                  this.openNotification('Duplicate');
+                  break;
+                case 'Not found':
+                  this.openNotification('Not found');
+                  break;
+                default:
+                  this.openNotification('Error');
+              }
+            },
+            () => {
+              this.openNotification('Error');
+            },
+            () => {
+              this.ngOnInit();
+            });
+        }
       }
+    } else {
+      this.openNotification('Jurisdiction Subscribe');
     }
   }
 
@@ -199,40 +211,44 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   unsubscribeThesis() {
-    this.hiddenTable = true;
-    this.checkChoose = true;
-    if (this.newSubscribeThesis.length !== 0) {
-      this.thesisListUnsubscribed.unshift(this.newSubscribeThesis.shift());
-      this.ngOnInit();
-    }
-    if (this.thesisOfStudentCurrent.length !== 0) {
-      const checkThesis = this.thesisOfStudentCurrent.pop();
-      if (checkThesis.status === false) {
-        const idCheckThesis = checkThesis.id;
-        this.subscribeThesisService.unsubscribeThesis(idCheckThesis).subscribe(
-          (data) => {
-            this.message = data.message;
-            switch (this.message) {
-              case 'Complete':
-                this.openNotification('Unsubscribe Complete');
-                break;
-              case 'Approved':
-                this.openNotification('Cannot Cancel');
-                break;
-              case 'Not found':
-                this.openNotification('Not found');
-                break;
-              default:
-                this.openNotification('Error');
-            }
-          },
-          () => {
-            this.openNotification('Error');
-          },
-          () => {
-            this.ngOnInit();
-          });
+    if (this.student.position === true) {
+      this.hiddenTable = true;
+      this.checkChoose = true;
+      if (this.newSubscribeThesis.length !== 0) {
+        this.thesisListUnsubscribed.unshift(this.newSubscribeThesis.shift());
+        this.ngOnInit();
       }
+      if (this.thesisOfStudentCurrent.length !== 0) {
+        const checkThesis = this.thesisOfStudentCurrent.pop();
+        if (checkThesis.status === false) {
+          const idCheckThesis = checkThesis.id;
+          this.subscribeThesisService.unsubscribeThesis(idCheckThesis).subscribe(
+            (data) => {
+              this.message = data.message;
+              switch (this.message) {
+                case 'Complete':
+                  this.openNotification('Unsubscribe Complete');
+                  break;
+                case 'Approved':
+                  this.openNotification('Cannot Cancel');
+                  break;
+                case 'Not found':
+                  this.openNotification('Not found');
+                  break;
+                default:
+                  this.openNotification('Error');
+              }
+            },
+            () => {
+              this.openNotification('Error');
+            },
+            () => {
+              this.ngOnInit();
+            });
+        }
+      }
+    } else {
+      this.openNotification('Jurisdiction Unsubscribe');
     }
   }
 

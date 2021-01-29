@@ -34,6 +34,18 @@
   <i class="material-icons">error_outline</i>
   <h1>Đề tài này đã được nhóm khác đăng ký.</h1>
 </div>
+<div *ngIf="message == 'Exceed'">
+  <i class="material-icons">error_outline</i>
+  <h1>Số lượng sinh viên không phù hợp.</h1>
+</div>
+<div *ngIf="message == 'Jurisdiction Subscribe'">
+  <i class="material-icons">error_outline</i>
+  <h1>Bạn không có quyền đăng ký đề tài.</h1>
+</div>
+<div *ngIf="message == 'Jurisdiction Unsubscribe'">
+  <i class="material-icons">error_outline</i>
+  <h1>Bạn không có quyền hủy đăng ký đề tài.</h1>
+</div>
 <div class="row justify-content-end">
   <button mat-dialog-close class="btn btn-primary">OK</button>
 </div>
