@@ -3,10 +3,10 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css']
+  templateUrl: './notification-subscribe.component.html',
+  styleUrls: ['./notification-subscribe.component.css']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationSubscribeComponent implements OnInit {
   protected message;
 
   constructor(

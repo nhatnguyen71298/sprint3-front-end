@@ -7,8 +7,8 @@ import {ViewThesisComponent} from './subscribe-thesis/view-thesis/view-thesis.co
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {NotificationComponent} from './subscribe-thesis/notification/notification.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NotificationSubscribeComponent} from './subscribe-thesis/notification-subscribe/notification-subscribe.component';
 import {ListInstructorComponent} from './mai-htq/list-instructor/list-instructor.component';
 import {DetailTeacherComponent} from './mai-htq/detail-teacher/detail-teacher.component';
 import {NotificationTeacherComponent} from './mai-htq/notification/notification-teacher.component';
@@ -25,7 +25,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationComponent,
+  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent,
     ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent],
   imports: [
     RouterModule.forChild(routes),
@@ -37,7 +37,7 @@ export const routes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  entryComponents: [ViewThesisComponent, NotificationComponent]
+  entryComponents: [ViewThesisComponent, NotificationSubscribeComponent]
 })
 export class AppRoutingStudentModule {
 }
