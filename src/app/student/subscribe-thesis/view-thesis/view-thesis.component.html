@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <h1>Thông tin chi tiết của đề tài</h1>
+  </div>
+  <hr>
+  <div class="row justify-content-center">
+    <form (keydown)="keyDownFunction($event)">
+      <div class="row">
+        <div class="col-sm-3">
+          <h5>Tên đề tài : </h5>
+        </div>
+        <div class="col-sm-9">
+          <mat-form-field class="matInputMaterial">
+            <mat-label></mat-label>
+            <input matInput class="input"
+                   value="{{formView.statement}}" readonly>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <h5>Số SVTH : </h5>
+        </div>
+        <div class="col-sm-9">
+          <mat-form-field class="matInputMaterial">
+            <mat-label></mat-label>
+            <input matInput class="input"
+                   value="{{formView.amount}}" readonly>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <h5>Mô tả : </h5>
+        </div>
+        <div class="col-sm-9">
+          <mat-form-field class="description">
+            <mat-label></mat-label>
+            <textarea matInput readonly>{{formView.description}}</textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+  <hr class="hrBottom">
+  <div class="row">
+    <button mat-dialog-close class="back">Đóng</button>
+  </div>
+</div>

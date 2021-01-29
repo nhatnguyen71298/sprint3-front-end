@@ -1,0 +1,95 @@
+<mat-dialog class="mat-typography">
+  <form [formGroup]="formCreate" (ngSubmit)="createThesis()">
+    <h1 class="modal-dialog-centered" id="exampleModalLabel1">Thêm mới đề tài</h1>
+
+    <div class="form-group">
+      <label>Tên đề tài:<span class="text-danger"> *</span></label>
+      <input type="text" class="form-control" formControlName="statement">
+      <p class="text-danger"
+         *ngIf="formCreate.get('statement').hasError('required')
+                               && (formCreate.controls.statement?.dirty
+                               || formCreate.controls.statement?.touched)">
+        Vui lòng nhập tên đề tài.
+      </p>
+      <p class="text-danger"
+         *ngIf="formCreate.get('statement').hasError('whiteSpace')
+                                      && (formCreate.controls.statement?.dirty
+                                      || formCreate.controls.statement?.touched)">
+        Tên đề tài không được chỉ chứa khoảng trắng.
+      </p>
+      <p class="text-danger"
+         *ngIf="formCreate.get('statement').hasError('specialCharacter')
+                                      && (formCreate.controls.statement?.dirty
+                                      || formCreate.controls.statement?.touched)">
+        Tên đề tài không được chứa ký tự đặt biệt.
+      </p>
+      <p class="text-danger"
+         *ngIf="formCreate.controls.statement?.invalid
+                                      && !formCreate.get('statement').hasError('required')
+                                      && !formCreate.get('statement').hasError('whiteSpace')
+                                      && !formCreate.get('statement').hasError('specialCharacter')
+                                      && (formCreate.controls.statement?.dirty
+                                      || formCreate.controls.statement?.touched)">
+        Tên đề tài không quá 55 ký tự.
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Số SVTH:<span class="text-danger"> *</span></label>
+      <input type="number" class="form-control" formControlName="amount" max="15" min="1">
+      <p class="text-danger"
+         *ngIf="formCreate.get('amount').hasError('required')
+                                && (formCreate.controls.amount?.dirty
+                                || formCreate.controls.amount?.touched)">
+        Vui lòng chọn số lượng sinh viên để thực hiện đề tài.
+      </p>
+      <p class="text-danger"
+         *ngIf="formCreate.get('amount').hasError('min') && (formCreate.controls.amount?.dirty
+                                || formCreate.controls.amount?.touched)">
+        Số sinh viên thực hiện đề tài không dưới 1 người.
+      </p>
+      <p class="text-danger"
+         *ngIf="formCreate.get('amount').hasError('max') && (formCreate.controls.amount?.dirty
+                                || formCreate.controls.amount?.touched)">
+        Số sinh viên thực hiện đề tài không quá 15 người.
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Nội dung:<span class="text-danger"> *</span></label>
+      <textarea class="form-control" rows="3" style="resize: none" formControlName="description"></textarea>
+      <p class="text-danger"
+         *ngIf="formCreate.get('description').hasError('required')
+                               && (formCreate.controls.description?.dirty
+                               || formCreate.controls.description?.touched)">
+        Vui lòng nhập nội dung đề tài.
+      </p>
+      <p class="text-danger"
+         *ngIf="formCreate.get('description').hasError('whiteSpace')
+                                      && (formCreate.controls.description?.dirty
+                                      || formCreate.controls.description?.touched)">
+        Nội dung đề tài không được chỉ chứa khoảng trắng.
+      </p>
+      <p class="text-danger"
+         *ngIf="formCreate.get('description').hasError('specialCharacter')
+                                      && (formCreate.controls.description?.dirty
+                                      || formCreate.controls.description?.touched)">
+        Nội dung không được chứa ký tự đặt biệt.
+      </p>
+      <p class="text-danger"
+         *ngIf="formCreate.controls.description?.invalid
+                                      && !formCreate.get('description').hasError('required')
+                                      && !formCreate.get('description').hasError('whiteSpace')
+                                      && !formCreate.get('description').hasError('specialCharacter')
+                                      && (formCreate.controls.description?.dirty
+                                      || formCreate.controls.description?.touched)">
+        Nội dung không quá 255 ký tự.
+      </p>
+    </div>
+  </form>
+</mat-dialog>
+<mat-dialog-actions align="end">
+  <button type="submit" class="btn btn-success btn btn-sm mx-4" style="width: 90px" [disabled]="formCreate.invalid"
+          (click)="createThesis()">Xác Nhận
+  </button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Cancel</button>
+</mat-dialog-actions>
+

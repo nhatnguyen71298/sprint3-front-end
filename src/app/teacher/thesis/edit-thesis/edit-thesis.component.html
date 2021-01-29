@@ -1,0 +1,94 @@
+<mat-dialog class="mat-typography">
+  <form [formGroup]="formEdit" (ngSubmit)="editThesis()">
+    <h1 class="modal-dialog-centered" id="exampleModalLabel1">Chỉnh sửa đề tài</h1>
+
+    <div class="form-group">
+      <label>Tên đề tài: </label>
+      <input type="text" class="form-control" formControlName="statement">
+      <p class="text-danger"
+         *ngIf="formEdit.get('statement').hasError('required')
+                               && (formEdit.controls.statement?.dirty
+                               || formEdit.controls.statement?.touched)">
+        Vui lòng nhập tên đề tài.
+      </p>
+      <p class="text-danger"
+         *ngIf="formEdit.get('statement').hasError('whiteSpace')
+                                      && (formEdit.controls.statement?.dirty
+                                      || formEdit.controls.statement?.touched)">
+        Tên đề tài không được chỉ chứa khoảng trắng.
+      </p>
+      <p class="text-danger"
+         *ngIf="formEdit.get('statement').hasError('specialCharacter')
+                                      && (formEdit.controls.statement?.dirty
+                                      || formEdit.controls.statement?.touched)">
+        Tên đề tài không được chứa ký tự đặt biệt.
+      </p>
+      <p class="text-danger"
+         *ngIf="formEdit.controls.statement?.invalid
+                                      && !formEdit.get('statement').hasError('required')
+                                      && !formEdit.get('statement').hasError('whiteSpace')
+                                      && !formEdit.get('statement').hasError('specialCharacter')
+                                      && (formEdit.controls.statement?.dirty
+                                      || formEdit.controls.statement?.touched)">
+        Tên đề tài không quá 55 ký tự.
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Số SVTH: </label>
+      <input type="number" class="form-control" formControlName="amount">
+      <p class="text-danger"
+         *ngIf="formEdit.get('amount').hasError('required')
+                                && (formEdit.controls.amount?.dirty
+                                || formEdit.controls.amount?.touched)">
+        Vui lòng chọn số lượng sinh viên để thực hiện đề tài.
+      </p>
+      <p class="text-danger"
+         *ngIf="formEdit.get('amount').hasError('min') && (formEdit.controls.amount?.dirty
+                                || formEdit.controls.amount?.touched)">
+        Số sinh viên thực hiện đề tài không dưới 1 người.
+      </p>
+      <p class="text-danger"
+         *ngIf="formEdit.get('amount').hasError('max') && (formEdit.controls.amount?.dirty
+                                || formEdit.controls.amount?.touched)">
+        Số sinh viên thực hiện đề tài không quá 15 người.
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Nội dung: </label>
+      <textarea class="form-control" rows="3" style="resize: none" formControlName="description"></textarea>
+      <p class="text-danger"
+         *ngIf="formEdit.get('description').hasError('required')
+                               && (formEdit.controls.description?.dirty
+                               || formEdit.controls.description?.touched)">
+        Vui lòng nhập nội dung đề tài.
+      </p>
+      <p class="text-danger"
+         *ngIf="formEdit.get('description').hasError('whiteSpace')
+                                      && (formEdit.controls.description?.dirty
+                                      || formEdit.controls.description?.touched)">
+        Nội dung đề tài không được chỉ chứa khoảng trắng.
+      </p>
+      <p class="text-danger"
+         *ngIf="formEdit.get('description').hasError('specialCharacter')
+                                      && (formEdit.controls.description?.dirty
+                                      || formEdit.controls.description?.touched)">
+        Nội dung không được chứa ký tự đặt biệt.
+      </p>
+      <p class="text-danger"
+         *ngIf="formEdit.controls.description?.invalid
+                                      && !formEdit.get('description').hasError('required')
+                                      && !formEdit.get('description').hasError('whiteSpace')
+                                      && !formEdit.get('description').hasError('specialCharacter')
+                                      && (formEdit.controls.description?.dirty
+                                      || formEdit.controls.description?.touched)">
+        Nội dung không quá 255 ký tự.
+      </p>
+    </div>
+  </form>
+</mat-dialog>
+<mat-dialog-actions align="end">
+  <button type="submit" class="btn btn-success btn btn-sm mx-4" style="width: 90px" (click)="editThesis()">Sửa
+  </button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Cancel</button>
+</mat-dialog-actions>
+

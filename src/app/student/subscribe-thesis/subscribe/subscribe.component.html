@@ -1,0 +1,267 @@
+<div class="container-fluid">
+  <div class="row justify-content-center" *ngIf="!exists">
+    <h1 class="text-danger">Không tìm thấy thông tin sinh viên đang đăng nhập!</h1>
+  </div>
+  <div *ngIf="exists">
+    <div class="row justify-content-center" *ngIf="checkGroup == false">
+      <h1 class="text-danger">Vui lòng đăng ký Nhóm trước khi đăng ký đề tài!</h1>
+    </div>
+    <div class="row justify-content-center" *ngIf="checkTeacher == false">
+      <h1 class="text-danger">Vui lòng đăng ký Giáo viên hướng dẫn trước khi đăng ký đề tài!</h1>
+    </div>
+    <div *ngIf="checkTeacher == true && checkGroup == true">
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+          <div class="row mt-3" *ngIf="hiddenTable == true  && position == true">
+            <div class="col-sm-12">
+              <h1>Nhóm của bạn hiện tại chưa đăng ký đề tài nào .
+                Bạn có thể chọn 1 đề tài trong danh sách đề tài của Giáo Viên đưa ra
+                hoặc tự đề xuất 1 đề tài theo cấu trúc bên dưới cho nhóm của mình</h1>
+            </div>
+          </div>
+          <div class="row" *ngIf="position == true">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4">
+              <div *ngIf="approved == false">
+                <input type="button" class="signUp" value="Hủy đăng ký"
+                       *ngIf="approved == false && hiddenTable == false" (click)="unsubscribeThesis()">
+                <input type="button" class="signUp" value="Đăng ký" (click)="subscribeThesis()"
+                       *ngIf="thesisOfStudentCurrent.length == 0 && newSubscribeThesis.length != 0">
+              </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="hiddenTable == false">
+            <div class="table-responsive">
+              <div class="table-wrapper">
+                <div class="table-title">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h1>Đề tài đăng ký của nhóm</h1>
+                    </div>
+                  </div>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>Tên đề tài</th>
+                    <th class="amount">Số lượng SVTH</th>
+                    <th class="statusTitle">Trạng thái</th>
+                    <th class="work">Thao tác</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="thesisOfStudentCurrent.length != 0">
+                  <tr *ngFor="let subscribedThesis of thesisOfStudentCurrent">
+                    <td class="topicName">{{subscribedThesis.thesis.statement}}</td>
+                    <td>{{subscribedThesis.thesis.amount}}</td>
+                    <td class="status" *ngIf="subscribedThesis.status == true">Đã kiểm duyệt</td>
+                    <td class="status" *ngIf="subscribedThesis.status == false">Đã đăng ký</td>
+                    <td class="deleteIcon">
+                      <button class="material-icons text-primary"
+                              (click)="openDialogView(subscribedThesis.thesis.id)">
+                        visibility
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                  <tbody *ngIf="thesisOfStudentCurrent.length == 0">
+                  <tr *ngFor="let subscribeThesis of newSubscribeThesis">
+                    <td class="topicName">{{subscribeThesis.statement}}</td>
+                    <td>{{subscribeThesis.amount}}</td>
+                    <td class="status">Chưa đăng ký</td>
+                    <td class="deleteIcon">
+                      <button class="material-icons text-primary"
+                              (click)="openDialogView(subscribeThesis.id)">visibility</button>
+                      <button class="material-icons text-danger" (click)="deleteThesis()">&#xE872;</button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="thesisOfOtherGroup.length != 0">
+            <div class="table-responsive">
+              <div class="table-wrapper">
+                <div class="table-title">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h1>Đề tài đã đăng ký bởi nhóm khác</h1>
+                    </div>
+                  </div>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>Tên đề tài</th>
+                    <th class="amount">Số lượng SVTH</th>
+                    <th class="statusTitle">Tên nhóm</th>
+                    <th class="work">Thao tác</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let thesisOfOtherGroup of thesisOfOtherGroup">
+                    <td class="topicName">{{thesisOfOtherGroup.thesis.statement}}</td>
+                    <td>{{thesisOfOtherGroup.thesis.amount}}</td>
+                    <td class="status">{{thesisOfOtherGroup.studentGroup.groupName}}</td>
+                    <td class="deleteIcon">
+                      <button class="material-icons text-primary"
+                              (click)="openDialogView(thesisOfOtherGroup.thesis.id)">
+                        visibility
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="table-responsive">
+              <div class="table-wrapper">
+                <div class="table-title">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h1>Danh sách đề tài của giáo viên</h1>
+                    </div>
+                  </div>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th class="icon">STT</th>
+                    <th>Tên đề tài</th>
+                    <th class="amountTeacher">Số lượng SVTH</th>
+                    <th class="icon">Xem</th>
+                    <th class="icon" *ngIf="checkChoose == true && position == true">Chọn</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+
+                  <tr *ngFor="let thesis of thesisListUnsubscribed |paginate: { itemsPerPage: 5, currentPage: p}
+                                                          let i = index">
+                    <td class="number">{{i + 1 + 5 * (p - 1)}}</td>
+                    <td class="topicName">{{thesis.statement}}</td>
+                    <td>{{thesis.amount}}</td>
+                    <td class="deleteIcon">
+                      <button class="material-icons text-primary" (click)="openDialogView(thesis.id)">visibility</button>
+                    </td>
+                    <td class="deleteIcon" *ngIf="checkChoose == true && position == true">
+                      <button class="material-icons text-success" (click)="chooseThesisOfTeacher(thesis.id)">
+                        done_outline
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 paginationItem">
+              <pagination-controls *ngIf="thesisListUnsubscribed.length > 5"
+                                   (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau" responsive="true">
+              </pagination-controls>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="thesisOfStudentCurrent.length == 0
+                              && newSubscribeThesis.length == 0  && position == true">
+            <div class="table-responsive">
+              <div class="table-wrapper">
+                <div class="table-title">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h1>Đề tài sinh viên yêu cầu</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form *ngIf="thesisOfStudentCurrent.length == 0
+                   && newSubscribeThesis.length == 0  && position == true"
+                [formGroup]="formCreate" (keydown)="keyDownFunction($event)">
+            <div class="row">
+              <div class="col-sm-3">
+                <label for="nameTopic" class="first">Nhập tên đề tài <sup class="text-danger">*</sup></label>
+              </div>
+              <div class="col-sm-9">
+                <input id="nameTopic" class="form-control" formControlName="statement" type="text"/>
+                <p class="text-danger"
+                   *ngIf="formCreate.get('statement').hasError('required')
+                                                              && (formCreate.controls.statement?.dirty
+                                                              || formCreate.controls.statement?.touched)">
+                  Vui lòng nhập tên đề tài!
+                </p>
+                <p class="text-danger"
+                   *ngIf="formCreate.controls.statement?.invalid
+                                                  && !formCreate.get('statement').hasError('required')
+                                                  && (formCreate.controls.statement?.dirty
+                                                  || formCreate.controls.statement?.touched)">
+                  Độ dài tối đa của Tên đề tài là 50 kí tự.
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <label for="amount" class="second">Số sinh viên thực hiện <sup class="text-danger">*</sup></label>
+              </div>
+              <div class="col-sm-9">
+                <input id="amount" class="form-control secondInput" formControlName="amount" type="text"/>
+                <p class="text-danger"
+                   *ngIf="formCreate.get('amount').hasError('required')
+                                                              && (formCreate.controls.amount?.dirty
+                                                              || formCreate.controls.amount?.touched)">
+                  Vui lòng nhập số lượng sinh viên thực hiện đề tài!
+                </p>
+                <p class="text-danger"
+                   *ngIf="formCreate.controls.amount?.invalid
+                                                  && !formCreate.get('amount').hasError('required')
+                                                  && (formCreate.controls.amount?.dirty
+                                                  || formCreate.controls.amount?.touched)">
+                  Số lượng sinh viên thực hiện đề tài phải là số nguyên dương nhỏ hơn hoặc bằng 15.
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <label for="description" class="second">Mô tả <sup class="text-danger">*</sup></label>
+              </div>
+              <div class="col-sm-9">
+            <textarea id="description" class="form-control thirdInput" formControlName="description" type="text">
+            </textarea>
+                <p class="text-danger"
+                   *ngIf="formCreate.get('description').hasError('required')
+                                                              && (formCreate.controls.description?.dirty
+                                                              || formCreate.controls.description?.touched)">
+                  Vui lòng nhập mô tả của đề tài!
+                </p>
+                <p class="text-danger"
+                   *ngIf="formCreate.controls.description?.invalid
+                                                  && !formCreate.get('description').hasError('required')
+                                                  && (formCreate.controls.description?.dirty
+                                                  || formCreate.controls.description?.touched)">
+                  Độ dài tối đa của phần mô tả là 50 kí tự.
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-10"></div>
+              <div class="col-sm-2">
+                <button (click)="createThesis()" class="submit">Chọn</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+  </div>
+</div>
