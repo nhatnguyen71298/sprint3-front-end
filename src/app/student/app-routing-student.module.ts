@@ -7,7 +7,7 @@ import {ViewThesisComponent} from './subscribe-thesis/view-thesis/view-thesis.co
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {NotificationComponent} from './subscribe-thesis/notification/notification.component';
+import {NotificationSubscribeComponent} from './subscribe-thesis/notification-subscribe/notification-subscribe.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 export const routes: Routes = [
@@ -21,7 +21,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationComponent],
+  declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -32,7 +32,7 @@ export const routes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  entryComponents: [ViewThesisComponent, NotificationComponent]
+  entryComponents: [ViewThesisComponent, NotificationSubscribeComponent]
 })
 export class AppRoutingStudentModule {
 }

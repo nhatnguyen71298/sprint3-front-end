@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {SubscribeThesisService} from '../service/subscribe-thesis.service';
+import {SubscribeThesisService} from '../service-subscribe/subscribe-thesis.service';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewThesisComponent} from '../view-thesis/view-thesis.component';
-import {NotificationComponent} from '../notification/notification.component';
+import {NotificationSubscribeComponent} from '../notification-subscribe/notification-subscribe.component';
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -195,7 +195,7 @@ export class SubscribeThesisComponent implements OnInit {
   }
 
   openNotification(message): void {
-    const dialogRef = this.dialog.open(NotificationComponent, {
+    const dialogRef = this.dialog.open(NotificationSubscribeComponent, {
       width: '555px',
       height: '175px',
       data: {notification: message},
