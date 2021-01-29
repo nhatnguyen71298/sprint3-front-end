@@ -2,7 +2,6 @@ body {
   color: #435d7d;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
-  background-image: url("https://i.pinimg.com/originals/5b/f3/00/5bf300d24d1f961d18d875de6f3ca665.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -27,11 +26,11 @@ body {
   border-radius: 3px 3px 0 0;
 }
 
-.table-title .row .col-4 input{
+.table-title .row .col-4 input {
   margin: 5px 0 0;
 }
 
-.table-title .row .col-2 input{
+.table-title .row .col-2 input {
   float: right;
 }
 
@@ -63,7 +62,7 @@ table.table tr th, table.table tr td {
 }
 
 table.table tr th:last-child {
-  width:150px;
+  width: 150px;
 }
 
 table.table-striped tbody tr:nth-of-type(odd) {
@@ -139,7 +138,7 @@ table.table .avatar {
   margin-right: 32%;
 }
 
-h2{
+h2 {
   font-size: 30px;
 }
 

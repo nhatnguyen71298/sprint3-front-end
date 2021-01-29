@@ -14,15 +14,17 @@ export class ListInstructorComponent implements OnInit {
   protected listQuantityStudent = [];
   protected signUpTeacherList = [];
   protected selectedTeacher = [];
-  protected checkChoose = true;
+  protected checkStudentExists = true;
+  protected hiddenTableTeacher = true;
   protected hiddenTable = true;
+  protected checkChoose = true;
   protected selected = false;
   protected p = 1;
   protected idStudent;
   protected idTeacher;
+  protected position;
   protected teacher;
   protected student;
-  protected position;
 
   constructor(
     private teacherService: MaiHtqService,
@@ -51,32 +53,42 @@ export class ListInstructorComponent implements OnInit {
         this.openNotification('error');
       },
       () => {
-        this.position = this.student.position;
-        this.teacherService.quantityStudent().subscribe(
-          dataStudentGroup => {
-            this.listQuantityStudent = dataStudentGroup;
-          },
-          () => {
-            this.openNotification('error');
-          },
-          () => {
-            this.signUpTeacherList = [];
-            let indexOfList = -1;
-            for (let i = 0; i < this.listQuantityStudent.length; i++) {
-              if (this.listQuantityStudent[i] != null && this.student.studentGroup.teacher != null) {
-                if (this.listQuantityStudent[i].id === this.student.studentGroup.teacher.id) {
-                  indexOfList = i;
-                  this.hiddenTable = false;
-                  this.checkChoose = false;
-                  this.selected = true;
-                  this.selectedTeacher.push(this.listQuantityStudent[i]);
-                  this.listQuantityStudent.splice(indexOfList, 1);
-                  break;
+        if (this.student == null) {
+          this.checkStudentExists = false;
+          this.hiddenTableTeacher = false;
+        } else {
+          this.position = this.student.position;
+          this.teacherService.quantityStudent().subscribe(
+            dataStudentGroup => {
+              this.listQuantityStudent = dataStudentGroup;
+            },
+            () => {
+              this.openNotification('error');
+            },
+            () => {
+              if (this.student.studentGroup == null) {
+                this.openNotification('check group');
+              } else {
+                this.signUpTeacherList = [];
+                let indexOfList = -1;
+                for (let i = 0; i < this.listQuantityStudent.length; i++) {
+                  if (this.listQuantityStudent[i] != null && this.student.studentGroup.teacher != null) {
+                    if (this.listQuantityStudent[i].id === this.student.studentGroup.teacher.id) {
+                      indexOfList = i;
+                      this.hiddenTable = false;
+                      this.checkChoose = false;
+                      this.selected = true;
+                      this.selectedTeacher.push(this.listQuantityStudent[i]);
+                      this.listQuantityStudent.splice(indexOfList, 1);
+                      break;
+                    }
+                  }
                 }
               }
-            }
-          });
-      });
+            });
+        }
+      })
+    ;
   }
 
   chooseInstructor(idTeacher) {
@@ -103,7 +115,7 @@ export class ListInstructorComponent implements OnInit {
       this.getStudent();
     } else {
       const checkSubscribed = this.student.studentGroup.checkThesis;
-      if (checkSubscribed !=  null) {
+      if (checkSubscribed != null) {
         this.openNotification('can not cancel');
       } else {
         const idStudentGroup = this.student.studentGroup.id;

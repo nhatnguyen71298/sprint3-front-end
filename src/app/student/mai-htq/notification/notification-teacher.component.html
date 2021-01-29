@@ -10,7 +10,7 @@
 
 <div *ngIf="message == 'outOf'">
   <i class="material-icons">error_outline</i>
-  <h1>Đã hết chỗ đăng ký.</h1>
+  <h1>Số sinh viên vượt quá số lượng được đăng ký.</h1>
 </div>
 
 <div *ngIf="message == 'cancel'">
@@ -26,6 +26,11 @@
 <div *ngIf="message == 'can not cancel'">
   <i class="material-icons">error_outline</i>
   <h1>Hủy thất bại. Nhóm đã đăng ký đề tài.</h1>
+</div>
+
+<div *ngIf="message == 'check group'">
+  <i class="material-icons">error_outline</i>
+  <h1>Đăng ký nhóm trước khi đăng ký giáo viên.</h1>
 </div>
 <br><br>
 

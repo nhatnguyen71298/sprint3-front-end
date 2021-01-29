@@ -6,7 +6,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MaterialModule} from '../material.module';
 
 
-
 @NgModule({
   declarations: [],
   imports: [

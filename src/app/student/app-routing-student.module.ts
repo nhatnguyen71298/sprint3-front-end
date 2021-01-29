@@ -35,6 +35,8 @@ export const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatDialogModule,
+    NgxPaginationModule,
     ReactiveFormsModule
   ],
   entryComponents: [ViewThesisComponent, NotificationSubscribeComponent]

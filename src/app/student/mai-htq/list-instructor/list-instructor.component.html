@@ -12,9 +12,12 @@
 </head>
 <body>
 <div class="container">
+  <div class="row justify-content-center mt-5" *ngIf="checkStudentExists == false">
+    <h1 class="text-danger">Không tìm thấy thông tin sinh viên đang đăng nhập!</h1>
+  </div>
   <div class="table-responsive">
     <div class="table-wrapper">
-      <h2><b>Đăng ký giáo viên hướng dẫn</b></h2>
+      <h2 *ngIf="hiddenTableTeacher"><b>Đăng ký giáo viên hướng dẫn</b></h2>
       <div class="row m-0">
         <div class="col-8"></div>
         <div class="col-4">
@@ -84,7 +87,7 @@
         </tbody>
       </table>
 
-      <div class="table-title mt-4">
+      <div class="table-title mt-4" *ngIf="hiddenTableTeacher">
         <div class="row m-0">
           <div class="col-4 m-0 p-0">
             <h2><b>Danh sách giáo viên</b></h2>
@@ -93,7 +96,7 @@
         </div>
       </div>
 
-      <table class="table table-striped table-hover">
+      <table class="table table-striped table-hover" *ngIf="hiddenTableTeacher">
         <thead>
         <tr>
           <th>STT</th>
