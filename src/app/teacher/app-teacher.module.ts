@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AppRoutingTeacherModule} from './app-routing-teacher.module';
+// @ts-ignore
+import {ToastrModule} from 'ngx-toastr';
 
 
 
@@ -8,7 +10,11 @@ import {AppRoutingTeacherModule} from './app-routing-teacher.module';
   declarations: [],
   imports: [
     CommonModule,
-    AppRoutingTeacherModule
+    AppRoutingTeacherModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    } )
   ]
 })
 export class AppTeacherModule { }
