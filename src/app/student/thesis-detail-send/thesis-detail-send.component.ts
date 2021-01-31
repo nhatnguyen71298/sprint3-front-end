@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage';
+import {ThesisDetailService} from '../../service/thesis-detail.service';
 
 declare var $: any;
 
@@ -12,6 +13,8 @@ declare var $: any;
 export class ThesisDetailSendComponent implements OnInit {
 
   studentId = 1;
+  thesisDetailId;
+  currentFile;
   tempCheckReport;
   files: File[] = [];
   formUpload: FormGroup;
@@ -21,15 +24,18 @@ export class ThesisDetailSendComponent implements OnInit {
   count;
   downloadURL;
   filePath: string;
+  tempCheckThesisId;
 
   constructor(private formBuilder: FormBuilder,
               private el: ElementRef,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private thesisDetailService: ThesisDetailService) {
 
     $(document).ready(() => {
       $('#get-file').hide();
       $('#progress-box').hide();
       $('.progress__choose-file-btn').click(() => {
+        this.checkReportStatus();
         $('#get-file').click();
       });
       $('#get-file').change((event) => {
@@ -39,19 +45,12 @@ export class ThesisDetailSendComponent implements OnInit {
         fileName = srcFile[1];
         $('.progress__file-name').val(fileName);
       });
-      $('#check-report-1').click(() => {
-        $('#check-report').val(1);
-        this.tempCheckReport = $('#check-report').val();
-      });
-      $('#check-report-2').click(() => {
-        $('#check-report').val(2);
-        this.tempCheckReport = $('#check-report').val();
-      })
     });
   }
 
   ngOnInit(): void {
     this.setFormUpload();
+    this.checkReportStatus();
   }
 
   dropFile(files: FileList) {
@@ -66,17 +65,21 @@ export class ThesisDetailSendComponent implements OnInit {
 
   setFormUpload() {
     this.formUpload = this.formBuilder.group({
-      progressFile: '',
+      id: '',
+      progressFile: ['', this.checkFile],
       fileUrl: '',
-      description: '',
+      description: ['', Validators.required],
       percent: '',
-      checkReport: ''
+      checkReport: '',
+      checkThesisId: '',
     })
   }
 
   uploadFile() {
-    this.formUpload.value.checkReport = this.tempCheckReport;
     if (this.formUpload.invalid) {
+      if ($('#get-file').val() === '') {
+        $('.progress__choose-file-btn').focus();
+      }
       console.log(this.formUpload.value.progressFile.valid);
       const tempControl = this.el.nativeElement.querySelector('form');
       tempControl.querySelector('.ng-invalid').focus();
@@ -84,6 +87,9 @@ export class ThesisDetailSendComponent implements OnInit {
     this.formUpload.markAllAsTouched();
     const isValid = $('#get-file').val() !== '' && $('.progress__content').val() !== '' && $('#check-report').val() !== '';
     if (this.formUpload.valid && isValid) {
+      this.formUpload.value.checkReport = this.tempCheckReport;
+      this.formUpload.value.id = this.thesisDetailId;
+      console.log(this.formUpload.value.id);
       this.count = 0;
       this.percentage = 0;
       for (const file of this.files) {
@@ -125,14 +131,31 @@ export class ThesisDetailSendComponent implements OnInit {
     this.storage.ref(this.filePath).getDownloadURL().subscribe((data) => {
       this.downloadURL = data;
       this.formUpload.value.fileUrl = this.downloadURL;
+      this.formUpload.value.checkThesisId = this.tempCheckThesisId;
       const fileNameTemp = this.formUpload.value.progressFile.split('fakepath\\');
       this.formUpload.value.progressFile = fileNameTemp[1];
+      console.log(this.formUpload.value);
       this.downloadURL = '';
       $('#get-file').files = [];
       $('#get-file').val('');
       $('.progress__file-name').val('');
       $('.progress__content').val('');
-      console.log(this.formUpload.value);
+      this.thesisDetailService.uploadThesisDetail(this.formUpload.value).subscribe(() => {
+      })
     })
+  }
+
+  checkFile(formControl: FormControl) {
+    return (formControl.value !== '') ? null : {checkFileExist: true};
+  }
+
+  private checkReportStatus() {
+    this.thesisDetailService.getCheckThesis(this.studentId).subscribe((data) => {
+        const tempDate = data;
+        this.tempCheckReport = tempDate.message;
+        this.thesisDetailId = tempDate.id;
+        this.tempCheckThesisId = tempDate.checkThesisId;
+      }
+    );
   }
 }

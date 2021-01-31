@@ -6,15 +6,9 @@
       <input type="button" class="progress__choose-file-btn btn btn-primary" value="Chọn file">
       <input id="get-file" type="file" (change)="dropFile($event.target.files)" formControlName="progressFile">
       <br>
-      <small id="error-choose-file" style="color: red; font-size:15px">Hãy chọn file để gửi</small>
-    </div>
-    <div>
-      <div class="form-group">
-        <label style="font-size: 20px"><input type="radio" id="check-report-1" value="1" name="check-report"> Báo cáo 1</label>
-        <label style="font-size: 20px"><input type="radio" id="check-report-2" value="2" name="check-report"> Báo cáo 2</label>
-        <input id="check-report" type="hidden" formControlName="checkReport"><br>
-        <small id="error-choose-report" style="color: red; font-size:15px">Hãy chọn loại báo cáo</small>
-      </div>
+      <small
+        *ngIf="formUpload.controls.progressFile?.errors?.checkFileExist && formUpload.controls.progressFile.touched"
+        id="error-choose-file" style="color: red; font-size:15px">Hãy chọn file để gửi</small>
     </div>
     <div class="form-group">
       <div class="progress__label-content">
@@ -22,7 +16,8 @@
       </div>
       <div>
         <textarea class="progress__content" formControlName="description"></textarea><br>
-        <small id="error-choose-content" style="color: red; font-size:15px">Hãy nhập chú thích cho báo cáo</small>
+        <small *ngIf="formUpload.controls.description?.touched && formUpload.controls.description?.errors?.required"
+               id="error-choose-content" style="color: red; font-size:15px">Hãy nhập chú thích cho báo cáo</small>
       </div>
     </div>
     <div class="progress__btn-submit">

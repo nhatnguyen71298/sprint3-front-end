@@ -9,6 +9,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {InstructionDocumentService} from '../service/instruction-document.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {ThesisDetailService} from '../service/thesis-detail.service';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AngularFireDatabaseModule,
     MatDialogModule
   ],
-  providers: [InstructionDocumentService]
+  providers: [InstructionDocumentService, ThesisDetailService]
 })
 export class AppTeacherModule {
 }

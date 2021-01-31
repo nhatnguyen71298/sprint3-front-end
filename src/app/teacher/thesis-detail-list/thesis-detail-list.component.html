@@ -1,0 +1,33 @@
+<div>
+  <table class="table">
+    <thead align="center">
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Nhóm thực hiện</th>
+      <th scope="col">Tên đề tài</th>
+      <th scope="col">Đánh giá buổi 1</th>
+      <th scope="col">Báo cáo 1</th>
+      <th scope="col">Đánh giá buổi 2</th>
+      <th scope="col">Báo cáo 2</th>
+      <th scope="col">Sửa</th>
+    </tr>
+    </thead>
+    <tbody align="center">
+    <tr *ngFor="let thesisDetail of thesisDetailList">
+      <th scope="row">{{thesisDetail.id}}</th>
+      <td>{{thesisDetail.groupName}}</td>
+      <td>{{thesisDetail.thesisName}}</td>
+      <td>{{thesisDetail.firstComment}}</td>
+      <td>
+        <a [href]=thesisDetail.firstFileUrl>{{thesisDetail.firstSubmitDate | date:'dd/MM/yyyy hh:mm:ss a'}}</a>
+      </td>
+      <td>{{thesisDetail.secondComment}}</td>
+      <td>
+        <a [href]=thesisDetail.secondFileUrl>{{thesisDetail.secondSubmitDate | date:'dd/MM/yyyy hh:mm:ss a'}}</a>
+      </td>
+      <td>Sửa</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>

@@ -8,19 +8,21 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InstructionDeleteComponent} from './instruction-document/instruction-delete/instruction-delete.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ThesisDetailListComponent } from './thesis-detail-list/thesis-detail-list.component';
 
 export const routes: Routes = [
   {
     path: 'teacher',
     children: [
       {path: 'feed-back', component: FeedBackComponent},
-      {path: 'instruction', component: InstructionDocumentComponent}
+      {path: 'instruction', component: InstructionDocumentComponent},
+      {path: 'thesis-detail-list', component: ThesisDetailListComponent}
     ]
   },
 ];
 
 @NgModule({
-  declarations: [FeedBackComponent, InstructionDocumentComponent, DropzoneDirective, InstructionDeleteComponent],
+  declarations: [FeedBackComponent, InstructionDocumentComponent, DropzoneDirective, InstructionDeleteComponent, ThesisDetailListComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
