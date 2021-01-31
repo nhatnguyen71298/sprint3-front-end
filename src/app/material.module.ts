@@ -4,7 +4,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule, MatOptionModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
+import {LoginComponent} from './login/login/login.component';
+import {ChangePassswordComponent} from "./Admin/change-passsword/change-passsword.component";
 
 
 @NgModule({
@@ -26,6 +28,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatOptionModule,
     MatDialogModule
-  ]
+  ],
+  providers: [
+    MatDatepickerModule, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+  ],
+  entryComponents: [LoginComponent, ChangePassswordComponent],
+  bootstrap:[]
 })
 export class MaterialModule { }

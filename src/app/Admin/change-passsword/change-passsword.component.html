@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <h1>Đổi mật khẩu</h1>
+  <hr>
+  <form [formGroup]="formChangePassword">
+    <div></div>
+    <div class="text-center">
+      <mat-form-field id="passwordOld">
+        <mat-label>Mật khẩu cũ</mat-label>
+        <input matInput formControlName="passwordOld">
+        <mat-error *ngIf="formChangePassword.controls.passwordOld.errors?.required">Mật khẩu không được để trống
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+    <div></div>
+    <div class="text-center">
+      <mat-form-field id="passwordNew">
+        <mat-label>Mật khẩu mới</mat-label>
+        <input matInput formControlName="passwordNew" type="password">
+        <mat-error *ngIf="formChangePassword.controls.passwordNew.errors?.required">Mật khẩu không được để trống
+        </mat-error>
+        <mat-error *ngIf="formChangePassword.controls.passwordNew.errors?.pattern">Mật khẩu tổi thiểu 8 kí tự, 1 chữ
+          thườmg, 1 chữ in hoa và 1 số
+        </mat-error>
+      </mat-form-field>
+    </div>
+<div></div>
+    <div class="text-center">
+      <mat-form-field id="passwordConfirm" class="example-full-width">
+        <mat-label>Xác nhận mật khẩu</mat-label>
+        <input matInput formControlName="passwordConfirm" type="password" (change)="test()">
+
+        <mat-error *ngIf="formChangePassword.controls.passwordConfirm.errors?.required">Mật khẩu không được để trống
+        </mat-error>
+
+        <mat-error *ngIf="formChangePassword.controls.passwordConfirm.errors?.pattern">Mật khẩu tổi thiểu 8 kí tự, 1 chữ
+          thườmg, 1 chữ in hoa và 1 số
+        </mat-error>
+
+      </mat-form-field>
+        <mat-error *ngIf="formChangePassword.hasError('notSame')">
+          Xác nhận mật khẩu chưa chính xác
+        </mat-error>
+
+    </div>
+    <hr>
+    <div class="d-flex justify-content-center my-4">
+      <button  class="btn  btn-primary mr-3" type="button" id="save" (click)="changePassword()">Lưu thay đổi</button>
+      <button  class="btn  btn-secondary" id="cancel" mat-dialog-close>Hủy bỏ</button>
+    </div>
+  </form>
+</div>
