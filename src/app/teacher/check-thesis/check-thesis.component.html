@@ -1,4 +1,4 @@
-<div class="check-thesis">
+<div *ngIf="checkThesis.length > 0" class="check-thesis">
   <div class="table-responsive">
     <div class="table-wrapper">
       <div class="table-title">
@@ -21,7 +21,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let thesis of checkThesis, let i = index">
+          <tr *ngFor="let thesis of checkThesis |paginate: { itemsPerPage: 3, currentPage: p}, let i = index">
             <td class="table1">{{i + 1}}</td>
             <td class="table1">{{thesis.groupName}}</td>
             <td class="table1">{{thesis.quantity}}</td>
@@ -41,6 +41,10 @@
           </tr>
           </tbody>
         </table>
+        <div *ngIf="checkThesis.length > 0" align="end">
+          <pagination-controls (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau"
+                               responsive="true"></pagination-controls>
+        </div>
         <button class="thesis-button">Lưu</button>
       </form>
     </div>
@@ -48,7 +52,7 @@
 </div>
 
 
-<div class="check-thesis mt-5">
+<div *ngIf="checkThesisApproved.length > 0" class="check-thesis mt-5">
   <div class="table-responsive">
     <div class="table-wrapper">
       <div class="table-title">

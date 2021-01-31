@@ -15,6 +15,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import { DetailContentThesisApprovedComponent } from './detail-content-thesis-approved/detail-content-thesis-approved.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 export const routes: Routes = [
   {
@@ -29,20 +30,21 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [FeedBackComponent, ListStudentComponent, CheckThesisComponent, DetailContentThesisComponent, DetailContentThesisApprovedComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatListModule,
-    MatExpansionModule,
-    MatSidenavModule,
-    MatButtonToggleModule,
-    MatRadioModule
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatListModule,
+        MatExpansionModule,
+        MatSidenavModule,
+        MatButtonToggleModule,
+        MatRadioModule,
+        NgxPaginationModule
+    ],
 })
 export class AppRoutingTeacherModule {
 }

@@ -3,6 +3,8 @@ import {TeacherService} from '../../services/teacher.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DetailContentThesisComponent} from '../detail-content-thesis/detail-content-thesis.component';
 import {DetailContentThesisApprovedComponent} from '../detail-content-thesis-approved/detail-content-thesis-approved.component';
+import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -18,7 +20,9 @@ export class CheckThesisComponent implements OnInit {
 
 
   constructor(public teacherService: TeacherService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private toast: ToastrService,
+              public routes: Router) {
   }
 
   ngOnInit(): void {
@@ -45,30 +49,43 @@ export class CheckThesisComponent implements OnInit {
     }, 1);
   }
 
+  /*function save check box*/
   saveCheckThesis() {
-    /*save check thesis*/
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.listCheckThesis.length; i++) {
-      this.teacherService.getSaveCheckThesis(this.listCheckThesis[i].idCheckThesis)
-        .subscribe(dataSaveCheckThesis => {
-          /*load list check thesis delete*/
-          this.teacherService.loadListCheckThesis().subscribe(dataLoadListDelete => {
-            this.loadListDeleteCheckThesis = dataLoadListDelete;
-            /*save update check thesis*/
-            // tslint:disable-next-line:prefer-for-of
-            for (let h = 0; h < this.loadListDeleteCheckThesis.length; h++) {
-              this.teacherService.saveUpdateCheckThesis(this.loadListDeleteCheckThesis[h].id).subscribe(dataUpdate => {
-              });
-              /*delete check thesis*/
-              this.teacherService.deleteCheckThesis(this.loadListDeleteCheckThesis[h].id).subscribe(dataDelete => {
-              });
-            }
-            this.ngOnInit();
+    if (this.listCheckThesis.length > 0) {
+      /*save check thesis*/
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.listCheckThesis.length; i++) {
+        this.teacherService.getSaveCheckThesis(this.listCheckThesis[i].idCheckThesis)
+          .subscribe(dataSaveCheckThesis => {
+            /*load list check thesis delete*/
+            this.teacherService.loadListCheckThesis().subscribe(dataLoadListDelete => {
+              this.loadListDeleteCheckThesis = dataLoadListDelete;
+              /*save update check thesis*/
+              if (this.loadListDeleteCheckThesis.length !== 0) {
+                // tslint:disable-next-line:prefer-for-of
+                for (let h = 0; h < this.loadListDeleteCheckThesis.length; h++) {
+                  this.teacherService.saveUpdateCheckThesis(this.loadListDeleteCheckThesis[h].id).subscribe(dataUpdate => {
+                    console.log(dataUpdate);
+                    /*delete check thesis*/
+                    this.teacherService.deleteCheckThesis(this.loadListDeleteCheckThesis[h].id).subscribe(dataDelete => {
+                      console.log(dataDelete);
+                      this.ngOnInit();
+                    });
+                  });
+                }
+              } else {
+                this.ngOnInit();
+              }
+            });
           });
-        });
+      }
+      this.toast.success('Duyệt đề tài thành công !');
+    } else {
+      this.toast.warning('Vui lòng chọn đề tài để duyệt !');
     }
   }
 
+  /*Checkbox*/
   changeCheckbox(checkThesis, i) {
     if (checkThesis) {
       checkThesis.checked = !checkThesis.checked;
@@ -76,6 +93,7 @@ export class CheckThesisComponent implements OnInit {
     }
   }
 
+  /*Display list check thesis status = false*/
   openDialog(i: number) {
     this.dialog.open(DetailContentThesisComponent, {
       position: {top: '85px'},
@@ -86,6 +104,7 @@ export class CheckThesisComponent implements OnInit {
     });
   }
 
+  /*Display list check thesis status = true*/
   openDialogApproved(i: number) {
     this.dialog.open(DetailContentThesisApprovedComponent, {
       position: {top: '85px'},
