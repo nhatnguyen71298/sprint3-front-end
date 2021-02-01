@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ThesisDetailService} from '../../service/thesis-detail.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
+declare var $: any;
 
 @Component({
   selector: 'app-thesis-detail-list',
@@ -8,19 +11,71 @@ import {ThesisDetailService} from '../../service/thesis-detail.service';
 })
 export class ThesisDetailListComponent implements OnInit {
 
+  formComment: FormGroup;
   thesisDetailList;
+  thesisDetailId = 0;
+  studentList = [];
+  thesisDetailName;
+  isSecondComment = false;
 
-  constructor(private thesisDetailService: ThesisDetailService) {
+  constructor(private thesisDetailService: ThesisDetailService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+    $('.upload-comment__done').hide();
     this.getListThesisDetail();
+    this.setFormComment();
+    this.studentList = [];
   }
 
   getListThesisDetail() {
-    this.thesisDetailService.getThesisDetailList().subscribe((data)=>{
+    this.thesisDetailService.getThesisDetailList().subscribe((data) => {
+      console.log(data);
       this.thesisDetailList = data;
-      console.log(this.thesisDetailList[0])
+    })
+  }
+
+  setFormComment() {
+    this.formComment = this.formBuilder.group({
+      id: '',
+      firstComment: '',
+      secondComment: ''
+    })
+  }
+
+  commentThesis(thesisDetail) {
+    this.formComment.patchValue({firstComment: thesisDetail.firstComment, secondComment: thesisDetail.secondComment})
+    this.thesisDetailService.getStudentList(thesisDetail.id).subscribe((data) => {
+      this.thesisDetailId = thesisDetail.id;
+      this.studentList = data;
+      this.thesisDetailName = thesisDetail.thesisName;
+    })
+    if (thesisDetail.secondFileUrl != null) {
+      this.isSecondComment = true;
+    } else {
+      this.isSecondComment = false;
+    }
+  }
+
+  uploadComment() {
+    this.formComment.value.id = this.thesisDetailId;
+    if (this.formComment.value.firstComment != null) {
+      this.formComment.value.firstComment = this.formComment.value.firstComment.trim();
+    }
+    if (this.formComment.value.secondComment != null) {
+      this.formComment.value.secondComment = this.formComment.value.secondComment.trim();
+    }
+    this.thesisDetailService.uploadComment(this.formComment.value.id, this.formComment.value).subscribe((data) => {
+      $(document).ready(() => {
+        if (data.message === 'upload success') {
+          $('.upload-comment__done').show();
+          setTimeout(() => {
+            $('.upload-comment__done').hide();
+          }, 2000);
+        }
+      })
+      this.ngOnInit();
     })
   }
 }

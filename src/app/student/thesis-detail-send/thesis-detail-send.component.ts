@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage';
 import {ThesisDetailService} from '../../service/thesis-detail.service';
+import {LoginService} from '../../services/login.service';
 
 declare var $: any;
 
@@ -13,6 +14,7 @@ declare var $: any;
 export class ThesisDetailSendComponent implements OnInit {
 
   studentId = 1;
+  userId;
   thesisDetailId;
   currentFile;
   tempCheckReport;
@@ -29,10 +31,12 @@ export class ThesisDetailSendComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private el: ElementRef,
               private storage: AngularFireStorage,
-              private thesisDetailService: ThesisDetailService) {
+              private thesisDetailService: ThesisDetailService,
+              private loginService: LoginService) {
 
     $(document).ready(() => {
       $('#get-file').hide();
+      $('.upload-file__done').hide();
       $('#progress-box').hide();
       $('.progress__choose-file-btn').click(() => {
         this.checkReportStatus();
@@ -49,8 +53,16 @@ export class ThesisDetailSendComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getStudentId();
     this.setFormUpload();
     this.checkReportStatus();
+  }
+
+  getStudentId() {
+    this.userId = this.loginService.currentUserValue.id;
+    this.thesisDetailService.getStudentIdByAccountId(this.userId).subscribe((data) => {
+      this.studentId = data;
+    })
   }
 
   dropFile(files: FileList) {
@@ -140,7 +152,16 @@ export class ThesisDetailSendComponent implements OnInit {
       $('#get-file').val('');
       $('.progress__file-name').val('');
       $('.progress__content').val('');
-      this.thesisDetailService.uploadThesisDetail(this.formUpload.value).subscribe(() => {
+      this.thesisDetailService.uploadThesisDetail(this.formUpload.value).subscribe((data) => {
+        $(document).ready(() => {
+          if (data.message === 'upload success') {
+            $('.upload-file__done').show();
+            setTimeout(() => {
+              $('.upload-file__done').hide();
+            }, 2000);
+          }
+        })
+
       })
     })
   }
