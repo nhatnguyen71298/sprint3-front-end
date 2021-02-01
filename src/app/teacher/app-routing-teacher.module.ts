@@ -8,7 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InstructionDeleteComponent} from './instruction-document/instruction-delete/instruction-delete.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { ThesisDetailListComponent } from './thesis-detail-list/thesis-detail-list.component';
+import {ThesisDetailListComponent} from './thesis-detail-list/thesis-detail-list.component';
 
 export const routes: Routes = [
   {
