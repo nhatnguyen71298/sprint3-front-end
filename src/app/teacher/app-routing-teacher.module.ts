@@ -22,6 +22,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { MessageGroupStudentComponent } from './student-group-management/message-group-student/message-group-student.component';
 import { FeedBackDialogComponent } from './feed-back-dialog/feed-back-dialog.component';
 import { OutsideDirective } from './outside.directive';
+import { CreateGroupComponent } from './create-group/create-group.component';
+import { ListStudentNoGroupComponent } from './list-student-no-group/list-student-no-group.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 export const routes: Routes = [
   {
@@ -34,6 +37,15 @@ export const routes: Routes = [
       {path: 'student-group-list', component: ManagementStudentGroupComponent},
     ]
   },
+  {
+    // quoc
+    path: 'teacher',
+    children: [
+      {path: 'create-group', component: CreateGroupComponent},
+    ]
+    // endquoc
+  }
+
 ];
 @NgModule({
   declarations: [FeedBackComponent, ListThesisComponent, DetailThesisComponent, EditThesisComponent,
@@ -42,7 +54,7 @@ export const routes: Routes = [
     QuantityStudentGroupComponent,
     MessageThesisComponent,
     NotificationThesisComponent,
-    MessageGroupStudentComponent],
+    MessageGroupStudentComponent, CreateGroupComponent, ListStudentNoGroupComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -50,7 +62,8 @@ export const routes: Routes = [
     NgxPaginationModule,
     MaterialModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule,
   ],
   providers: [DatePipe],
 })

@@ -18,6 +18,8 @@ import { MessageStudentComponent } from './message-student/message-student.compo
 import { StudentDeleteComponent } from './student-delete/student-delete.component';
 import { StudentEditComponent } from './student-edit/student-edit.component';
 import { StudentMessageComponent } from './student-message/student-message.component';
+import { ListNewComponent } from './list-new/list-new.component';
+import { DetailNewsComponent } from './detail-news/detail-news.component';
 
 export const routes: Routes = [
   {
@@ -29,13 +31,18 @@ export const routes: Routes = [
       {path: 'student-list', component: ListStudentComponent},
     ]
   },
+ // quoc
+  {path: 'news', component: ListNewComponent},
+  {path:'detail-news/:id',component:DetailNewsComponent}
+  // endquoc
 ];
 
 @NgModule({
   declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent,
     ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
     AddStudentComponent, MessageStudentComponent, ListStudentComponent,
-    StudentDeleteComponent, StudentEditComponent, StudentMessageComponent],
+    StudentDeleteComponent, StudentEditComponent, StudentMessageComponent,
+    ListNewComponent, DetailNewsComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

@@ -1,0 +1,53 @@
+<div class="inform-box " style="margin-top: 2px">
+  <div class="row ">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h3 class="content-header-container" style="margin-top:15px">
+        <label class="content-header">
+          <a [routerLink]="['/news']" style="color: white;text-decoration: none">Thông báo đào
+            tạo</a>
+        </label>
+      </h3>
+      <div class="fp-leftpad content-inner">
+        <h4 class="clr-b">
+          {{news?.title}}
+        </h4>
+        <div class="news_postdate">
+          <p class="udn-news-time mt-0"><img class="mr-1 mb-1" src="assets/quoc-image/clock.png" alt=""
+                                             srcset=""><span>{{news?.createDate | date :'dd/MM/yyyy, h:mm a'}}</span></p>
+        </div>
+
+        <p class="news_body"></p>
+        <p style="text-align:center"><span style="font-family:times new roman,times,serif"><span
+          style="font-size:24px"><span
+          style="color:rgb(47, 79, 79)"><strong>THÔNG BÁO</strong></span></span></span>
+        </p>
+
+        <p style="text-align:center"><span style="font-family:times new roman,times,serif"><span
+          style="font-size:24px"><span style="color:rgb(47, 79, 79)">VĂN PHÒNG KHOA THÔNG BÁO&nbsp;</span></span></span>
+        </p>
+
+        <p style="text-align:center"><span style="font-size:24px"><span
+          style="color:rgb(47, 79, 79)"><strong><span
+          style="font-family:times new roman,serif">{{news?.content}}</span></strong></span></span>
+        </p>
+
+        <p style="text-align:center"><span style="font-size:24px"><span
+          style="color:rgb(47, 79, 79)"><strong><span
+          style="font-family:times new roman,serif">KHÓA 2017&nbsp;</span></strong></span><span
+          style="color:rgb(47, 79, 79)"><strong><span
+          style="font-family:times new roman,serif">HỌC KỲ 1&nbsp;NĂM HỌC 2020 - 2021</span></strong></span></span>
+        </p>
+
+        <p style="text-align:center"><a [href]=news?.newsURL
+         ><span
+          style="font-size:24px"><span style="color:rgb(47, 79, 79)"><span
+          style="font-family:times new roman,times,serif"><strong>Thông tin chi tiết vui lòng xem tại đây!</strong></span></span></span></a>
+        </p>
+
+        <p style="text-align:center"><span style="font-family:times new roman,times,serif"><span
+          style="font-size:24px"><span style="color:rgb(47, 79, 79)">VP KHOA CÔNG NGHỆ THÔNG TIN CODEGYM ĐÀ NẴNG</span></span></span>
+        </p>
+        <p></p></div>
+    </div>
+  </div>
+</div>

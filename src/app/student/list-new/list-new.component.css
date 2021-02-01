@@ -1,0 +1,134 @@
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+li p {
+  line-height: 22px;
+}
+
+li {
+  list-style-type: none;
+  color: black;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+li.inform-item {
+  min-height: 85px;
+}
+
+.list-news-more li {
+  padding-top: 10px !important;
+}
+
+element.style {
+  margin-top: 5px !important;
+}
+
+.list-news-more {
+  margin-top: 0px;
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+
+}
+
+.udn-inform-img {
+  float: left;
+  margin-right: 15px;
+  border-radius: 5px;
+  background: #f3cb2d;
+}
+
+hr {
+  background-color: black;
+  box-sizing: content-box;
+  overflow: visible;
+}
+
+.date_inform {
+  font-size: 14px !important;
+}
+
+.list-news-more li a {
+  display: inline-grid;
+  color: #428bca !important;
+  font-size: 14px !important;
+}
+
+.details_inform {
+  font-size: 18px;
+  color: #545454;
+  letter-spacing: 0;
+  line-height: 24px;
+  text-align: left;
+}
+
+.list-news-more li {
+  padding: 17px 0;
+  padding-bottom: 0px !important;
+  border-bottom: 1px dashed #e9e9e9;
+}
+
+.inform-box {
+  border-style: solid;
+  border-color: #c4c4c4;
+  border: 7px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px #c4c4c4;
+  padding: 15px;
+  background: #fff;
+  margin-left: -2px;
+  padding-bottom: 35px;
+  margin-top: 15px;
+  font-family: Roboto-Regular !important;
+}
+
+.box {
+  box-shadow: 148px -148px 0px -139px #0d436c;
+
+  /*box-shadow:inset 0 0 10px 0 #000000*/
+  /*box-shadow:inset 0 0 10px #000000*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.content-header {
+  margin-bottom: 0px;
+  background-color: #E57022;
+  color: #fff;
+  font-size: 13pt;
+  padding: 7px;
+  padding-left: 15px;
+  padding-right: 25px;
+  font-weight: normal;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.content-header-container {
+  border-bottom: 2px solid #E57022;
+  clear: both;
+  padding: 6px;
+  padding-bottom: 0px;
+  font-weight: normal;
+}
