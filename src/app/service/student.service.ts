@@ -31,14 +31,19 @@ export class StudentService {
   addNewStudentService(studentDTO: Student): Observable<any> {
     return this.http.post(this.API + '/addNew', studentDTO);
   }
-  validateWhiteSpace(control: AbstractControl) {
-    if (control.value !== '') {
-      const isWhiteSpace = control.value.trim().length === 0;
-      if (isWhiteSpace) {
-        const isValid = !isWhiteSpace;
-        return isValid ? null : {whiteSpace: true};
-      }
-    }
+
+  getStudentById(studentId): Observable<any> {
+    return this.http.get(this.API + '/findStudentById/' + studentId);
+  }
+
+  prepareDeleteStudent(studentId): Observable<any> {
+    return this.http.get(this.API + '/prepareDeleteStudent/' + studentId);
+  }
+  editStudent(studentDTO, studentId): Observable<any> {
+    return this.http.put(this.API + '/editStudent/' + studentId, studentDTO);
+  }
+  deleteStudent(studentId): Observable<any> {
+    return this.http.delete(this.API + '/deleteStudent/' + studentId);
   }
   // validate khoảng trắng
   validateWhitespace(control: AbstractControl) {
@@ -69,6 +74,7 @@ export class StudentService {
     }
     return null;
   };
+
   searchStudent(inputSearch: string): Observable<any> {
     let params = new HttpParams();
     params = params.append('valueSearch', inputSearch);

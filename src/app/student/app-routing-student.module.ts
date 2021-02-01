@@ -15,6 +15,9 @@ import {NotificationTeacherComponent} from './mai-htq/notification/notification-
 import { ListStudentComponent } from './list-student/list-student.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { MessageStudentComponent } from './message-student/message-student.component';
+import { StudentDeleteComponent } from './student-delete/student-delete.component';
+import { StudentEditComponent } from './student-edit/student-edit.component';
+import { StudentMessageComponent } from './student-message/student-message.component';
 
 export const routes: Routes = [
   {
@@ -31,7 +34,8 @@ export const routes: Routes = [
 @NgModule({
   declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent,
     ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
-    AddStudentComponent, MessageStudentComponent],
+    AddStudentComponent, MessageStudentComponent,
+    StudentDeleteComponent, StudentEditComponent, StudentMessageComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
