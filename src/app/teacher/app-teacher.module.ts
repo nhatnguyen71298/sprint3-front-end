@@ -8,6 +8,9 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment';
 import {ToastrModule} from 'ngx-toastr';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {InstructionDocumentService} from '../service/instruction-document.service';
+import {ThesisDetailService} from '../service/thesis-detail.service';
 
 
 
@@ -19,10 +22,12 @@ import {ToastrModule} from 'ngx-toastr';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     } )
-  ]
+  ],
+  providers: [InstructionDocumentService, ThesisDetailService]
 })
 export class AppTeacherModule { }

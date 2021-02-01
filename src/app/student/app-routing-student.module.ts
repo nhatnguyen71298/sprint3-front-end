@@ -21,6 +21,7 @@ import { StudentMessageComponent } from './student-message/student-message.compo
 import { ListNewComponent } from './list-new/list-new.component';
 import { DetailNewsComponent } from './detail-news/detail-news.component';
 import { ConfirmComponent } from './subscribe-thesis/confirm/confirm.component';
+import {ThesisDetailSendComponent} from './thesis-detail-send/thesis-detail-send.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,7 @@ export const routes: Routes = [
       {path: 'subscribe/:idStudent', component: SubscribeThesisComponent},
       {path: 'list-instructor/:idStudent', component: ListInstructorComponent},
       {path: 'student-list', component: ListStudentComponent},
+      {path: 'send-thesis-detail', component: ThesisDetailSendComponent}
     ]
   },
  // quoc
@@ -43,7 +45,7 @@ export const routes: Routes = [
     ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
     AddStudentComponent, MessageStudentComponent, ListStudentComponent,
     StudentDeleteComponent, StudentEditComponent, StudentMessageComponent,
-    ListNewComponent, DetailNewsComponent,ConfirmComponent],
+    ListNewComponent, DetailNewsComponent,ConfirmComponent, ThesisDetailSendComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

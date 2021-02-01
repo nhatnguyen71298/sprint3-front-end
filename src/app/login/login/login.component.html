@@ -1,0 +1,21 @@
+
+<h2 style="font-family: sans-serif; color: cornflowerblue" > Đăng nhập</h2>
+<hr>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Tên đăng nhập</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Mật khẩu</mat-label>
+    <input matInput formControlName="password" type="password">
+  </mat-form-field>
+  <hr>
+  <div class="d-flex justify-content-center">
+    <button class="btn  btn-primary mr-3" type="submit">Đăng nhập</button>
+    <button class="btn  btn-secondary" mat-dialog-close>Hủy</button>
+  </div>
+</form>
+
+
+

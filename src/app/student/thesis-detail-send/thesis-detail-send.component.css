@@ -1,0 +1,290 @@
+.boxsizingBorder {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.upload-file__done{
+  position: fixed;
+  left: 5px;
+  bottom: 5px;
+  z-index: 100;
+  background-color: rgb(0, 247, 255);
+  width: 300px;
+  height: 60px;
+  border-radius: 5px;
+
+}
+
+.progress-report {
+  position: relative;
+  margin-top: 30px;
+  margin-left: 30px;
+  height: 100%;
+}
+
+.progress__report-file {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.progress__file-name {
+  border: black solid 2px;
+  width: 83%;
+  margin-left: 100px;
+  height: 35px;
+}
+
+.progress__choose-file-btn {
+  float: right;
+  margin-left: 20px;
+  margin-right: 40px;
+}
+
+.progress__choose-file-btn:focus {
+  border: red solid 2px;
+}
+
+.progress__label-content {
+  max-width: 100px;
+  width: 100px
+}
+
+.progress__content {
+  width: 98%;
+  height: 250px;
+  overflow-x: hidden;
+  overflow-y: scroll
+}
+
+.progress__btn-submit {
+  float: right;
+  margin-left: 20px;
+  margin-right: 40px;
+}
+
+.instruction__progress-box {
+  position: fixed;
+  right: 13px;
+  bottom: 3px;
+  width: 300px;
+  height: 100px;
+  z-index: 1000;
+  box-shadow: #61656b;
+  border-radius: 10px
+}
+
+.instruction__progress-box-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 40px;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.75)
+}
+
+.instruction__progress-percent {
+  position: absolute;
+  width: auto;
+  bottom: 24px;;
+  border: none;
+  margin-left: 10px
+}
+
+.instruction__progress-done {
+  color: green;
+  position: absolute;
+  font-size: 28px;
+  bottom: 20px;
+  margin-left: 10px
+}
+
+#check-report-1 {
+  margin-left: 10px;
+}
+
+#check-report-2 {
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 2600px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 84%;
+    margin-left: 100px
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-right: 30px
+  }
+}
+
+@media only screen and (max-width: 2500px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 77%;
+    margin-left: 100px
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-right: 30px
+  }
+}
+
+@media only screen and (max-width: 2200px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 75%;
+    margin-left: 100px
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-right: 30px
+  }
+}
+
+@media only screen and (max-width: 2000px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 72%;
+    margin-left: 100px
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-right: 30px
+  }
+}
+
+@media only screen and (max-width: 1800px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 66%;
+    margin-left: 100px
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-right: 30px
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 62%;
+    margin-left: 100px
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-right: 30px
+  }
+}
+
+@media only screen and (max-width: 1340px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 57%;
+    margin-left: 100px
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-right: 30px
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 55%;
+    margin-left: 50px
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 58%;
+    margin-left: 50px
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 56%;
+    margin-left: 50px
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 62%;
+    margin-left: 50px
+  }
+
+  label {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 52%;
+    margin-left: 50px
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 92%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  .progress__choose-file-btn {
+    float: right;
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .progress__file-name {
+    border: black solid 2px;
+    width: 90%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  .progress__choose-file-btn {
+    float: right;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .progress__btn-submit {
+    float: right;
+    margin-right: 5px
+  }
+}
+

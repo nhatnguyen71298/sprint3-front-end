@@ -31,6 +31,10 @@ import {SuccessComponent} from './teacher-management/success/success.component';
 import {SearchComponent} from './teacher-management/alert/search/search.component';
 import {NoResultComponent} from './teacher-management/alert/no-result/no-result.component';
 import {TeacherListComponent} from './teacher-management/teacher-list/teacher-list.component';
+import {InstructionDocumentComponent} from './instruction-document/instruction-document.component';
+import {DropzoneDirective} from './instruction-document/dropzone.directive';
+import {InstructionDeleteComponent} from './instruction-document/instruction-delete/instruction-delete.component';
+import {ThesisDetailListComponent} from './thesis-detail-list/thesis-detail-list.component';
 
 export const routes: Routes = [
   {
@@ -64,7 +68,8 @@ export const routes: Routes = [
     MessageThesisComponent,
     NotificationThesisComponent,
     MessageGroupStudentComponent, CreateGroupComponent, ListStudentNoGroupComponent,
-    TeacherListComponent, TeacherAddComponent, SuccessComponent, SearchComponent, NoResultComponent],
+    TeacherListComponent, TeacherAddComponent, SuccessComponent, SearchComponent, NoResultComponent,
+    InstructionDocumentComponent, DropzoneDirective, InstructionDeleteComponent, ThesisDetailListComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

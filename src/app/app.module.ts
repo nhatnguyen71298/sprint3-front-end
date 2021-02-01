@@ -9,6 +9,8 @@ import {AppStudentModule} from './student/app-student.module';
 import {MaterialModule} from './material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './services/AuthInterceptor';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,11 @@ import {ToastrModule} from 'ngx-toastr';
       preventDuplicates: true,
     })
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

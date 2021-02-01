@@ -15,6 +15,10 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {NgxPaginationModule} from "ngx-pagination";
 import {PickerModule} from "@ctrl/ngx-emoji-mart";
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
+import {LoginComponent} from './login/login/login.component';
+import {ChangePassswordComponent} from "./Admin/change-passsword/change-passsword.component";
+
 
 @NgModule({
   declarations: [],
@@ -56,5 +60,10 @@ import {PickerModule} from "@ctrl/ngx-emoji-mart";
     NgxPaginationModule,
     PickerModule
   ],
+  providers: [
+    MatDatepickerModule, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+  ],
+  entryComponents: [LoginComponent, ChangePassswordComponent],
+  bootstrap:[]
 })
 export class MaterialModule { }

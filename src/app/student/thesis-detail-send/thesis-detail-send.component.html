@@ -1,0 +1,36 @@
+<div class="progress-report">
+  <form (ngSubmit)="uploadFile()" [formGroup]="formUpload">
+    <div class="form-group">
+      <label style="font-size: 20px">File báo cáo</label>
+      <input class="progress__file-name" style="" type="text" disabled>
+      <input type="button" class="progress__choose-file-btn btn btn-primary" value="Chọn file">
+      <input id="get-file" type="file" (change)="dropFile($event.target.files)" formControlName="progressFile">
+      <br>
+      <small
+        *ngIf="formUpload.controls.progressFile?.errors?.checkFileExist && formUpload.controls.progressFile.touched"
+        id="error-choose-file" style="color: red; font-size:15px">Hãy chọn file để gửi</small>
+    </div>
+    <div class="form-group">
+      <div class="progress__label-content">
+        <span style="font-size: 20px">Nội dung</span>
+      </div>
+      <div>
+        <textarea class="progress__content" formControlName="description"></textarea><br>
+        <small *ngIf="formUpload.controls.description?.touched && formUpload.controls.description?.errors?.required"
+               id="error-choose-content" style="color: red; font-size:15px">Hãy nhập chú thích cho báo cáo</small>
+      </div>
+    </div>
+    <div class="progress__btn-submit">
+      <button type="submit" class="btn btn-primary">Gửi báo cáo</button>
+    </div>
+  </form>
+</div>
+<div id="progress-box" class="instruction__progress-box">
+  <div class="instruction__progress-box-header"></div>
+  <meter style="font-size: 50px" [value]=percentage min="0" max="100"></meter>
+  <input id="progress-upload" class="instruction__progress-percent" [value]=displayPercent disabled>
+  <i id="upload-done" class="fa fa-check-circle instruction__progress-done" aria-hidden="true"></i>
+</div>
+<div class="upload-file__done">
+  <div style="color: white; font-size: 20px; font-family: Arial; padding: 10px">Đã tải file thành công</div>
+</div>

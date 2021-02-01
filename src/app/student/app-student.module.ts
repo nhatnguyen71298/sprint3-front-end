@@ -4,6 +4,7 @@ import {AppRoutingStudentModule} from './app-routing-student.module';
 import {HttpClientModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MaterialModule} from '../material.module';
+import {ThesisDetailService} from '../service/thesis-detail.service';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {MaterialModule} from '../material.module';
     HttpClientModule,
     MatDialogModule,
     MaterialModule,
-  ]
+  ],
+  providers: [ThesisDetailService]
 })
 export class AppStudentModule { }

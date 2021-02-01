@@ -1,0 +1,73 @@
+<div>
+  <table class="table">
+    <thead align="center">
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Nhóm thực hiện</th>
+      <th scope="col">Tên đề tài</th>
+      <th scope="col">Đánh giá buổi 1</th>
+      <th scope="col">Báo cáo 1</th>
+      <th scope="col">Đánh giá buổi 2</th>
+      <th scope="col">Báo cáo 2</th>
+      <th scope="col">Sửa</th>
+    </tr>
+    </thead>
+    <tbody align="center">
+    <tr *ngFor="let thesisDetail of thesisDetailList | paginate: {itemsPerPage: 3, currentPage: p}">
+      <th scope="row">{{thesisDetail.id}}</th>
+      <td>{{thesisDetail.groupName}}</td>
+      <td>{{thesisDetail.thesisName}}</td>
+      <td>{{thesisDetail.firstComment}}</td>
+      <td>
+        <a class="firstUrl"
+           [href]=thesisDetail.firstFileUrl>{{thesisDetail.firstSubmitDate | date:'dd/MM/yyyy hh:mm:ss a'}}</a>
+        <div align="left" class="hideFirst"><span
+          style=" width: 200px; word-wrap: break-word; float:left;font-size: 15px; padding: 20px">{{thesisDetail.firstDescription}}</span>
+        </div>
+      </td>
+      <td>{{thesisDetail.secondComment}}</td>
+      <td>
+        <a class="secondUrl" *ngIf="thesisDetail.secondFileUrl != null "
+           [href]=thesisDetail.secondFileUrl>{{thesisDetail.secondSubmitDate | date:'dd/MM/yyyy hh:mm:ss a'}}</a>
+        <div align="left" class="hideSecond"><span
+          style="word-wrap: break-word ;float:left; font-size: 15px; padding: 20px; width: 200px">
+          {{thesisDetail.secondDescription}}</span>
+        </div>
+      </td>
+      <td>
+        <button class="btn" (click)="commentThesis(thesisDetail)">Sửa</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls style="float: right;margin-right: 50px; margin-top: 5px"
+                       (pageChange)="p = $event"></pagination-controls>
+</div>
+<div *ngIf="studentList.length != 0" style="margin-top: 91px">
+  <form [formGroup]="formComment" (ngSubmit)="uploadComment()">
+    <div class="form-group">
+      <label style="font-size: 18px">Sinh viên thực hiện: </label>
+      <span *ngFor="let student of studentList">
+        <button
+          style="background-color: white; margin-left: 5px; margin-right: 5px; border-radius: 5px">{{student.fullName}}</button>
+      </span>
+    </div>
+    <div class="form-group">
+      <label style="font-size: 18px">Tên đề tài: </label>
+      <input [value]="thesisDetailName" style="margin-left: 5px; width: 86%" disabled>
+    </div>
+    <div class="form-group">
+      <div style="font-size: 18px">Đánh giá buổi 1</div>
+      <textarea id="first" style="width: 95%; margin-top: 5px" formControlName="firstComment"></textarea>
+    </div>
+    <div *ngIf="isSecondComment" class="form-group">
+      <div style="font-size: 18px">Đánh giá buổi 2</div>
+      <textarea id="second" style="width: 95%; margin-top: 5px" formControlName="secondComment"></textarea>
+    </div>
+    <button style="float: right; margin-right: 20px; width: 100px" class="btn btn-primary">Lưu</button>
+  </form>
+</div>
+
+<div class="upload-comment__done">
+  <div style="color: white; font-size: 20px; font-family: Arial; padding: 10px">Đã nhập đánh giá thành công</div>
+</div>

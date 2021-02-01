@@ -1,0 +1,66 @@
+<div>
+  <span style="font-size: 30px">Danh sách</span>
+  <select style="margin-left: 40px" [(ngModel)]="defaultValue" (change)="getSemester($event.target.value)">
+    <option style="width: 100px" *ngFor="let periodTime of periodList" value="{{periodTime.id}}">
+      {{periodTime.periodName}}
+    </option>
+  </select>
+</div>
+<div class="table instruction__table-list">
+  <table class="instruction__list-table">
+    <thead>
+    <tr align="center" class="instruction__list-header">
+      <th class="instruction__list-th">Stt</th>
+      <th class="instruction__list-th">Tên tài liệu</th>
+      <th class="instruction__list-th">Mô tả</th>
+      <th class="instruction__list-th">Tải về</th>
+      <th class="instruction__list-th">Xóa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let instruction of instructionList | paginate: {itemsPerPage: 5, currentPage: p}"
+        class="instruction__list-content" align="center">
+      <th class="instruction__list-td">{{instruction.id}}</th>
+      <td class="instruction__list-td">{{instruction.fileName}}</td>
+      <td class="instruction__list-td">{{instruction.description}}</td>
+      <td class="instruction__list-td">
+        <a href="{{instruction.fileUrl}}"> <i class="btn-download fa fa-download" aria-hidden="true"></i></a>
+      </td>
+      <td class="instruction__list-td">
+        <button class="btn-delete"  style="border: none" (click)="openDialogDelete(instruction)">
+          <i class="icon-delete fa fa-trash" aria-hidden="true"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls style="float: right;margin-top: 5px" (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div class="instruction__upload">
+  <form [formGroup]="formUpload" (ngSubmit)="startUpLoad()">
+    <div class="instruction__upload-tittle"><b>Upload</b></div>
+    <div class="instruction__upload-content">
+      <div class="instruction__upload-file-name">
+        <label>Tên tài liệu</label>
+        <input class="instruction__upload-input" type="text" disabled>
+        <input type="button" class="instruction__choose-file btn-primary" value="Chọn file">
+        <input type="file" id="get-file" (change)="onDrop($event.target.files)" formControlName="fileName">
+      </div>
+      <div class="instruction__upload-description">
+        <span>Mô tả</span><br>
+        <textarea class="instruction__upload-description-content" formControlName="description"></textarea>
+      </div>
+    </div>
+    <div class="instruction__upload-submit">
+      <button type="submit" class="btn-primary">Upload file</button>
+    </div>
+  </form>
+</div>
+<div id="progress-box" class="instruction__progress-box">
+  <div class="instruction__progress-box-header"></div>
+  <meter style="font-size: 50px" [value]=percentage min="0" max="100"></meter>
+  <input id="progress-upload" class="instruction__progress-percent" [value]=displayPercent disabled>
+  <i id="upload-done" class="fa fa-check-circle instruction__progress-done" aria-hidden="true"></i>
+</div>
+
+
