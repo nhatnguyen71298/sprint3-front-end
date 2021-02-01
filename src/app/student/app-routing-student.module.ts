@@ -34,7 +34,7 @@ export const routes: Routes = [
 @NgModule({
   declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent,
     ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
-    AddStudentComponent, MessageStudentComponent,
+    AddStudentComponent, MessageStudentComponent, ListStudentComponent,
     StudentDeleteComponent, StudentEditComponent, StudentMessageComponent],
   imports: [
     RouterModule.forChild(routes),
