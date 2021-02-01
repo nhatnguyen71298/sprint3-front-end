@@ -8,7 +8,7 @@
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <div class="navbar-nav mx-3 justify-content-center">
       <a href="#" class="nav-item nav-link active">Trang Chủ</a>
-      <a href="#" class="nav-item nav-link">Tin Tức</a>
+      <a routerLink="/news" class="nav-item nav-link">Tin Tức</a>
       <div class="navbar-nav ml-auto">
         <div class="nav-item dropdown">
           <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Giáo Viên<b
@@ -20,6 +20,8 @@
               tài</a>
             <a [routerLink]="['/teacher/student-group-list']" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Quản lý nhóm sinh viên
             </a>
+            <a [routerLink]="['/teacher/create-group']" class="dropdown-item"><i class="fa fa-list-alt" aria-hidden="true"></i>
+              Tạo mới nhóm</a>
             <a href="#" class="dropdown-item"><i class="fa fa-check-square-o" aria-hidden="true"></i> Kiểm
               duyệt đề tài</a>
             <a href="#" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Danh
@@ -81,6 +83,7 @@
 <div class="container-fluid my-0 " id="container">
   <div class="row p-1">
 <!--    Side-bar-->
+
     <div class="col-lg-9">
       <router-outlet></router-outlet>
     </div>
@@ -194,9 +197,6 @@
       </div>
     </div>
 <!--    End side bar-->
-    <div class="col-lg-9  ">
-      <router-outlet></router-outlet>
-    </div>
     </div>
   </div>
 
