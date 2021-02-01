@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {StudentService} from '../../service/student.service';
+import {StudentMessageComponent} from '../student-message/student-message.component';
 
 @Component({
   selector: 'app-student-edit',
@@ -12,7 +13,7 @@ export class StudentEditComponent implements OnInit {
 
   public formEditStudent: FormGroup;
   public studentOfId;
-  public idMessage = 3;
+  public idMessage = 2;
   public list1;
   public list2;
   constructor(
@@ -33,10 +34,10 @@ export class StudentEditComponent implements OnInit {
     });
     this.formEditStudent = this.formBuilder.group({
       fullName: ['', [Validators.required, this.studentService.validateSpecialCharacter, Validators.minLength(3),
-        Validators.maxLength(45), this.studentService.validateWhiteSpace]],
-      email: ['', [Validators.required, Validators.pattern('^[a-z][\\w]{3,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$')]],
-      phone: ['', [Validators.required, Validators.pattern('^0\\d{9}|(\\+84)\\d{9}$')]],
-      studentCode: [''],
+        Validators.maxLength(45), this.studentService.validateWhitespace]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      phone: ['', [Validators.required, this.studentService.validPhoneNumber]],
+      studentCode: ['', [Validators.required,Validators.pattern('^SV-\\d{4}$'), this.studentService.validateWhitespace]],
       topic: ['', [Validators.required]],
       teacher: ['', [Validators.required]],
     });
@@ -64,7 +65,7 @@ export class StudentEditComponent implements OnInit {
   // Dialog thông báo chỉnh sửa thông tin sinh viên thành công.
   openDialogMessage() {
     const timeout = 2000;
-    const dialogRef = this.dialog.open(StudentEditComponent, {
+    const dialogRef = this.dialog.open(StudentMessageComponent, {
       width: '500px',
       height: '300px',
       data: {dataMessage: this.idMessage},
@@ -76,5 +77,4 @@ export class StudentEditComponent implements OnInit {
       }, timeout);
     });
   }
-
 }

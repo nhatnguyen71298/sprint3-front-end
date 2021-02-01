@@ -49,23 +49,7 @@ export class StudentService {
     return this.http.put(this.API + '/editStudent/' + studentId, studentDTO);
   }
 
-  validateWhiteSpace(control: AbstractControl) {
-    if (control.value !== '') {
-      const isWhiteSpace = control.value.trim().length === 0;
-      if (isWhiteSpace) {
-        const isValid = !isWhiteSpace;
-        return isValid ? null : {whiteSpace: true};
-      }
-    }
-  }
-
-  validateSpecialCharacter(control: AbstractControl) {
-    const specialCharacter = '[~`!@#$%^&*()-+=/*?:;.,|]+';
-    return (control.value.match(specialCharacter)) ? {
-      specialCharacter: true
-    } : null;
-  }
-
+  // validate số điện thoại.
   validPhoneNumber: ValidatorFn = (control: FormControl): ValidationErrors | null => {
     const phoneRegex = /^0[35789]\d{8}$/;
     const characterRegex = /^[^\d]+$/;
@@ -82,6 +66,23 @@ export class StudentService {
     }
     return null;
   };
+
+  // Kí tự đặt biệt
+  validateSpecialCharacter(control: AbstractControl) {
+    const specialCharacter = '[~`!' +
+      '@#$%^&*()-+=/*?:;.,|]+';
+    return (control.value.match(specialCharacter)) ? {
+      specialCharacter: true
+    } : null;
+  }
+
+// validate khoảng trắng
+  validateWhitespace(control: AbstractControl) {
+    if ((control.value as string).indexOf('  ') >= 0) {
+      return {cannotContainSpace: true};
+    }
+    return null;
+  }
 
   searchStudent(inputSearch: string): Observable<any> {
     let params = new HttpParams();

@@ -9,6 +9,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { StudentDeleteComponent } from './student-delete/student-delete.component';
 import { StudentEditComponent } from './student-edit/student-edit.component';
 import { StudentMessageComponent } from './student-message/student-message.component';
+import {MaterialModule} from '../material.module';
 
 
 export const routes: Routes = [
@@ -21,13 +22,14 @@ export const routes: Routes = [
 ];
 @NgModule({
   declarations: [ListStudentComponent, AddStudentComponent, StudentDeleteComponent, StudentEditComponent, StudentMessageComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgxPaginationModule,
-  ]
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgxPaginationModule,
+        MaterialModule,
+    ]
 })
 export class AppRoutingStudentModule { }
