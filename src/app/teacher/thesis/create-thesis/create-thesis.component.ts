@@ -17,6 +17,7 @@ export class CreateThesisComponent implements OnInit {
   public thesis: Thesis;
   public listRole: [];
   public idMessage = 1;
+  private idTeacherLogin = 1;
 
   constructor(
     private thesisService: ThesisService,
@@ -47,7 +48,7 @@ export class CreateThesisComponent implements OnInit {
     }
     this.formCreate.markAllAsTouched();
     if (this.formCreate.valid) {
-      this.thesisService.createThesis(this.formCreate.value).subscribe(data1 => {
+      this.thesisService.createThesis(this.idTeacherLogin,this.formCreate.value).subscribe(data1 => {
         if (data1 == null) {
           this.dialogRef.close();
           this.openDialogMessage();

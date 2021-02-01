@@ -11,6 +11,7 @@ import {DetailThesisComponent} from '../detail-thesis/detail-thesis.component';
 import {EditThesisComponent} from '../edit-thesis/edit-thesis.component';
 import {DeleteThesisComponent} from '../delete-thesis/delete-thesis.component';
 import {CreateThesisComponent} from '../create-thesis/create-thesis.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-list-thesis',
@@ -32,16 +33,21 @@ export class ListThesisComponent implements OnInit {
   public keywordSearch: string;
   public checkList = 'true';
   private searchFields: SearchThesis = {} as SearchThesis;
+  protected idTeacher;
 
 
 
   constructor(private thesisService: ThesisService,
               private httpClient: HttpClient,
+              private activatedRoute: ActivatedRoute,
               public dialog: MatDialog,
               public formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    // this.activatedRoute.params.subscribe(data => {
+    //   this.idTeacher = data.idTeacher;
+    // });
     this.formSearch = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
       statement: [''],

@@ -4,8 +4,8 @@
     <div class="container-fluid">
       <h2>QUẢN LÝ NHÓM SINH VIÊN</h2>
       <br><br>
-      <table class="table table-hover">
-        <thead class="table-hover">
+      <table class="table table-striped">
+        <thead class="table-striped">
         <tr>
           <th>STT</th>
           <th>Tên Nhóm</th>
@@ -21,9 +21,9 @@
             <span *ngIf="test == 'first'">{{i + 1}}</span>
             <span *ngIf="test != 'first'">{{(i + 1) + (p - 1) * 4}}</span></td>
           <td>{{list.groupName}}</td>
-          <td style="margin-left: 50px;">{{list.quantity}}</td>
+          <td>{{list.quantity}}</td>
           <td>
-            <button class="btn btn-danger" (click)="openDetailDialog(list.id)">Xem</button>
+            <button class="btn btn-primary" (click)="openDetailDialog(list.id)">Xem</button>
           </td>
           <td>
             <button class="btn btn-danger" (click)="openDeleteDialog(list.id)">Xóa</button>

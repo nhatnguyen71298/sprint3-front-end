@@ -49,8 +49,8 @@ export class ThesisService {
     return this.http.get(this.API + '/detail/' + id);
   }
 
-  createThesis(thesis: Thesis): Observable<any> {
-    return this.http.post(this.API + '/add', thesis);
+  createThesis(id:number, thesis: Thesis): Observable<any> {
+    return this.http.post(this.API + '/add/' + id, thesis);
   }
 
   editThesis(thesis, id): Observable<any> {
