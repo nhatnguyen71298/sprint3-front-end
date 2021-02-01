@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {root} from 'rxjs/internal-compatibility';
 import { FeedBackComponent } from './feed-back/feed-back.component';
@@ -20,6 +20,8 @@ import {MaterialModule} from '../material.module';
 import {MatButtonModule} from '@angular/material/button';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { MessageGroupStudentComponent } from './student-group-management/message-group-student/message-group-student.component';
+import { FeedBackDialogComponent } from './feed-back-dialog/feed-back-dialog.component';
+import { OutsideDirective } from './outside.directive';
 
 export const routes: Routes = [
   {
@@ -35,6 +37,7 @@ export const routes: Routes = [
 ];
 @NgModule({
   declarations: [FeedBackComponent, ListThesisComponent, DetailThesisComponent, EditThesisComponent,
+    FeedBackDialogComponent, OutsideDirective,
     DeleteThesisComponent, CreateThesisComponent, ManagementStudentGroupComponent, DeleteGroupStudentComponent,
     QuantityStudentGroupComponent,
     MessageThesisComponent,
@@ -49,5 +52,6 @@ export const routes: Routes = [
     FormsModule,
     MatButtonModule
   ],
+  providers: [DatePipe],
 })
 export class AppRoutingTeacherModule { }
