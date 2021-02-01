@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="col-12">
+    <div class="table-wrapper">
+      <div class="table-title-xl" style="background-color: midnightblue; margin-top: 30px">
+        <div class="row">
+          <div class="col-xl-12" style="text-align: center; margin-top: 10px; color: white">
+            <h2><b>DANH SÁCH GIÁO VIÊN</b></h2>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+          <div class="col-xl-3" style=" margin-left: 10px; margin-bottom: 10px">
+            <a class="nav-link" [routerLink]="['/teacher/teacher-add']" class="btn btn-success" data-toggle="modal"><i
+              class="material-icons" style="height: 25px"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+            </svg>
+            </i><span style="font-size: 16px"> Thêm mới giáo viên</span></a>
+          </div>
+            <div class="row">
+          <div class="col-xl-9" style="margin-left: 300px">
+            <a href="#" class="btn-btn" (click)= ngOnInit() data-toggle="modal" style="color: white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="margin-left: 310px; margin-top: -80px" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+              <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+            </svg></a>
+            <select  [(ngModel)]="input" name="input" class="custom-select" style="width: 190px; margin-top: -80px; margin-left: 7px">
+              <option value="fullName">Tìm theo họ tên</option>
+              <option  value="teacherCode">Tìm theo mã giáo viên</option>
+              <option  value="identityNumber"> Tìm theo số CMND</option>
+              <option  value="phone">Tìm theo số điện thoại</option>
+              <option  value="email">Tìm theo email</option>
+            </select>
+            <form class="form-inline row" style="margin-top: -68px; margin-left: 540px">
+              <input [(ngModel)]="key" name="key" class="form-control ml-0" type="search" placeholder="Nhập từ khóa"
+                     aria-label="Search" style="width: 150px">
+              <a href="#" class="btn-btn" (click)=getTeacher() data-toggle="modal" style="color: white; margin-left: 10px"><svg
+                xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1
+                                            1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg></a>
+            </form>
+           </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover-xl" style="font-size: 90%; background-color: white">
+      <thead>
+      <tr style="text-align: center">
+        <!--							<th>STT</th>-->
+        <th>Họ tên giáo viên</th>
+        <th>Mã giáo viên</th>
+        <th>CMND</th>
+        <th>Số điện thoại</th>
+        <th>Email</th>
+        <th>Số lượng sinh viên hướng dẫn</th>
+        <th>Tác vụ</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let teacher of list |filter:term|paginate: { itemsPerPage: 3, currentPage: p}">
+      <tr style="text-align: center">
+        <td>{{teacher.fullName}}</td>
+        <td>{{teacher.teacherCode}}</td>
+        <td>{{teacher.identityNumber}}</td>
+        <td>{{teacher.phone}}</td>
+        <td>{{teacher.email}}</td>
+        <td>{{teacher.numberStudent}}</td>
+        <td>
+          <div class="d-flex justify-content-center">
+            <a class = "nav-link" [routerLink]="['/customer-edit']"><i class="material-icons" data-toggle="tooltip" style="color: #FFC107"
+                                                                       title="Sửa">&#xE254;</i></a>
+            <a  class = "nav-link" [routerLink]="['/customer-delete']"><i class="material-icons" data-toggle="tooltip" style="color: #F44336" title="Xóa">&#xE872;</i></a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
