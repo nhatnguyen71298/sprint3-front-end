@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, OnChanges} from '@angular/core';
 import {QuocService} from '../../service/quocservice/quoc.service';
-import {error} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-list-student-no-group',
@@ -12,19 +11,32 @@ export class ListStudentNoGroupComponent implements OnInit {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onGetStudent = new EventEmitter();
   @Input() st;
+  @Input() st2;
   private p: number;
   public test = 'first';
   private studentList = [];
   private by = 'all';
   private search = '';
   public student: any;
-  private studentRemove = [];
   constructor(private quocService: QuocService) {
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnChanges(): void {
-    if (this.st !== undefined) {
+    let isCheck = false;
+    // tslint:disable-next-line:prefer-for-of
+    if(this.studentList.length !== 0){
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i <this.studentList.length; i++) {
+        if(this.st.id === this.studentList[i].id){
+          isCheck = true;
+          break;
+        }
+      }
+      if(isCheck !== true){
+        this.studentList.push(this.st);
+      }
+    }else {
       this.studentList.push(this.st);
     }
   }
@@ -45,37 +57,43 @@ export class ListStudentNoGroupComponent implements OnInit {
 // @ts-ignore
 
   public getStudents() {
-    this.quocService.search(this.by, this.search).subscribe(
+    this.quocService.findAllStudentNoGroup().subscribe(
       data => {
+        console.log(data);
         this.studentList = data;
         console.log(this.studentList);
       },
       () => {
       },
       () => {
-        for (let i = this.studentList.length - 1; i >= 0; i--) {
-          // tslint:disable-next-line:prefer-for-of
-          for (let j = 0; j < this.studentRemove.length; j++) {
-            if (this.studentList[i] && (this.studentList[i].id === this.studentRemove[j].id)) {
-              this.studentList = this.studentList.splice(i, 0);
-            }
-          }
-        }
-        console.log('hi')
-        console.log(this.studentList);
       });
   }
 
-  getInfo(id: number, i: number) {
-    this.studentRemove.push(this.studentList[i]);
-    console.log(this.studentRemove);
-    this.studentList.splice(i, 1);
+  getInfo(id: number) {
+    // tslint:disable-next-line:prefer-for-of
+    for (let j = 0; j < this.studentList.length ; j++) {
+      if(this.studentList[j].id === id){
+        this.studentList.splice(j,1);
+      }
+    }
     console.log(this.studentList);
     this.onGetStudent.emit(id);
   }
 
   findStudent() {
-    this.ngOnInit();
+    console.log('search khi enter');
+    this.quocService.search(this.by, this.search).subscribe(value => {
+      this.studentList = value;
+      // tslint:disable-next-line:prefer-for-of
+      for( let i=this.studentList.length - 1; i>=0; i--){
+        // tslint:disable-next-line:prefer-for-of
+        for( let j=0; j<this.st2.value.length; j++){
+          if(this.studentList[i] && (this.studentList[i].id === this.st2.value[j].id)){
+            this.studentList.splice(i, 1);
+          }
+        }
+      }
+    });
   }
 
   cancelFormCreate() {
@@ -85,4 +103,7 @@ export class ListStudentNoGroupComponent implements OnInit {
     })
   }
 
+  handleClear() {
+    this.search = '';
+  }
 }

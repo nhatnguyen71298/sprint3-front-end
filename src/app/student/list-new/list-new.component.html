@@ -1,0 +1,50 @@
+
+          <div class="inform-box" style="margin-top: 2px">
+            <h3 class="content-header-container" style="margin-top:15px">
+              <label class="content-header">
+                <a [routerLink]="['/news']" style="color: white;text-decoration: none">Thông
+                  báo đào tạo</a>
+              </label>
+            </h3>
+
+            <ul class="list-news-more ">
+
+              <div class="edn_422_article_list_wrapper">
+
+                <ng-container *ngIf="news.length === 0 else elseBlock">
+                  <li>KHÔNG CÓ THÔNG BÁO</li>
+                </ng-container>
+                <ng-template #elseBlock>
+                  <li  *ngFor="let new of news | paginate: { itemsPerPage: 5, currentPage: p }; let i = index " class="inform-item " data-wow-delay="0.5s">
+                    <div class="d-flex align-items-center">
+                      <img class="d-block w-10 inform-icon"
+                           src="assets/quoc-image/icon-notification.png"
+                           style="width: 17px;height: 17px">
+
+                      <span class="date_inform ml-3">{{new.createDate | date :'dd/MM/yyyy, h:mm a'}}</span>
+                    </div>
+                    <p class="details_inform " style="margin-top:5px !important;">
+                      <b class="thongbao" style="text-align: justify;">
+                        <a [routerLink]="['/detail-news/'+ new.id]"
+                           title="Thông báo "
+                           style="font-size:15px; color: #428bca;">
+                          {{new.title}}
+                        </a>
+                      </b>
+                    </p>
+                  </li>
+                </ng-template>
+
+              </div>
+            </ul>
+
+            <div class="row mt-4 justify-content-end" >
+              <div class="box-3 justify-content-end mr-3 " >
+                <div align="right" *ngIf="this.news.length !== 0">
+                  <pagination-controls (click)="changePage(p)" (pageChange)="p = $event" previousLabel="Trước" nextLabel="Sau"
+                                       responsive="true"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+
