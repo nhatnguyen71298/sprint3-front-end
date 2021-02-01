@@ -1,0 +1,81 @@
+<div class="border border-dark rounded mt-5">
+  <div class="table-title p-3">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2><b>Thông tin</b></h2>
+      </div>
+    </div>
+  </div>
+  <div class="pl-4 pt-2">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Quản lý đăng nhập</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>Tên sinh viên:</label>
+      </div>
+      <div class="col-lg-9">
+        <p>{{interaction.student.fullName}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>Chủ đề:</label>
+      </div>
+      <div class="col-lg-9">
+        <p>{{interaction.title}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <label>Nội dung:</label>
+      </div>
+      <div class="col-lg-9">
+        <p>{{interaction.content}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="border border-dark rounded mt-5">
+  <div class="table-title p-3">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2><b>Sinh viên phản hồi</b></h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12" id="comment">
+      <button class="text-center" style="width: 100%" (click)="lengthIncrease()">Hiển thị thêm tin nhắn</button>
+      <b *ngFor="let row of records" style="font-size: 1.1rem;color: red;border-bottom: 1px solid red">
+        {{row.name}}:<span><pre class="">{{row.content}}</pre></span>
+      </b>
+    </div>
+  </div>
+  <div class="row pr-4">
+    <div class="col-lg-12">
+      <hr>
+    </div>
+  </div>
+  <form class="pl-4">
+    <div class="row pt-2 pb-2 pr-4">
+      <div class="col-lg-12">
+        <textarea cols="3"  style="width: 100%;" placeholder="Trả lời"
+                  (keydown.shift.enter)='this.value = this.value + "\n"'
+                  (keydown.enter)="sentFireBase($event)" [formControl]="contentInteraction"></textarea>
+      </div>
+    </div>
+    <div class="row pr-4 pb-4">
+      <div class="col-lg-12 d-flex justify-content-end">
+        <i class="fa fa-smile-o fa-3x mr-2" aria-hidden="true" (click)="open = !open"></i>
+        <button class="btn btn-success" (click)="sentFireBase($event)">Gửi</button>
+      </div>
+      <emoji-mart (emojiClick)="addEmoji($event)" *ngIf="open"></emoji-mart>
+    </div>
+  </form>
+</div>
+
+
+

@@ -22,6 +22,7 @@ import { ListNewComponent } from './list-new/list-new.component';
 import { DetailNewsComponent } from './detail-news/detail-news.component';
 import { ConfirmComponent } from './subscribe-thesis/confirm/confirm.component';
 import {ThesisDetailSendComponent} from './thesis-detail-send/thesis-detail-send.component';
+import {InteractionStudentComponent} from './interaction-student-teacher/interaction-student/interaction-student.component';
 
 export const routes: Routes = [
   {
@@ -31,7 +32,8 @@ export const routes: Routes = [
       {path: 'subscribe/:idStudent', component: SubscribeThesisComponent},
       {path: 'list-instructor/:idStudent', component: ListInstructorComponent},
       {path: 'student-list', component: ListStudentComponent},
-      {path: 'send-thesis-detail', component: ThesisDetailSendComponent}
+      {path: 'send-thesis-detail', component: ThesisDetailSendComponent},
+      {path: 'interaction', component: InteractionStudentComponent}
     ]
   },
  // quoc

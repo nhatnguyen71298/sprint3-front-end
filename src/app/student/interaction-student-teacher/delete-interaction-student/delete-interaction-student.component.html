@@ -1,0 +1,10 @@
+<div *ngIf="interaction">
+  <p>
+    "Bạn có muốn xóa câu hỏi có tiêu đề "<span style='color: red'>{{interaction.title}}"</span>
+  </p>
+</div>
+<div class="d-flex justify-content-end mt-4">
+  <button class="btn btn-success mr-3" (click)="cancel()">Hủy</button>
+  <button class="btn btn-success" (click)="delete()">Xóa</button>
+</div>
+
