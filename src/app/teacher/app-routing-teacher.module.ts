@@ -42,7 +42,7 @@ export const routes: Routes = [
       {path: 'thesis-list', component: ListThesisComponent},
       {path: 'student-group-list', component: ManagementStudentGroupComponent},
       {path: 'teacher-list', component: TeacherListComponent},
-      {path: 'teacher-add', component: TeacherAddComponent}
+      {path: 'teacher-add', component: TeacherAddComponent},
       {path: 'statistics', component: StatisticsTeacherComponent},
     ]
   },
