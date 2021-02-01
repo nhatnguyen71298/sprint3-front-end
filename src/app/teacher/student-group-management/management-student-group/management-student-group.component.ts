@@ -16,6 +16,7 @@ import {QuantityStudentGroupComponent} from '../quantity-student-group/quantity-
 export class ManagementStudentGroupComponent implements OnInit {
   groupList: any;
   p: number;
+  public test = 'first';
 
   constructor(private groupStudentService: GroupStudentService,
               private httpClient: HttpClient,
@@ -52,4 +53,12 @@ export class ManagementStudentGroupComponent implements OnInit {
         this.ngOnInit();
       })
     }
+
+  changePage(p) {
+    if (p !== 1) {
+      this.test = 'second';
+    } else {
+      this.test = 'first';
+    }
+  }
 }

@@ -15,10 +15,7 @@ export class MessageGroupStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.message = this.data.groupMess;
-    const matDialogConfig: MatDialogConfig = new MatDialogConfig();
-    matDialogConfig.position = {left: `40%`, top: `60px`};
-    this.dialogRef.updatePosition(matDialogConfig.position);
+    this.message = this.data.dataMessage;
   }
 
   loadList() {
