@@ -48,6 +48,8 @@ export const routes: Routes = [
       {path: 'teacher-list', component: TeacherListComponent},
       {path: 'teacher-add', component: TeacherAddComponent},
       {path: 'statistics', component: StatisticsTeacherComponent},
+      {path: 'thesis-detail-list', component: ThesisDetailListComponent},
+      {path: 'instruction', component: InstructionDocumentComponent},
     ]
   },
   {
