@@ -40,6 +40,13 @@ export class StudentService {
       }
     }
   }
+  // validate khoảng trắng
+  validateWhitespace(control: AbstractControl) {
+    if ((control.value as string).indexOf('  ') >= 0) {
+      return {cannotContainSpace: true};
+    }
+    return null;
+  }
   validateSpecialCharacter(control: AbstractControl) {
     const specialCharacter = '[~`!@#$%^&*()-+=/*?:;.,|]+';
     return (control.value.match(specialCharacter)) ? {

@@ -35,7 +35,7 @@
         <span
           *ngIf="formAddNew.get('fullName').hasError('maxlength') && formAddNew.get('fullName').touched">Họ và tên phải ít hơn 50 ký tự.</span>
         <span
-          *ngIf="formAddNew.get('fullName').hasError('whiteSpace') && formAddNew.get('fullName').touched">Họ tên không được chứa khoảng trắng.</span>
+          *ngIf="formAddNew.get('fullName').hasError('cannotContainSpace') && formAddNew.get('fullName').touched">Họ và tên chỉ được chứa 1 khoảng trắng.</span>
       </div>
     </div>
     <div class="form-group row ">
