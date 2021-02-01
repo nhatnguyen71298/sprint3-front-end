@@ -5,6 +5,7 @@ import {ViewThesisComponent} from '../view-thesis/view-thesis.component';
 import {NotificationSubscribeComponent} from '../notification-subscribe/notification-subscribe.component';
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ConfirmComponent} from '../confirm/confirm.component';
 
 @Component({
   selector: 'app-subscribe',
@@ -210,6 +211,18 @@ export class SubscribeThesisComponent implements OnInit {
     })
   }
 
+  openConfirm(id, dataConfirm, action): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '555px',
+      height: '255px',
+      data: {id, dataConfirm, action},
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
+    })
+  }
+
   unsubscribeThesis() {
     if (this.student.position === true) {
       this.hiddenTable = true;
@@ -222,29 +235,8 @@ export class SubscribeThesisComponent implements OnInit {
         const checkThesis = this.thesisOfStudentCurrent.pop();
         if (checkThesis.status === false) {
           const idCheckThesis = checkThesis.id;
-          this.subscribeThesisService.unsubscribeThesis(idCheckThesis).subscribe(
-            (data) => {
-              this.message = data.message;
-              switch (this.message) {
-                case 'Complete':
-                  this.openNotification('Unsubscribe Complete');
-                  break;
-                case 'Approved':
-                  this.openNotification('Cannot Cancel');
-                  break;
-                case 'Not found':
-                  this.openNotification('Not found');
-                  break;
-                default:
-                  this.openNotification('Error');
-              }
-            },
-            () => {
-              this.openNotification('Error');
-            },
-            () => {
-              this.ngOnInit();
-            });
+          const statement = checkThesis.thesis.statement;
+          this.openConfirm(idCheckThesis, statement, 'unsub');
         }
       }
     } else {

@@ -20,6 +20,7 @@ import { StudentEditComponent } from './student-edit/student-edit.component';
 import { StudentMessageComponent } from './student-message/student-message.component';
 import { ListNewComponent } from './list-new/list-new.component';
 import { DetailNewsComponent } from './detail-news/detail-news.component';
+import { ConfirmComponent } from './subscribe-thesis/confirm/confirm.component';
 
 export const routes: Routes = [
   {
@@ -42,7 +43,7 @@ export const routes: Routes = [
     ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
     AddStudentComponent, MessageStudentComponent, ListStudentComponent,
     StudentDeleteComponent, StudentEditComponent, StudentMessageComponent,
-    ListNewComponent, DetailNewsComponent],
+    ListNewComponent, DetailNewsComponent,ConfirmComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-notification',
@@ -10,11 +10,16 @@ export class NotificationSubscribeComponent implements OnInit {
   protected message;
 
   constructor(
+    private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
   }
 
   ngOnInit(): void {
     this.message = this.data.notification;
+  }
+
+  close() {
+    this.dialog.closeAll()
   }
 }

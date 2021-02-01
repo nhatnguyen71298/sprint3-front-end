@@ -1,0 +1,9 @@
+<div *ngIf="actionConfirm == 'unsub'">
+  <i class="material-icons">error_outline</i>
+  <h1>Bạn có chắc chắn muốn hủy đề tài "{{dataConfirm}}" không!</h1>
+  <p class="text-danger">Hành động này không thể hoàn tác!</p>
+</div>
+<div class="row justify-content-end">
+  <button mat-dialog-close class="btn btn-dark">Hủy</button>
+  <button (click)="unsub()" class="btn btn-primary">OK</button>
+</div>
