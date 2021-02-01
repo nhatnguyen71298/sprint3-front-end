@@ -22,7 +22,7 @@
         <th role="columnheader">Thao tác</th>
       </tr>
       </thead>
-      <tbody role="rowgroup">
+      <tbody role="rowgroup" *ngIf="listHistoryInteraction">
       <tr role="row" *ngFor="let interaction of listHistoryInteraction.content; index as i">
         <td role="cell">{{i + 1 + (listHistoryInteraction.pageable.pageNumber * 5)}}</td>
         <td role="cell" id="1">{{interaction.title}}</td>
@@ -35,7 +35,7 @@
       </tbody>
     </table>
     <div class="d-flex justify-content-end" id="pagination"
-         *ngIf="listHistoryInteraction.totalPages > 1">
+         *ngIf="listHistoryInteraction?.totalPages > 1">
       <ul class="pagination">
         <li class="page-item disabled"
             (click)="searchInteraction(listHistoryInteraction.pageable.pageNumber-1, searchTitle)"

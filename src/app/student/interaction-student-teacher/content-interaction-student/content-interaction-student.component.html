@@ -47,10 +47,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12">
-      <p *ngFor="let row of records">
-        {{row.name}}: {{row.content}}
-      </p>
+    <div class="col-lg-12" id="comment">
+      <button class="text-center" style="width: 100%" (click)="lengthIncrease()">Hiển thị thêm tin nhắn</button>
+      <b *ngFor="let row of records" style="font-size: 1.1rem;color: red;border-bottom: 1px solid red">
+        {{row.name}}:<span><pre class="">{{row.content}}</pre></span>
+      </b>
     </div>
   </div>
   <div class="row pr-4">
@@ -61,14 +62,20 @@
   <form class="pl-4">
     <div class="row pt-2 pb-2 pr-4">
       <div class="col-lg-12">
-        <textarea cols="3" #feedback style="width: 100%;" placeholder="Trả lời"></textarea>
+        <textarea cols="3"  style="width: 100%;" placeholder="Trả lời"
+                  (keydown.shift.enter)='this.value = this.value + "\n"'
+                  (keydown.enter)="sentFireBase($event)" [formControl]="contentInteraction"></textarea>
       </div>
     </div>
     <div class="row pr-4 pb-4">
       <div class="col-lg-12 d-flex justify-content-end">
-        <button class="btn btn-success" (click)="sentFireBase(feedback)">Gửi</button>
+        <i class="fa fa-smile-o fa-3x mr-2" aria-hidden="true" (click)="open = !open"></i>
+        <button class="btn btn-success" (click)="sentFireBase($event)">Gửi</button>
       </div>
+      <emoji-mart (emojiClick)="addEmoji($event)" *ngIf="open"></emoji-mart>
     </div>
   </form>
 </div>
+
+
 

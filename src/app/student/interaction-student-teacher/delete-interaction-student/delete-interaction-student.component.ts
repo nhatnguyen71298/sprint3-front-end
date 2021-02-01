@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {DinServiceService} from '../../../service/din-service.service';
 import {DinInteractionService} from '../../../service/din-interaction.service';
 
+// @ts-ignore
 @Component({
   selector: 'app-delete-interaction-student',
   templateUrl: './delete-interaction-student.component.html',

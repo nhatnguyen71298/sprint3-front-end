@@ -1,7 +1,8 @@
 <div class="container-fluid my-5">
   <div class="row">
     <div class="col-lg-12" id="home">
-      <form class="border border-dark rounded" [formGroup]="formInteraction" (ngSubmit)="createInteraction(historyComponent)">
+      <form class="border border-dark rounded" id="formInteractionTemplate" [formGroup]="formInteraction"
+            (ngSubmit)="createInteraction(historyComponent,$event)">
         <div class="table-title p-3">
           <div class="row">
             <div class="col-lg-12">
@@ -14,7 +15,7 @@
             <label class="col-form-label" for="chude">Chủ đề</label>
           </div>
           <div class="col-lg-10">
-            <input class="input-group" id="chude" value="Quản lý thực hiện đề tài tốt nghiệp" formControlName="title">
+            <input class="input-group" id="chude" placeholder="Nhập chủ đề" formControlName="title">
           </div>
         </div>
         <div class="row px-4 pb-4">
@@ -22,13 +23,15 @@
             <label for="noidung">Nội dung</label>
           </div>
           <div class="col-lg-10">
-          <textarea rows="3" id="noidung" style="width: 100%" formControlName="content">Thêm mới danh sách sinh viên
+          <textarea rows="3" id="noidung" (keydown.shift.enter)='this.value = this.value + "\n"'
+                    (keydown.enter)="createInteraction(historyComponent,$event)"
+                    style="width: 100%" formControlName="content" placeholder="Thêm mới danh sách sinh viên">
           </textarea>
           </div>
         </div>
         <div class="row px-4 pb-4">
           <div class="col-lg-12 d-flex justify-content-end">
-            <button class="btn btn-success">Đăng</button>
+            <button class="btn btn-success" (keydown.enter)="createInteraction(historyComponent,$event)">Đăng</button>
           </div>
         </div>
       </form>

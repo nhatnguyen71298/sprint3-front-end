@@ -23,8 +23,9 @@
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
     "@auth0/angular-jwt": "^5.0.2",
-    "jwt-decode": "^3.1.2",
+    "@ctrl/ngx-emoji-mart": "^4.1.1",
     "firebase": "^8.2.4",
+    "jwt-decode": "^3.1.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

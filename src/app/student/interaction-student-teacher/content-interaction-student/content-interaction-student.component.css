@@ -2,4 +2,13 @@
   background: #435d7d;
   color: #fff;
 }
-
+pre {
+  font-size: 1rem;
+}
+#comment{
+  height: 350px;
+  overflow-y: auto;
+}
+*{
+  box-sizing: border-box;
+}

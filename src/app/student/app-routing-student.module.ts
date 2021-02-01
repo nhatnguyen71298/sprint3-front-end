@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// @ts-ignore
+import {NgModule} from '@angular/core';
+// @ts-ignore
+import {CommonModule} from '@angular/common';
+// @ts-ignore
 import {RouterModule, Routes} from '@angular/router';
 import {InteractionStudentComponent} from './interaction-student-teacher/interaction-student/interaction-student.component';
 
@@ -12,6 +15,8 @@ export const routes: Routes = [
     ]
   },
 ];
+
+// @ts-ignore
 @NgModule({
   declarations: [],
   imports: [
@@ -19,4 +24,5 @@ export const routes: Routes = [
     CommonModule
   ]
 })
-export class AppRoutingStudentModule { }
+export class AppRoutingStudentModule {
+}

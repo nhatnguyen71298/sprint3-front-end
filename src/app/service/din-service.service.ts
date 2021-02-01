@@ -8,6 +8,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class DinServiceService {
   private api = 'http://localhost:8080/interaction/';
+  private apiNotification = 'http://localhost:8080/notification/';
 
   constructor(private http: HttpClient) {
   }
@@ -30,6 +31,10 @@ export class DinServiceService {
 
   searchById(idInteraction): Observable<any> {
     return this.http.get(this.api + 'findById/' + idInteraction)
+  }
+
+  createNotification(idInteraction, idAccount): Observable<any> {
+    return this.http.post(this.apiNotification + 'create/' + idInteraction + '/' + idAccount, '');
   }
 
 }
