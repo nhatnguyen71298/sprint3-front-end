@@ -23,6 +23,7 @@ import { DetailNewsComponent } from './detail-news/detail-news.component';
 import { ConfirmComponent } from './subscribe-thesis/confirm/confirm.component';
 import {ThesisDetailSendComponent} from './thesis-detail-send/thesis-detail-send.component';
 import {InteractionStudentComponent} from './interaction-student-teacher/interaction-student/interaction-student.component';
+import {DeleteInteractionStudentComponent} from './interaction-student-teacher/delete-interaction-student/delete-interaction-student.component';
 
 export const routes: Routes = [
   {
@@ -47,7 +48,7 @@ export const routes: Routes = [
     ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
     AddStudentComponent, MessageStudentComponent, ListStudentComponent,
     StudentDeleteComponent, StudentEditComponent, StudentMessageComponent,
-    ListNewComponent, DetailNewsComponent,ConfirmComponent, ThesisDetailSendComponent],
+    ListNewComponent, DetailNewsComponent,ConfirmComponent, ThesisDetailSendComponent, DeleteInteractionStudentComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -59,6 +60,13 @@ export const routes: Routes = [
     MatDialogModule,
     NgxPaginationModule,
     ReactiveFormsModule
+  ],
+  exports:[
+    SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent,
+    ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
+    AddStudentComponent, MessageStudentComponent, ListStudentComponent,
+    StudentDeleteComponent, StudentEditComponent, StudentMessageComponent,
+    ListNewComponent, DetailNewsComponent,ConfirmComponent, ThesisDetailSendComponent, DeleteInteractionStudentComponent
   ],
   entryComponents: [ViewThesisComponent, NotificationSubscribeComponent]
 })
