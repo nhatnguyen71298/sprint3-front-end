@@ -25,6 +25,12 @@ import { OutsideDirective } from './outside.directive';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { ListStudentNoGroupComponent } from './list-student-no-group/list-student-no-group.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {TeacherAddComponent} from './teacher-management/teacher-add/teacher-add.component';
+import {SuccessComponent} from './teacher-management/success/success.component';
+import {SearchComponent} from './teacher-management/alert/search/search.component';
+import {NoResultComponent} from './teacher-management/alert/no-result/no-result.component';
+import {TeacherListComponent} from './teacher-management/teacher-list/teacher-list.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +41,9 @@ export const routes: Routes = [
       {path: 'statistics-thesis', component: StatisticsThesisComponent},
       {path: 'thesis-list', component: ListThesisComponent},
       {path: 'student-group-list', component: ManagementStudentGroupComponent},
+      {path: 'teacher-list', component: TeacherListComponent},
+      {path: 'teacher-add', component: TeacherAddComponent}
+
     ]
   },
   {
@@ -54,11 +63,13 @@ export const routes: Routes = [
     QuantityStudentGroupComponent,
     MessageThesisComponent,
     NotificationThesisComponent,
-    MessageGroupStudentComponent, CreateGroupComponent, ListStudentNoGroupComponent],
+    MessageGroupStudentComponent, CreateGroupComponent, ListStudentNoGroupComponent,
+    TeacherListComponent, TeacherAddComponent, SuccessComponent, SearchComponent, NoResultComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule,
     NgxPaginationModule,
     MaterialModule,
     FormsModule,
