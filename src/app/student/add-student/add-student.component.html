@@ -1,0 +1,109 @@
+<div class="container-fluid ">
+
+  <form [formGroup]="formAddNew" (ngSubmit)="createEmployee()">
+    <h1 class="row d-flex justify-content-center" style="font-size: 30px">Thêm sinh viên</h1>
+    <hr>
+
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Mã SV <sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="studentCode">
+      </div>
+      <label class="ml-2 text-success" *ngIf="formAddNew.get('studentCode').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>
+      <div class="text-danger offset-md-3 px-3">
+      <span
+        *ngIf="formAddNew.get('studentCode').hasError('required') && formAddNew.get('studentCode').touched">Mã SV không được để trống.</span>
+        <span
+          *ngIf="formAddNew.get('studentCode').hasError('pattern') && formAddNew.get('studentCode').touched">Mã SV không đúng định dạng.(Vd: SV-xxxx).</span>
+        <span
+          *ngIf="formAddNew.get('studentCode').hasError('whiteSpace') && formAddNew.get('studentCode').touched">Mã SV không được chứa khoảng trắng.</span>
+      </div>
+    </div>
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Họ và tên <sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="fullName" >
+      </div>
+      <label class="ml-2 text-success" *ngIf="formAddNew.get('fullName').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>
+      <div class="text-danger offset-md-3 px-3">
+      <span
+        *ngIf="formAddNew.get('fullName').hasError('required') && formAddNew.get('fullName').touched">Họ và tên không được để trống.</span>
+        <span
+          *ngIf="formAddNew.get('fullName').hasError('specialCharacter') && formAddNew.get('fullName').touched">Họ và tên không có kí tự đặt biệt.</span>
+        <span
+          *ngIf="formAddNew.get('fullName').hasError('minlength') && formAddNew.get('fullName').touched">Họ và tên phải nhiều hơn 5 ký tự.</span>
+        <span
+          *ngIf="formAddNew.get('fullName').hasError('maxlength') && formAddNew.get('fullName').touched">Họ và tên phải ít hơn 50 ký tự.</span>
+        <span
+          *ngIf="formAddNew.get('fullName').hasError('cannotContainSpace') && formAddNew.get('fullName').touched">Họ và tên chỉ được chứa 1 khoảng trắng.</span>
+      </div>
+    </div>
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">GV hướng dẫn:<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8" *ngIf="list1">
+<!--        <input type="text" min="1" class="form-control form-control-sm" formControlName="teacher">-->
+
+        <select class="form-control d-flex justify-content-start" formControlName="teacher" required>
+          <option value="" selected="selected">Vui lòng chọn giáo viên hướng dẫn</option>
+          <option *ngFor="let teacher of list1" value="{{teacher.fullName}}">{{teacher.fullName}}</option>
+        </select>
+      </div>
+      <label class=" ml-2 text-success" *ngIf="formAddNew.get('teacher').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>
+    </div>
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Tên đề tài<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8" *ngIf="list2">
+<!--        <input rows="1" type="text" min="1" class="form-control form-control-sm" formControlName="topic" required>-->
+
+        <select class="form-control d-flex justify-content-start" formControlName="topic" required>
+          <option value="" selected="selected">Vui lòng chọn tên đề tài</option>
+          <option *ngFor="let thesis of list2" value="{{thesis.statement}}">{{thesis.statement}}</option>
+        </select>
+      </div>
+      <label class=" ml-2 text-success" *ngIf="formAddNew.get('topic').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Email: <sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text" min="1" class="form-control form-control-sm" formControlName="email">
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formAddNew.get('email').valid">
+        <i style="font-size: 15px" class="fa fa-check"></i></label>
+      <div class="text-danger offset-md-3 px-3">
+        <span  *ngIf="formAddNew.get('email').hasError('email') && formAddNew.get('email').touched">Email không đúng định dạng.(Vd: xxxxxxxxx@gmail.com).</span>
+        <span *ngIf="formAddNew.get('email').hasError('required') && formAddNew.get('email').touched"
+        >Email không được để trống.</span>
+        <span
+          *ngIf="formAddNew.get('email').hasError('maxlength') && formAddNew.get('email').touched">Email phải có ít hơn 50 ký tự.</span>
+      </div>
+    </div>
+    <div class="form-group row ">
+      <label class="col-sm-3 col-form-label">Số điện thoại:<sup class="text-danger">*</sup> </label>
+      <div class="col-sm-8">
+        <input type="text"  class="form-control form-control-sm" formControlName="phone" required>
+      </div>
+      <label class="ml-2 text-success"
+             *ngIf="formAddNew.get('phone').valid">
+        <i style="font-size: 15px" class="fa fa-check"></i></label>
+      <div class="text-danger offset-md-3 px-3">
+      <span
+        *ngIf="formAddNew.get('phone').hasError('required') && formAddNew.get('phone').touched">Số điện thoại không được để trống.</span>
+        <span
+          *ngIf="formAddNew.get('phone').hasError('format') && formAddNew.get('phone').touched">Số điện thoại không đúng định dạng.(vd: 09xxxxxxxx, 08xxxxxxxxx, 03xxxxxxxx).</span>
+        <span
+          *ngIf="formAddNew.get('phone').hasError('phoneAlpha') && formAddNew.get('phone').touched">Số điện thoại phải là số.</span>
+      </div>
+    </div>
+
+
+    <div class="row d-flex justify-content-center ml-4">
+      <div class="row ">
+        <button class="btn btn-secondary btn btn-sm mt-1" style="width: 80px" [mat-dialog-close]="">Hủy</button>
+        <button type="submit" class="btn btn-success btn btn-sm ml-2 mt-1" style="width: 90px">Thêm mới</button>
+      </div>
+    </div>
+  </form>
+  <!--  </div>-->
+</div>
+

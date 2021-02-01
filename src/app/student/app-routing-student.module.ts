@@ -12,6 +12,9 @@ import {NotificationSubscribeComponent} from './subscribe-thesis/notification-su
 import {ListInstructorComponent} from './mai-htq/list-instructor/list-instructor.component';
 import {DetailTeacherComponent} from './mai-htq/detail-teacher/detail-teacher.component';
 import {NotificationTeacherComponent} from './mai-htq/notification/notification-teacher.component';
+import { ListStudentComponent } from './list-student/list-student.component';
+import { AddStudentComponent } from './add-student/add-student.component';
+import { MessageStudentComponent } from './message-student/message-student.component';
 
 export const routes: Routes = [
   {
@@ -20,13 +23,15 @@ export const routes: Routes = [
       // {path: 'test', component: TestStudentComponent},
       {path: 'subscribe/:idStudent', component: SubscribeThesisComponent},
       {path: 'list-instructor/:idStudent', component: ListInstructorComponent},
+      {path: 'student-list', component: ListStudentComponent},
     ]
   },
 ];
 
 @NgModule({
   declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent,
-    ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent],
+    ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
+    AddStudentComponent, MessageStudentComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
