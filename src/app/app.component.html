@@ -8,7 +8,7 @@
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <div class="navbar-nav mx-3 justify-content-center">
       <a href="#" class="nav-item nav-link active">Trang Chủ</a>
-      <a href="#" class="nav-item nav-link">Tin Tức</a>
+      <a [routerLink]="['/news']" class="nav-item nav-link">Tin Tức</a>
       <div class="navbar-nav ml-auto">
         <div class="nav-item dropdown">
           <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Giáo Viên<b
@@ -27,6 +27,7 @@
               mắc sinh viên</a>
             <a href="#" class="dropdown-item"><i class="fa fa-book" aria-hidden="true"></i>Tài
               liệu hướng dẫn</a>
+            <a [routerLink]="['/teacher/create-group']" class="dropdown-item"><i class="fa fa-book" aria-hidden="true"></i>Tạo Nhóm Thực Hiện</a>
             <div class="dropdown-divider"></div>
           </div>
         </div>
@@ -74,7 +75,7 @@
 </nav>
 <div class="container-fluid my-0 " id="container">
   <div class="row p-1">
-<!--    Side-bar-->
+    <!--    Side-bar-->
     <div class="col-lg-3">
       <div class="accordion " id="accordionExample">
         <div class="card">
@@ -189,12 +190,63 @@
         </div>
       </div>
     </div>
-<!--    End side bar-->
+    <!--    End side bar-->
     <div class="col-lg-9  ">
       <router-outlet></router-outlet>
     </div>
+  </div>
+</div>
+<!-- Site footer -->
+<footer class="site-footer" style="margin-left: 17px;margin-right: 17px;margin-top: 5px">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 hihi">
+        <h6>Liên Hệ</h6>
+        <p class = "homeFooter"><i class="fas fa-home"></i>&nbsp; VĂN PHÒNG CODEGYM</p>
+        <p class = "addressFooter"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; 295 NGUYỄN TẤT THÀNH - HẢI CHÂU - ĐÀ NẴNG</p>
+        <p class="phoneFooter"><i class="fas fa-phone"></i> &nbsp;0236.3894.883 - 0903.583.869</p>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>LIÊN KẾT KHÁC</h6>
+        <ul class="footer-links">
+          <li><a href="http://scanfcode.com/category/c-language/">FACEBOOK CODEGYM</a></li>
+          <li><a href="http://scanfcode.com/category/front-end-development/">FANPAGE CODEGYM</a></li>
+          <li><a href="http://scanfcode.com/category/back-end-development/">TRANG TRUNG TÂM CODEGYM</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>LIÊN KẾT KHÁC</h6>
+        <ul class="footer-links">
+          <li><a href="http://scanfcode.com/about/">TIN TỨC LẬP TRÌNH</a></li>
+          <li><a href="http://scanfcode.com/contribute-at-scanfcode/">TÂM SỰ LẬP TRÌNH</a></li>
+          <li><a href="http://scanfcode.com/privacy-policy/">TUỔI MỚI LỚN</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+          <a href="#">CodeGym-C06</a>.
+        </p>
+        <p>Địa chỉ :số 295 Nguyễn Tất Thành, TP.Đà Nẵng - Điện Thoại: (0236) 3822571 - Email: dhspktdn@ute.udn.vn </p>
+      </div>
+
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <ul class="social-icons">
+          <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+          <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+          <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+          <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div>
     </div>
   </div>
+</footer>
 
 
 
