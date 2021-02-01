@@ -1,4 +1,9 @@
-
+#delete-student-btn:hover{
+  cursor: pointer;
+}
+#edit-student-btn:hover{
+  cursor: pointer;
+}
 
 .table-responsive {
   margin: 0;

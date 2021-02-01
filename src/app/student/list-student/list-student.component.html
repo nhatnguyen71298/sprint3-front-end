@@ -15,7 +15,7 @@
           <div class=" col-sm-6 d-flex justify-content-end form-inline">
             <input type="text" class=" form-control form-control-sm rounded mt-2"
                    placeholder="Nhập từ khóa tìm kiếm" (keydown.enter)="search()" [(ngModel)]="valueSearch" #value>
-            <button type="button" class="search btn btn-info" (click)="search()" >
+            <button type="button" class="search btn btn-info mt-2" (click)="search()" >
               <i class="fa fa-search"></i></button>
           </div>
         </div>
@@ -50,9 +50,9 @@
             <td>{{student.email}}</td>
             <td style="text-align: right">{{student.phone}}</td>
             <td align="center">
-              <a class="text-warning"><i class="material-icons" data-toggle="tooltip" title="Sửa"
+              <a id="edit-student-btn" class="text-warning"><i class="material-icons" data-toggle="tooltip" title="Sửa"
                                          (click)="openDialogEdit(student.id)">edit</i></a>
-              <a class="text-danger"><i class="material-icons" data-toggle="tooltip" title="Xoá"
+              <a id="delete-student-btn" class="text-danger"><i class="material-icons" data-toggle="tooltip" title="Xoá"
                                         (click)="openDialogDelete(student.id)">delete</i></a>
             </td>
           </tr>
