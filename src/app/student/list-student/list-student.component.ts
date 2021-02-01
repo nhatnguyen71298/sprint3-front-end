@@ -10,7 +10,7 @@ import {AddStudentComponent} from '../add-student/add-student.component';
 })
 export class ListStudentComponent implements OnInit {
   public list;
-  public checkList = 'true';
+  public checkList = true;
   public valueSearch: string;
   p: number;
 
