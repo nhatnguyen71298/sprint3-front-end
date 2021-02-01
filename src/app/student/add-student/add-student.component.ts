@@ -34,7 +34,7 @@ export class AddStudentComponent implements OnInit {
     });
     this.formAddNew = this.formBuilder.group({
       // tslint:disable-next-line:max-line-length
-      studentCode: ['', [Validators.required,Validators.pattern('^SV-\\d{4}$'), this.studentService.validateWhiteSpace]],
+      studentCode: ['', [Validators.required,Validators.pattern('^SV-\\d{4}$'), this.studentService.validateWhitespace]],
       // tslint:disable-next-line:max-line-length
       fullName: ['', [Validators.required, this.studentService.validateSpecialCharacter, this.studentService.validateWhitespace, Validators.maxLength(50), Validators.minLength(5)]],
       topic: ['', [Validators.required]],
