@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {root} from 'rxjs/internal-compatibility';
-import { FeedBackComponent } from './feed-back/feed-back.component';
+import {FeedBackComponent} from './feed-back/feed-back.component';
 import {StatisticsTeacherComponent} from './statistics/statistics-teacher/statistics-teacher.component';
 import {StatisticsThesisComponent} from './statistics/statistics-thesis/statistics-thesis.component';
 import {ListThesisComponent} from './thesis/list-thesis/list-thesis.component';
@@ -19,7 +19,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../material.module';
 import {MatButtonModule} from '@angular/material/button';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { MessageGroupStudentComponent } from './student-group-management/message-group-student/message-group-student.component';
+import {MessageGroupStudentComponent} from './student-group-management/message-group-student/message-group-student.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +33,7 @@ export const routes: Routes = [
     ]
   },
 ];
+
 @NgModule({
   declarations: [FeedBackComponent, ListThesisComponent, DetailThesisComponent, EditThesisComponent,
     DeleteThesisComponent, CreateThesisComponent, ManagementStudentGroupComponent, DeleteGroupStudentComponent,
@@ -50,4 +51,5 @@ export const routes: Routes = [
     MatButtonModule
   ],
 })
-export class AppRoutingTeacherModule { }
+export class AppRoutingTeacherModule {
+}
