@@ -12,6 +12,7 @@ import {NotificationSubscribeComponent} from './subscribe-thesis/notification-su
 import {ListInstructorComponent} from './mai-htq/list-instructor/list-instructor.component';
 import {DetailTeacherComponent} from './mai-htq/detail-teacher/detail-teacher.component';
 import {NotificationTeacherComponent} from './mai-htq/notification/notification-teacher.component';
+import { ConfirmComponent } from './subscribe-thesis/confirm/confirm.component';
 
 export const routes: Routes = [
   {
@@ -26,7 +27,7 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent,
-    ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent],
+    ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent, ConfirmComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
