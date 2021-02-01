@@ -1,72 +1,3 @@
-<!--<div class="container-fluid ">-->
-<!--  <form [formGroup]="formEditStudent" (ngSubmit)="editStudent()">-->
-<!--    <h3 class="row d-flex justify-content-center">CHỈNH SỬA THÔNG TIN SINH VIÊN</h3>-->
-<!--    <hr>-->
-<!--    <div class="form-group row ">-->
-<!--      <label class="col-sm-3 col-form-label">Mã SV <sup class="text-danger">*</sup> </label>-->
-<!--      <div class="col-sm-8">-->
-<!--        <input type="text" min="1" class="form-control form-control-sm" formControlName="studentCode">-->
-<!--      </div>-->
-<!--      <label class="ml-2 text-success" *ngIf="formEditStudent.get('studentCode').valid"><i style="font-size: 15px"-->
-<!--                                                                                           class="fa fa-check"></i></label>-->
-<!--      <div class="text-danger offset-md-3 px-3">-->
-<!--      <span-->
-<!--        *ngIf="formEditStudent.get('studentCode').hasError('required') && formEditStudent.get('studentCode').touched">Mã SV không được để trống.</span>-->
-<!--        <span-->
-<!--          *ngIf="formEditStudent.get('studentCode').hasError('pattern') && formEditStudent.get('studentCode').touched">Mã SV không đúng định dạng.(Vd: SV-xxxx).</span>-->
-<!--        <span-->
-<!--          *ngIf="formEditStudent.get('studentCode').hasError('whiteSpace') && formEditStudent.get('studentCode').touched">Mã SV không được chứa khoảng trắng.</span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="form-group row ">-->
-<!--      <label class="col-sm-3 col-form-label">Họ và tên <sup class="text-danger">*</sup> </label>-->
-<!--      <div class="col-sm-8">-->
-<!--        <input type="text" min="1" class="form-control form-control-sm" formControlName="fullName">-->
-<!--        <mat-error-->
-<!--          *ngIf="formEditStudent.get('fullName').hasError('required')">-->
-<!--          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>-->
-<!--          Họ và tên không được để trống-->
-<!--        </mat-error>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="form-group row ">-->
-<!--      <label class="col-sm-3 col-form-label">GV hướng dẫn:<sup class="text-danger">*</sup> </label>-->
-<!--      <div class="col-sm-8">-->
-<!--        <select class="form-control d-flex justify-content-start" formControlName="teacher">-->
-<!--          <option *ngFor="let teacher of list1">{{teacher.fullName}}</option>-->
-<!--        </select>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="form-group row ">-->
-<!--      <label class="col-sm-3 col-form-label">Tên đề tài<sup class="text-danger">*</sup> </label>-->
-<!--      <div class="col-sm-8">-->
-<!--        <select class="form-control d-flex justify-content-start" formControlName="topic">-->
-<!--          <option *ngFor="let thesis of list2" value="{{thesis.statement}}">{{thesis.statement}}</option>-->
-<!--        </select>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="form-group row">-->
-<!--      <label class="col-sm-3 col-form-label">Email: <sup class="text-danger">*</sup> </label>-->
-<!--      <div class="col-sm-8">-->
-<!--        <input type="text" min="1" class="form-control form-control-sm" formControlName="email">-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="form-group row ">-->
-<!--      <label class="col-sm-3 col-form-label">Số điện thoại:<sup class="text-danger">*</sup> </label>-->
-<!--      <div class="col-sm-8">-->
-<!--        <input type="text" class="form-control form-control-sm" formControlName="phone" required>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="row d-flex justify-content-center ml-4">-->
-<!--      <div>-->
-<!--        <button class="btn btn-secondary btn btn-sm" style="width: 80px" [mat-dialog-close]="">Hủy</button>-->
-<!--        <button [disabled]="formEditStudent.invalid" style="width: 80px" class="btn btn-warning btn btn-sm mx-4"-->
-<!--                (click)="editStudent()">Sửa-->
-<!--        </button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </form>-->
-<!--</div>-->
 
 
 <div class="container-fluid ">
@@ -113,7 +44,7 @@
       <label class="col-sm-3 col-form-label">GV hướng dẫn:<sup class="text-danger">*</sup> </label>
       <div class="col-sm-8" *ngIf="list1">
         <select class="form-control d-flex justify-content-start" formControlName="teacher" required>
-          <option *ngFor="let teacher of list1" value="{{teacher.fullName}}">{{teacher.fullName}}</option>
+          <option *ngFor="let teacher of list1" [value]="teacher.fullName">{{teacher.fullName}}</option>
         </select>
       </div>
       <label class=" ml-2 text-success" *ngIf="formEditStudent.get('teacher').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>
@@ -122,7 +53,7 @@
       <label class="col-sm-3 col-form-label">Tên đề tài<sup class="text-danger">*</sup> </label>
       <div class="col-sm-8" *ngIf="list2">
         <select class="form-control d-flex justify-content-start" formControlName="topic" required>
-          <option *ngFor="let thesis of list2" value="{{thesis.statement}}">{{thesis.statement}}</option>
+          <option *ngFor="let thesis of list2" [value]="thesis.statement">{{thesis.statement}}</option>
         </select>
       </div>
       <label class=" ml-2 text-success" *ngIf="formEditStudent.get('topic').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>
