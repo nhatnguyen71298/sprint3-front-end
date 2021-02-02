@@ -71,7 +71,8 @@ export const routes: Routes = [
     NotificationThesisComponent,
     MessageGroupStudentComponent, CreateGroupComponent, ListStudentNoGroupComponent,
     TeacherListComponent, TeacherAddComponent, SuccessComponent, SearchComponent, NoResultComponent,
-    InstructionDocumentComponent, DropzoneDirective, InstructionDeleteComponent, ThesisDetailListComponent],
+    InstructionDocumentComponent, DropzoneDirective, InstructionDeleteComponent, ThesisDetailListComponent,
+    ListStudentComponent, CheckThesisComponent, DetailContentThesisComponent, DetailContentThesisApprovedComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -82,6 +83,10 @@ export const routes: Routes = [
     FormsModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatListModule,
+    MatExpansionModule,
+    MatSidenavModule,
+    MatButtonToggleModule,
   ],
   providers: [DatePipe],
 })

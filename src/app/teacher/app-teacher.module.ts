@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {AppRoutingTeacherModule} from './app-routing-teacher.module';
 import { StatisticsTeacherComponent } from './statistics/statistics-teacher/statistics-teacher.component';
 import { StatisticsThesisComponent } from './statistics/statistics-thesis/statistics-thesis.component';
@@ -11,7 +11,6 @@ import {ToastrModule} from 'ngx-toastr';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {InstructionDocumentService} from '../service/instruction-document.service';
 import {ThesisDetailService} from '../service/thesis-detail.service';
-
 
 
 @NgModule({
@@ -30,4 +29,5 @@ import {ThesisDetailService} from '../service/thesis-detail.service';
   ],
   providers: [InstructionDocumentService, ThesisDetailService]
 })
-export class AppTeacherModule { }
+export class AppTeacherModule {
+}
