@@ -70,7 +70,7 @@ export class InstructionDocumentComponent implements OnInit {
   setFormUpload() {
     this.formUpload = this.formBuilder.group({
       fileName: ['', Validators.required],
-      description: ['', Validators.required],
+      description: ['',[ Validators.required, Validators.maxLength(250)]],
       fileUrl: '',
       pathFile: ''
     })

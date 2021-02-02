@@ -58,11 +58,19 @@
     </div>
     <div class="form-group">
       <div style="font-size: 18px">Đánh giá buổi 1</div>
-      <textarea id="first" style="width: 95%; margin-top: 5px" formControlName="firstComment"></textarea>
+      <textarea  id="first" style="width: 95%; margin-top: 5px" formControlName="firstComment"></textarea><br>
+      <small *ngIf="formComment.controls.firstComment?.touched && formComment.controls.firstComment?.errors?.required"
+             style="color: red; font-size:15px">Không được để trống đánh giá</small>
+      <small *ngIf="formComment.controls.firstComment?.touched && formComment.controls.firstComment?.errors?.maxlength"
+             style="color: red; font-size:15px">Nhập đánh giá không quá 250 từ</small>
     </div>
     <div *ngIf="isSecondComment" class="form-group">
       <div style="font-size: 18px">Đánh giá buổi 2</div>
-      <textarea id="second" style="width: 95%; margin-top: 5px" formControlName="secondComment"></textarea>
+      <textarea  id="second" style="width: 95%; margin-top: 5px" formControlName="secondComment"></textarea><br>
+      <small *ngIf="formComment.controls.secondComment?.touched && formComment.controls.secondComment?.errors?.required"
+             style="color: red; font-size:15px">Không được để trống đánh giá</small>
+      <small *ngIf="formComment.controls.secondComment?.touched && formComment.controls.secondComment?.errors?.maxlength"
+             style="color: red; font-size:15px">Nhập đánh giá không quá 250 từ</small>
     </div>
     <button style="float: right; margin-right: 20px; width: 100px" class="btn btn-primary">Lưu</button>
   </form>

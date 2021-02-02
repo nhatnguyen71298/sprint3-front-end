@@ -16,7 +16,7 @@ export class ThesisDetailSendComponent implements OnInit {
   studentId = 1;
   userId;
   thesisDetailId;
-  currentFile;
+  positionStudent;
   tempCheckReport;
   files: File[] = [];
   formUpload: FormGroup;
@@ -62,6 +62,14 @@ export class ThesisDetailSendComponent implements OnInit {
     this.userId = this.loginService.currentUserValue.id;
     this.thesisDetailService.getStudentIdByAccountId(this.userId).subscribe((data) => {
       this.studentId = data;
+      this.thesisDetailService.getPosition(this.studentId).subscribe((data1) => {
+        this.positionStudent = data1;
+        if (!this.positionStudent){
+          $('.progress-report').hide();
+        } else {
+          $('.progress-report').show();
+        }
+      })
     })
   }
 
@@ -80,7 +88,7 @@ export class ThesisDetailSendComponent implements OnInit {
       id: '',
       progressFile: ['', this.checkFile],
       fileUrl: '',
-      description: ['', Validators.required],
+      description: ['', [Validators.required, Validators.maxLength(250)]],
       percent: '',
       checkReport: '',
       checkThesisId: '',
@@ -92,7 +100,6 @@ export class ThesisDetailSendComponent implements OnInit {
       if ($('#get-file').val() === '') {
         $('.progress__choose-file-btn').focus();
       }
-      console.log(this.formUpload.value.progressFile.valid);
       const tempControl = this.el.nativeElement.querySelector('form');
       tempControl.querySelector('.ng-invalid').focus();
     }
@@ -101,7 +108,6 @@ export class ThesisDetailSendComponent implements OnInit {
     if (this.formUpload.valid && isValid) {
       this.formUpload.value.checkReport = this.tempCheckReport;
       this.formUpload.value.id = this.thesisDetailId;
-      console.log(this.formUpload.value.id);
       this.count = 0;
       this.percentage = 0;
       for (const file of this.files) {
@@ -135,6 +141,7 @@ export class ThesisDetailSendComponent implements OnInit {
         });
       }
     }
+    this.setFormUpload();
   }
 
   // upload to MySQL
@@ -146,7 +153,6 @@ export class ThesisDetailSendComponent implements OnInit {
       this.formUpload.value.checkThesisId = this.tempCheckThesisId;
       const fileNameTemp = this.formUpload.value.progressFile.split('fakepath\\');
       this.formUpload.value.progressFile = fileNameTemp[1];
-      console.log(this.formUpload.value);
       this.downloadURL = '';
       $('#get-file').files = [];
       $('#get-file').val('');

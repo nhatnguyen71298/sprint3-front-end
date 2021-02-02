@@ -13,6 +13,7 @@ export class ThesisDetailService {
   API_GET_STUDENT_ID_BY_ACCOUNT_ID = 'http://localhost:8080/thesis-detail/get-student-id/';
   API_GET_STUDENT_LIST = 'http://localhost:8080/thesis-detail/get-list-student/';
   API_UPLOAD_COMMENT = 'http://localhost:8080/thesis-detail/upload-comment/';
+  API_GET_POSITION_STUDENT = 'http://localhost:8080/thesis-detail/get-position-student/';
 
 
   constructor(public http: HttpClient) {
@@ -41,5 +42,9 @@ export class ThesisDetailService {
 
   uploadComment(thesisDetailId, formComment): Observable<any> {
     return this.http.post(this.API_UPLOAD_COMMENT + thesisDetailId, formComment)
+  }
+
+  getPosition(studentId): Observable<any> {
+    return this.http.get(this.API_GET_POSITION_STUDENT + studentId);
   }
 }
