@@ -21,14 +21,21 @@
           style="color: red">(*)</span></label>
       </div>
       <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 align-self-center">
-        <input  class="form-control" type="text" id="input-name-group" style=" cursor:default ;width: 88%" formControlName="groupName">
+        <input class="form-control" type="text" id="input-name-group" style=" cursor:default ;width: 88%"
+               formControlName="groupName">
 
         <p class="text-danger " style="font-palette: light"
            *ngIf="formCreate.get('groupName').hasError('required')
                                       && (formCreate.controls.groupName?.dirty
                                       || formCreate.controls.groupName?.touched)">
-          Vui lòng nhập tên nhóm
+          Vui lòng nhập tên nhóm.
         </p>
+        <span *ngIf="formCreate.get('groupName').hasError('pattern')"
+              class="text-danger">Vui lòng nhập tên nhóm bằng chữ từ 3 - 45 ký tự.
+        </span>
+        <span *ngIf="formCreate.get('groupName').hasError('cannotContainSpace')"
+              class="text-danger">Tên nhóm không có khoảng trắng .
+        </span>
       </div>
 
 

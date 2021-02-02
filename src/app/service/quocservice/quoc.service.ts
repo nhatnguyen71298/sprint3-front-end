@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {AbstractControl, FormControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +37,25 @@ export class QuocService {
   getNewsById(id) : Observable<any>{
     return this.http.get(this.API_NEWS + '/newsById/' + id);
   }
+
+
+  validateSpecialCharacter(control: AbstractControl) {
+    const specialCharacter = '[~`!@#$%^&*()-+=/*?:;.,|]+';
+    return (control.value.match(specialCharacter)) ? {
+      specialCharacter: true
+    } : null;
+  }
+
+   cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
+    if(control.value !== ''){
+      if(control.value as string === null){
+        return null;
+      }
+      if((control.value as string).trim().length === 0){
+        return {cannotContainSpace: true}
+      }
+      return null;
+    }
+  }
 }
+

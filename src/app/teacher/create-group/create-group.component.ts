@@ -1,11 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {QuocService} from '../../service/quocservice/quoc.service';
-import {SelectionModel} from '@angular/cdk/collections';
 import {Toast, ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ListStudentNoGroupComponent} from '../list-student-no-group/list-student-no-group.component';
 import {MatCheckbox} from '@angular/material/checkbox';
+import {debounceTime, switchMap} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 
 @Component({
@@ -23,8 +24,10 @@ export class CreateGroupComponent implements OnInit {
   private isDisabled: any;
   private selected: number;
   private element: any;
+  private valueChangesSub;
 
-  constructor(private fb: FormBuilder,
+  constructor(private _cdr: ChangeDetectorRef,
+    private fb: FormBuilder,
               private quocService: QuocService,
               private el: ElementRef, private route: ActivatedRoute,
               private toast: ToastrService,
@@ -33,12 +36,22 @@ export class CreateGroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.formCreate = this.fb.group({
-      groupName: ['', Validators.required],
+      groupName: ['', [Validators.required, Validators.pattern('^\\D{3,45}$'),
+        Validators.minLength(3), Validators.maxLength(45),
+        this.quocService.cannotContainSpace]],
       leaderGroupId: [null, Validators.required],
       students: this.fb.array([])
     });
+    console.log(this.formCreate.get('groupName').value);
     this.studentArr = this.formCreate.get('students') as FormArray;
   }
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnDestroy() {
+    if (this.valueChangesSub) {
+      this.valueChangesSub.unsubscribe()
+    }
+  }
+
   addStudent(id: number) {
     let check = false;
     if (this.studentArr.length !== 0) {
@@ -65,10 +78,12 @@ export class CreateGroupComponent implements OnInit {
       })
     }
   }
+
   removeStudent(stIndex: number) {
     this.checkRemoveSt = (this.studentArr.value[stIndex]);
     this.studentArr.removeAt(stIndex);
   }
+
   callApi() {
     if (this.studentArr.length === 0) {
       this.toast.error('Danh Sách Thành Viên Nhóm Đang Trống !', 'Thao Tác Thất Bại.')
@@ -87,7 +102,7 @@ export class CreateGroupComponent implements OnInit {
           this.quocService.createNew(this.idTeacherLogin, this.formCreate.value).subscribe(value => {
             console.log(this.formCreate.value);
             if (value === 1) {
-              this.router.navigate(['teacher/feed-back'], {});
+              this.router.navigate(['teacher/student-group-list'], {});
               this.toast.success('Thao Tác Thành Công', 'Thông Báo')
             } else {
               this.toast.error('Thao Tác Thất Bại', 'Thông Báo')
@@ -105,17 +120,20 @@ export class CreateGroupComponent implements OnInit {
       }
     }
   }
+
   keyDownFunction(event) {
     if (event.keyCode === 13) {
       // @ts-ignore
       this.callApi();
     }
   }
+
   onReset() {
     this.formCreate.reset();
     this.studentArr.clear();
     this.childC.cancelFormCreate();
   }
+
   getRecord(checkbox: MatCheckbox, element: any) {
     console.log(checkbox.checked);
     if (checkbox.checked === true) {
