@@ -35,6 +35,10 @@ import {InstructionDocumentComponent} from './instruction-document/instruction-d
 import {DropzoneDirective} from './instruction-document/dropzone.directive';
 import {InstructionDeleteComponent} from './instruction-document/instruction-delete/instruction-delete.component';
 import {ThesisDetailListComponent} from './thesis-detail-list/thesis-detail-list.component';
+import {ListStudentComponent} from './list-student/list-student.component';
+import {CheckThesisComponent} from './check-thesis/check-thesis.component';
+import {DetailContentThesisComponent} from './detail-content-thesis/detail-content-thesis.component';
+import {DetailContentThesisApprovedComponent} from './detail-content-thesis-approved/detail-content-thesis-approved.component';
 
 export const routes: Routes = [
   {
@@ -50,6 +54,8 @@ export const routes: Routes = [
       {path: 'statistics', component: StatisticsTeacherComponent},
       {path: 'thesis-detail-list', component: ThesisDetailListComponent},
       {path: 'instruction', component: InstructionDocumentComponent},
+      {path: 'check-thesis', component: CheckThesisComponent},
+      {path: 'list-student', component: ListStudentComponent},
     ]
   },
   {
@@ -82,11 +88,7 @@ export const routes: Routes = [
     MaterialModule,
     FormsModule,
     MatButtonModule,
-    MatCheckboxModule,
-    MatListModule,
-    MatExpansionModule,
-    MatSidenavModule,
-    MatButtonToggleModule,
+    MatCheckboxModule
   ],
   providers: [DatePipe],
 })
