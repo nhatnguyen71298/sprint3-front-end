@@ -48,7 +48,9 @@
       </div>
       <div class="instruction__upload-description">
         <span>Mô tả</span><br>
-        <textarea class="instruction__upload-description-content" formControlName="description"></textarea>
+        <textarea class="instruction__upload-description-content" formControlName="description"></textarea><br>
+        <small *ngIf="formUpload.controls.description?.touched && formUpload.controls.description?.errors?.maxlength"
+               style="color: red; font-size:15px">Nhập mô tả không quá 250 từ</small>
       </div>
     </div>
     <div class="instruction__upload-submit">

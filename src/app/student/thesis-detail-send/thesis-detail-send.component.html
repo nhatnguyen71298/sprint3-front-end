@@ -18,6 +18,8 @@
         <textarea class="progress__content" formControlName="description"></textarea><br>
         <small *ngIf="formUpload.controls.description?.touched && formUpload.controls.description?.errors?.required"
                id="error-choose-content" style="color: red; font-size:15px">Hãy nhập chú thích cho báo cáo</small>
+        <small *ngIf="formUpload.controls.description?.touched && formUpload.controls.description?.errors?.maxlength"
+               style="color: red; font-size:15px">Nhập chú thích không quá 250 từ</small>
       </div>
     </div>
     <div class="progress__btn-submit">
@@ -25,6 +27,9 @@
     </div>
   </form>
 </div>
+<p *ngIf="!positionStudent" style="color: red; font-size: 20px; padding: 20px">Bạn không phải là nhóm trưởng nên
+  không thể báo cáo tiến độ</p>
+
 <div id="progress-box" class="instruction__progress-box">
   <div class="instruction__progress-box-header"></div>
   <meter style="font-size: 50px" [value]=percentage min="0" max="100"></meter>
