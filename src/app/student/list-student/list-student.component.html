@@ -43,7 +43,7 @@
             <td style="text-align: center">{{i + 1}}</td>
             <td>{{student.studentCode}}</td>
             <td style="text-align: left">{{student.fullName}}</td>
-            <td *ngIf="student.studentGroup != null">{{student.studentGroup.checkThesis.thesis.statement}}</td>
+            <td *ngIf="student.studentGroup != null">{{student?.studentGroup?.checkThesis?.thesis?.statement}}</td>
             <td *ngIf="student.studentGroup == null">{{student.topic}}</td>
             <td *ngIf="student.studentGroup != null">{{student.studentGroup.teacher.fullName}}</td>
             <td *ngIf="student.studentGroup == null">{{student.teacher}}</td>
