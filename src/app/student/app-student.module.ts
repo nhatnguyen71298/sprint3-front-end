@@ -11,12 +11,15 @@ import {environment} from '../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import {EmojiModule} from '@ctrl/ngx-emoji-mart/ngx-emoji';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DeleteInteractionStudentComponent} from './interaction-student-teacher/delete-interaction-student/delete-interaction-student.component';
+import {InteractionStudentComponent} from './interaction-student-teacher/interaction-student/interaction-student.component';
+import {HistoryInteractionStudentComponent} from './interaction-student-teacher/history-interaction-student/history-interaction-student.component';
+import {ContentInteractionStudentComponent} from './interaction-student-teacher/content-interaction-student/content-interaction-student.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [InteractionStudentComponent,HistoryInteractionStudentComponent,ContentInteractionStudentComponent],
   imports: [
     AppRoutingStudentModule,
     CommonModule,
@@ -29,6 +32,7 @@ import {DeleteInteractionStudentComponent} from './interaction-student-teacher/d
     PickerModule,
     EmojiModule,
     ReactiveFormsModule,
+    FormsModule
 
   ],
   providers: [ThesisDetailService],

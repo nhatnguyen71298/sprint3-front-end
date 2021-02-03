@@ -25,7 +25,7 @@ export class StudentEditComponent implements OnInit {
   }
   ngOnInit() {
     // form thông tin khách hàng.
-    this.studentService.getAllTeacherService().subscribe(data => {
+    this.studentService.getAllTeacherService().subscribe(data => { 
       this.list1 = data;
       // console.log(this.list1);
     });

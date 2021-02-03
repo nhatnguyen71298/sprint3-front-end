@@ -1,86 +1,87 @@
-<nav class="navbar navbar-expand-xl navbar-light bg-light">
-  <a href="#" class="navbar-brand"><i class="fa fa-cube"></i>C06<b>20G1</b></a>
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <!-- Collection of nav links, forms, and other content for toggling -->
-  <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-    <div class="navbar-nav mx-3 justify-content-center">
-      <a href="#" class="nav-item nav-link active">Trang Chủ</a>
-      <a routerLink="/news" class="nav-item nav-link">Tin Tức</a>
-      <div class="navbar-nav ml-auto">
-        <div class="nav-item dropdown">
-          <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Giáo Viên<b
-            class="caret"></b></a>
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-item"><i class="fa fa-bell-o" aria-hidden="true"></i> Đăng thông báo</a>
-            <a [routerLink]="['/teacher/thesis-list']" class="dropdown-item"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh
-              sách đề
-              tài</a>
-            <a [routerLink]="['/teacher/student-group-list']" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Quản lý nhóm sinh viên
-            </a>
-            <a [routerLink]="['/teacher/create-group']" class="dropdown-item"><i class="fa fa-list-alt" aria-hidden="true"></i>
-              Tạo mới nhóm</a>
-            <a href="#" routerLink="/teacher/check-thesis" class="dropdown-item"><i class="fa fa-check-square-o" aria-hidden="true"></i> Kiểm
-              duyệt đề tài</a>
-            <a href="#" routerLink="/teacher/list-student" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Danh
-              sách sinh viên</a>
-            <a routerLink="/teacher/thesis-detail-list" class="dropdown-item"><i class="fa fa-spinner" aria-hidden="true"></i> Quản
-              lý tiến độ</a>
-            <a routerLink="/teacher/feed-back" class="dropdown-item"><i class="fa fa-commenting" aria-hidden="true"></i>Thắc
-              mắc sinh viên</a>
-            <a routerLink="/teacher/instruction" class="dropdown-item"><i class="fa fa-book" aria-hidden="true"></i>Tài
-              liệu hướng dẫn</a>
-            <div class="dropdown-divider"></div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar-nav ml-auto">
-        <div class="nav-item dropdown">
-          <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Sinh Viên <b
-            class="caret"></b></a>
-          <div class="dropdown-menu">
-            <a [routerLink]="['/student/list-instructor/1']" class="dropdown-item"><i class="fa fa-users"
-                                                                                      aria-hidden="true"></i>
-              Đăng ký giáo viên hướng dẫn</a>
-            <a href="#" class="dropdown-item"><i class="fa fa-file" aria-hidden="true"></i>Nộp luận
-              văn</a>
-            <a routerLink="/student/send-thesis-detail" class="dropdown-item"><i class="fa fa-file"
-                                                                                 aria-hidden="true"></i>Báo cáo tiến độ</a>
-            <a href="#" class="dropdown-item"><i class="fa fa-key" aria-hidden="true"></i>Đổi mật
-              khẩu</a>
-            <a href="#" class="dropdown-item"><i class="fa fa-info-circle" aria-hidden="true"></i> Thay
-              đổi thông tin</a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Đăng Xuất</a>
-          </div>
-        </div>
-      </div>
-      <a href="#" class="nav-item nav-link">Liên Hệ</a>
-    </div>
-    <div class="navbar-nav ml-auto mr-3">
-      <a href="#" class="nav-item nav-link notifications"><i class="fa fa-bell-o"></i><span
-        class="badge">1</span></a>
-      <div class="nav-item dropdown">
-        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Nguyễn Quốc Khánh
-          <b class="caret"></b></a>
-        <div class="dropdown-menu">
-          <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Thông tin</a>
-          <a href="#changePassword" data-toggle="modal" class="dropdown-item"><i class="fa fa-key"
-                                                                                 aria-hidden="true"></i>Đổi
-            mật
-            khẩu</a>
-          <a href="#ModalExample" data-toggle="modal" class="dropdown-item" l><i class="fa fa-info-circle"
-                                                                                 aria-hidden="true"></i> Thay
-            đổi
-            thông tin</a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Đăng Xuất</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
+<!--<nav class="navbar navbar-expand-xl navbar-light bg-light">-->
+<!--  <a href="#" class="navbar-brand"><i class="fa fa-cube"></i>C06<b>20G1</b></a>-->
+<!--  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">-->
+<!--    <span class="navbar-toggler-icon"></span>-->
+<!--  </button>-->
+<!--  &lt;!&ndash; Collection of nav links, forms, and other content for toggling &ndash;&gt;-->
+<!--  <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">-->
+<!--    <div class="navbar-nav mx-3 justify-content-center">-->
+<!--      <a href="#" class="nav-item nav-link active">Trang Chủ</a>-->
+<!--      <a routerLink="/news" class="nav-item nav-link">Tin Tức</a>-->
+<!--      <div class="navbar-nav ml-auto">-->
+<!--        <div class="nav-item dropdown">-->
+<!--          <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Giáo Viên<b-->
+<!--            class="caret"></b></a>-->
+<!--          <div class="dropdown-menu">-->
+<!--            <a href="#" class="dropdown-item"><i class="fa fa-bell-o" aria-hidden="true"></i> Đăng thông báo</a>-->
+<!--            <a [routerLink]="['/teacher/thesis-list']" class="dropdown-item"><i class="fa fa-list-alt" aria-hidden="true"></i> Danh-->
+<!--              sách đề-->
+<!--              tài</a>-->
+<!--            <a [routerLink]="['/teacher/student-group-list']" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Quản lý nhóm sinh viên-->
+<!--            </a>-->
+<!--            <a [routerLink]="['/teacher/create-group']" class="dropdown-item"><i class="fa fa-list-alt" aria-hidden="true"></i>-->
+<!--              Tạo mới nhóm</a>-->
+<!--            <a href="#" routerLink="/teacher/check-thesis" class="dropdown-item"><i class="fa fa-check-square-o" aria-hidden="true"></i> Kiểm-->
+<!--              duyệt đề tài</a>-->
+<!--            <a href="#" routerLink="/teacher/list-student" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Danh-->
+<!--              sách sinh viên</a>-->
+<!--            <a routerLink="/teacher/thesis-detail-list" class="dropdown-item"><i class="fa fa-spinner" aria-hidden="true"></i> Quản-->
+<!--              lý tiến độ</a>-->
+<!--            <a routerLink="/teacher/feed-back" class="dropdown-item"><i class="fa fa-commenting" aria-hidden="true"></i>Thắc-->
+<!--              mắc sinh viên</a>-->
+<!--            <a routerLink="/teacher/instruction" class="dropdown-item"><i class="fa fa-book" aria-hidden="true"></i>Tài-->
+<!--              liệu hướng dẫn</a>-->
+<!--            <div class="dropdown-divider"></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="navbar-nav ml-auto">-->
+<!--        <div class="nav-item dropdown">-->
+<!--          <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Sinh Viên <b-->
+<!--            class="caret"></b></a>-->
+<!--          <div class="dropdown-menu">-->
+<!--            <a [routerLink]="['/student/list-instructor/1']" class="dropdown-item"><i class="fa fa-users"-->
+<!--                                                                                      aria-hidden="true"></i>-->
+<!--              Đăng ký giáo viên hướng dẫn</a>-->
+<!--            <a href="#" class="dropdown-item"><i class="fa fa-file" aria-hidden="true"></i>Nộp luận-->
+<!--              văn</a>-->
+<!--            <a routerLink="/student/send-thesis-detail" class="dropdown-item"><i class="fa fa-file"-->
+<!--                                                                                 aria-hidden="true"></i>Báo cáo tiến độ</a>-->
+<!--            <a href="#" class="dropdown-item"><i class="fa fa-key" aria-hidden="true"></i>Đổi mật-->
+<!--              khẩu</a>-->
+<!--            <a href="#" class="dropdown-item"><i class="fa fa-info-circle" aria-hidden="true"></i> Thay-->
+<!--              đổi thông tin</a>-->
+<!--            <div class="dropdown-divider"></div>-->
+<!--            <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Đăng Xuất</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <a href="#" class="nav-item nav-link">Liên Hệ</a>-->
+<!--    </div>-->
+<!--    <div class="navbar-nav ml-auto mr-3">-->
+<!--      <a href="#" class="nav-item nav-link notifications"><i class="fa fa-bell-o"></i><span-->
+<!--        class="badge">1</span></a>-->
+<!--      <div class="nav-item dropdown">-->
+<!--        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"> Nguyễn Quốc Khánh-->
+<!--          <b class="caret"></b></a>-->
+<!--        <div class="dropdown-menu">-->
+<!--          <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Thông tin</a>-->
+<!--          <a href="#changePassword" data-toggle="modal" class="dropdown-item"><i class="fa fa-key"-->
+<!--                                                                                 aria-hidden="true"></i>Đổi-->
+<!--            mật-->
+<!--            khẩu</a>-->
+<!--          <a href="#ModalExample" data-toggle="modal" class="dropdown-item" l><i class="fa fa-info-circle"-->
+<!--                                                                                 aria-hidden="true"></i> Thay-->
+<!--            đổi-->
+<!--            thông tin</a>-->
+<!--          <div class="dropdown-divider"></div>-->
+<!--          <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Đăng Xuất</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
+<app-nav-bar></app-nav-bar>
 <div class="container-fluid my-0 " id="container">
   <div class="row p-1">
 <!--    Side-bar-->
