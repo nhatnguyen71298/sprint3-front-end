@@ -105,6 +105,7 @@ export class SubscribeThesisComponent implements OnInit {
         for (let i = 0; i < this.thesisListSubscribed.length; i++) {
           if (this.thesisListSubscribed[i].studentGroup != null) {
             if (this.thesisListSubscribed[i].studentGroup.id === this.student.studentGroup.id) {
+              console.log('vô');
               this.checkChoose = false;
               this.hiddenTable = false;
               this.thesisOfStudentCurrent.push(this.thesisListSubscribed[i]);
@@ -188,7 +189,7 @@ export class SubscribeThesisComponent implements OnInit {
     this.subscribeThesisService.findThesisById(id).subscribe(thesis => {
       this.dialog.open(ViewThesisComponent, {
         width: '690px',
-        height: '330px',
+        height: '350px',
         data: {dataNeed: thesis},
         disableClose: true
       });

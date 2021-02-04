@@ -16,9 +16,9 @@
               <a href="#" class="dropdown-item"><i class="fa fa-bell-o" aria-hidden="true"></i> Đăng thông báo</a>
               <a href="#" class="dropdown-item"><i class="fa fa-list-alt" aria-hidden="true"></i>Danh sách đề
                 tài</a>
-              <a href="#" class="dropdown-item"><i class="fa fa-check-square-o" aria-hidden="true"></i> Kiểm
+              <a [routerLink]="'teacher/check-thesis'" class="dropdown-item"><i class="fa fa-check-square-o" aria-hidden="true"></i> Kiểm
                 duyệt đề tài</a>
-              <a href="#" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Danh
+              <a [routerLink]="'teacher/list-student'" class="dropdown-item"><i class="fa fa-users" aria-hidden="true"></i> Danh
                 sách sinh viên</a>
               <a routerLink="/teacher/thesis-detail-list" class="dropdown-item"><i class="fa fa-spinner" aria-hidden="true"></i> Quản
                 lý tiến độ</a>

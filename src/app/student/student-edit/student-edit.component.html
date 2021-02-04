@@ -40,24 +40,24 @@
           *ngIf="formEditStudent.get('fullName').hasError('cannotContainSpace') && formEditStudent.get('fullName').touched">Họ tên không được chứa khoảng trắng.</span>
       </div>
     </div>
-    <div class="form-group row ">
-      <label class="col-sm-3 col-form-label">GV hướng dẫn:<sup class="text-danger">*</sup> </label>
-      <div class="col-sm-8" *ngIf="list1">
-        <select class="form-control d-flex justify-content-start" formControlName="teacher" required>
-          <option *ngFor="let teacher of list1" [value]="teacher.fullName">{{teacher.fullName}}</option>
-        </select>
-      </div>
-      <label class=" ml-2 text-success" *ngIf="formEditStudent.get('teacher').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>
-    </div>
-    <div class="form-group row ">
-      <label class="col-sm-3 col-form-label">Tên đề tài<sup class="text-danger">*</sup> </label>
-      <div class="col-sm-8" *ngIf="list2">
-        <select class="form-control d-flex justify-content-start" formControlName="topic" required>
-          <option *ngFor="let thesis of list2" [value]="thesis.statement">{{thesis.statement}}</option>
-        </select>
-      </div>
-      <label class=" ml-2 text-success" *ngIf="formEditStudent.get('topic').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>
-    </div>
+<!--    <div class="form-group row ">-->
+<!--      <label class="col-sm-3 col-form-label">GV hướng dẫn:<sup class="text-danger">*</sup> </label>-->
+<!--      <div class="col-sm-8" *ngIf="list1">-->
+<!--        <select class="form-control d-flex justify-content-start" formControlName="teacher" required>-->
+<!--          <option *ngFor="let teacher of list1" [value]="teacher.fullName">{{teacher.fullName}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <label class=" ml-2 text-success" *ngIf="formEditStudent.get('teacher').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>-->
+<!--    </div>-->
+<!--    <div class="form-group row ">-->
+<!--      <label class="col-sm-3 col-form-label">Tên đề tài<sup class="text-danger">*</sup> </label>-->
+<!--      <div class="col-sm-8" *ngIf="list2">-->
+<!--        <select class="form-control d-flex justify-content-start" formControlName="topic" required>-->
+<!--          <option *ngFor="let thesis of list2" [value]="thesis.statement">{{thesis.statement}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <label class=" ml-2 text-success" *ngIf="formEditStudent.get('topic').valid"><i style="font-size: 15px" class="fa fa-check"></i></label>-->
+<!--    </div>-->
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Email: <sup class="text-danger">*</sup> </label>
       <div class="col-sm-8">
