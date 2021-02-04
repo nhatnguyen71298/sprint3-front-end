@@ -4,7 +4,6 @@ import {AppRoutingTeacherModule} from './app-routing-teacher.module';
 import {StatisticsTeacherComponent} from './statistics/statistics-teacher/statistics-teacher.component';
 import {StatisticsThesisComponent} from './statistics/statistics-thesis/statistics-thesis.component';
 
-
 @NgModule({
   declarations: [StatisticsTeacherComponent, StatisticsThesisComponent],
   imports: [

@@ -20,6 +20,8 @@ import {MaterialModule} from '../material.module';
 import {MatButtonModule} from '@angular/material/button';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MessageGroupStudentComponent} from './student-group-management/message-group-student/message-group-student.component';
+import {ListStudentComponent} from './list-student/list-student.component';
+import {CheckThesisComponent} from './check-thesis/check-thesis.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +32,8 @@ export const routes: Routes = [
       {path: 'statistics-thesis', component: StatisticsThesisComponent},
       {path: 'thesis-list', component: ListThesisComponent},
       {path: 'student-group-list', component: ManagementStudentGroupComponent},
+      {path: 'list-student', component: ListStudentComponent},
+      {path: 'check-thesis', component: CheckThesisComponent},
     ]
   },
 ];
@@ -40,7 +44,8 @@ export const routes: Routes = [
     QuantityStudentGroupComponent,
     MessageThesisComponent,
     NotificationThesisComponent,
-    MessageGroupStudentComponent],
+    MessageGroupStudentComponent,
+    ListStudentComponent, CheckThesisComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
