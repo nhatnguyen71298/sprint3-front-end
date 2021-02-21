@@ -24,6 +24,8 @@ import { ConfirmComponent } from './subscribe-thesis/confirm/confirm.component';
 import {ThesisDetailSendComponent} from './thesis-detail-send/thesis-detail-send.component';
 import {InteractionStudentComponent} from './interaction-student-teacher/interaction-student/interaction-student.component';
 import {DeleteInteractionStudentComponent} from './interaction-student-teacher/delete-interaction-student/delete-interaction-student.component';
+import {ReportProgressComponent} from './report-progress/report-progress.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 export const routes: Routes = [
   {
@@ -33,7 +35,8 @@ export const routes: Routes = [
       {path: 'subscribe/:idStudent', component: SubscribeThesisComponent},
       {path: 'list-instructor/:idStudent', component: ListInstructorComponent},
       {path: 'student-list', component: ListStudentComponent},
-      {path: 'send-thesis-detail', component: ThesisDetailSendComponent},
+      // {path: 'send-thesis-detail', component: ThesisDetailSendComponent},
+      {path: 'progress', component: ReportProgressComponent},
       {path: 'interaction', component: InteractionStudentComponent}
     ]
   },
@@ -48,7 +51,9 @@ export const routes: Routes = [
     ListInstructorComponent, DetailTeacherComponent, NotificationTeacherComponent,
     AddStudentComponent, MessageStudentComponent, ListStudentComponent,
     StudentDeleteComponent, StudentEditComponent, StudentMessageComponent,
-    ListNewComponent, DetailNewsComponent,ConfirmComponent, ThesisDetailSendComponent, DeleteInteractionStudentComponent],
+    ListNewComponent, DetailNewsComponent,ConfirmComponent, ThesisDetailSendComponent, DeleteInteractionStudentComponent,
+    ReportProgressComponent
+  ],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -59,7 +64,8 @@ export const routes: Routes = [
     FormsModule,
     MatDialogModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
   ],
   exports:[
     SubscribeThesisComponent, ViewThesisComponent, NotificationSubscribeComponent,
@@ -68,7 +74,7 @@ export const routes: Routes = [
     StudentDeleteComponent, StudentEditComponent, StudentMessageComponent,
     ListNewComponent, DetailNewsComponent,ConfirmComponent, ThesisDetailSendComponent, DeleteInteractionStudentComponent
   ],
-  entryComponents: [ViewThesisComponent, NotificationSubscribeComponent]
+  entryComponents: [ViewThesisComponent, NotificationSubscribeComponent, ReportProgressComponent]
 })
 export class AppRoutingStudentModule {
 }

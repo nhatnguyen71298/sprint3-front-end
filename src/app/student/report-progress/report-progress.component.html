@@ -1,0 +1,111 @@
+
+<br>
+<br>
+<div *ngIf="nameStatement">
+  <h1 style="text-align: center">Đề tài đang thực hiện: <i style="color: blue">{{nameStatement}}</i></h1>
+  <mat-tab-group class="row" (selectedIndexChange)="getProgress($event)">
+    <mat-tab class="col-3" label="Giai đoạn 1" style="margin-left: 15%">
+      <br>
+      <div id="falseProgress1" style="display: none">
+        <h1>
+          <i style="color: red">
+            Vui lòng hoàn thành các giai đoạn trước.
+          </i>
+        </h1>
+      </div>
+      <div id="trueProgress1">
+        <h2>Thông tin chi tiết</h2>
+        <p>
+          <span><b>Điểm: </b> </span><span><i>{{mark}}</i></span>
+        </p>
+        <p>
+          <span><b>Đánh giá: </b></span><span><i>{{commentOfProgress}}</i></span>
+        </p>
+        <p>
+          <span><b>Ngày nộp: </b> </span><span><i>{{dateSubmit | date}}</i></span>
+        </p>
+        <p>
+          <span><b>Bài làm: </b> </span>
+          <span>
+            <input type="file" value="Chọn"   (change)="uploadFile($event)" accept=".docx,.doc,.xlsx">
+          </span>
+        </p>
+        <button class="btn btn-primary" (click)="sendThesis()">Nộp bài</button>
+      </div>
+    </mat-tab>
+    <mat-tab class="col-3" label="Giai đoạn 2">
+      <br>
+      <br>
+        <div id="falseProgress2">
+          <h1>
+            <i style="color: red">
+              Vui lòng hoàn thành các giai đoạn trước.
+            </i>
+          </h1>
+        </div>
+        <div id="trueProgress2">
+          <h2>Thông tin chi tiết</h2>
+          <p>
+            <span><b>Điểm: </b> </span><span><i>{{mark}}</i></span>
+          </p>
+          <p>
+            <span><b>Đánh giá: </b></span><span><i>{{commentOfProgress}}</i></span>
+          </p>
+          <p>
+            <span><b>Ngày nộp: </b> </span><span><i>{{dateSubmit | date}}</i></span>
+          </p>
+        </div>
+    </mat-tab>
+
+    <mat-tab class="col-3" label="Giai đoạn 3">
+      <br>
+      <div id="falseProgress3" class="align-content-center">
+        <h1>
+          <i style="color: red">
+            Vui lòng hoàn thành các giai đoạn trước.
+          </i>
+        </h1>
+      </div>
+      <div id="trueProgress3">
+        <h2>Thông tin chi tiết</h2>
+        <p>
+          <span><b>Điểm: </b> </span><span><i>{{mark}}</i></span>
+        </p>
+        <p>
+          <span><b>Đánh giá: </b></span><span><i>{{commentOfProgress}}</i></span>
+        </p>
+        <p>
+          <span><b>Ngày nộp: </b> </span><span><i>{{dateSubmit | date}}</i></span>
+        </p>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab class="col-3" label="Giai đoạn 4" >
+      <br>
+      <div id="falseProgress4">
+        <h1>
+          <i style="color: red">
+            Vui lòng hoàn thành các giai đoạn trước.
+          </i>
+        </h1>
+      </div>
+      <div id="trueProgress4">
+        <h2>Thông tin chi tiết</h2>
+        <p>
+          <span><b>Điểm: </b> </span><span><i>{{mark}}</i></span>
+        </p>
+        <p>
+          <span><b>Đánh giá: </b></span><span><i>{{commentOfProgress}}</i></span>
+        </p>
+        <p>
+          <span><b>Ngày nộp: </b> </span><span><i>{{dateSubmit | date}}</i></span>
+        </p>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div *ngIf="!nameStatement">
+  <h1 style="color: red;text-align: center"> <i>Nhóm của bạn chưa có đề tài được duyệt !</i> </h1>
+</div>

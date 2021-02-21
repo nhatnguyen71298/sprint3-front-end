@@ -18,6 +18,7 @@ import {PickerModule} from '@ctrl/ngx-emoji-mart';
 import {LoginComponent} from './login/login/login.component';
 import {ChangePassswordComponent} from './Admin/change-passsword/change-passsword.component';
 import {HttpClientModule} from '@angular/common/http';
+import {ReportProgressComponent} from './student/report-progress/report-progress.component';
 
 
 @NgModule({
